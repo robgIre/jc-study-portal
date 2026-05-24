@@ -1263,6 +1263,692 @@
   </div>
 </div>
 
+<!-- =========================================================== -->
+<!-- INTERACTIVE QUIZZES                                           -->
+<!-- =========================================================== -->
+<div class="page-break"></div>
+<div class="quiz-wrapper print-hide">
+  <div class="quiz-header">
+    <h2 class="flashcard-section-title" style="margin-top:0;">Interactive Quizzes</h2>
+    <p class="flashcard-instructions">Pick a topic and test yourself. You'll get instant feedback and a score at the end. Try to beat your best!</p>
+    <div class="quiz-topic-selector">
+      <button class="quiz-topic-btn active" data-topic="all" style="border-color: var(--gray-600); color: var(--gray-600);">All Topics</button>
+      <button class="quiz-topic-btn" data-topic="reformation" style="border-color: var(--blue); color: var(--blue);">Reformation</button>
+      <button class="quiz-topic-btn" data-topic="plantations" style="border-color: var(--green); color: var(--green);">Plantations</button>
+      <button class="quiz-topic-btn" data-topic="us-revolution" style="border-color: var(--purple); color: var(--purple);">US Revolution</button>
+      <button class="quiz-topic-btn" data-topic="1798" style="border-color: var(--orange); color: var(--orange);">1798 Rebellion</button>
+      <button class="quiz-topic-btn" data-topic="famine" style="border-color: var(--red); color: var(--red);">The Famine</button>
+    </div>
+  </div>
+
+  <div class="quiz-progress">
+    <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="progressFill"></div></div>
+    <div class="quiz-score" id="quizScore">Question 1 of 10</div>
+  </div>
+
+  <div id="quizContainer" class="quiz-container"></div>
+
+  <div id="quizResults" class="quiz-results" style="display:none;">
+    <div class="results-icon" id="resultsIcon"></div>
+    <div class="results-score" id="resultsScore"></div>
+    <div class="results-message" id="resultsMessage"></div>
+    <div class="results-breakdown" id="resultsBreakdown"></div>
+    <button class="quiz-btn quiz-btn-primary" onclick="startQuiz()">Try Again</button>
+    <button class="quiz-btn quiz-btn-secondary" onclick="startQuiz('all')">All Topics Mix</button>
+  </div>
+</div>
+
+<style>
+  .quiz-wrapper {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 20px 30px 40px;
+  }
+  .quiz-topic-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  .quiz-topic-btn {
+    padding: 8px 18px;
+    border: 2px solid;
+    border-radius: 20px;
+    background: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 10pt;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .quiz-topic-btn:hover, .quiz-topic-btn.active {
+    color: white !important;
+    background: currentColor;
+  }
+  .quiz-topic-btn.active[data-topic="all"] { background: var(--gray-600); color: white !important; }
+  .quiz-topic-btn.active[data-topic="reformation"] { background: var(--blue); color: white !important; }
+  .quiz-topic-btn.active[data-topic="plantations"] { background: var(--green); color: white !important; }
+  .quiz-topic-btn.active[data-topic="us-revolution"] { background: var(--purple); color: white !important; }
+  .quiz-topic-btn.active[data-topic="1798"] { background: var(--orange); color: white !important; }
+  .quiz-topic-btn.active[data-topic="famine"] { background: var(--red); color: white !important; }
+
+  .quiz-progress {
+    margin: 16px 0;
+  }
+  .quiz-progress-bar {
+    height: 8px;
+    background: var(--gray-100);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+  .quiz-progress-fill {
+    height: 100%;
+    background: var(--blue);
+    border-radius: 4px;
+    transition: width 0.4s ease;
+    width: 0%;
+  }
+  .quiz-score {
+    font-size: 10pt;
+    color: var(--gray-600);
+    text-align: center;
+    font-weight: 500;
+  }
+
+  .quiz-container {}
+
+  .quiz-card {
+    border: 2px solid var(--gray-200);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 16px;
+    animation: fadeIn 0.3s ease;
+  }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+  .quiz-card .qc-topic {
+    font-size: 8pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+  }
+  .quiz-card .qc-question {
+    font-size: 13pt;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+  .quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .quiz-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 16px;
+    border: 2px solid var(--gray-200);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 10.5pt;
+    color: var(--gray-700);
+    background: white;
+    text-align: left;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.5;
+  }
+  .quiz-option:hover:not(.disabled) {
+    border-color: var(--blue);
+    background: var(--blue-light);
+  }
+  .quiz-option .opt-letter {
+    font-weight: 700;
+    color: var(--gray-600);
+    min-width: 20px;
+  }
+  .quiz-option.correct {
+    border-color: #059669;
+    background: #d1fae5;
+    color: var(--gray-900);
+  }
+  .quiz-option.correct .opt-letter { color: #059669; }
+  .quiz-option.wrong {
+    border-color: #dc2626;
+    background: #fee2e2;
+    color: var(--gray-900);
+  }
+  .quiz-option.wrong .opt-letter { color: #dc2626; }
+  .quiz-option.disabled { cursor: default; opacity: 0.7; }
+  .quiz-option.disabled:hover { border-color: var(--gray-200); background: white; }
+
+  .quiz-feedback {
+    margin-top: 14px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 10pt;
+    line-height: 1.6;
+    animation: fadeIn 0.3s ease;
+  }
+  .quiz-feedback.correct-feedback {
+    background: #d1fae5;
+    border-left: 4px solid #059669;
+    color: #065f46;
+  }
+  .quiz-feedback.wrong-feedback {
+    background: #fee2e2;
+    border-left: 4px solid #dc2626;
+    color: #991b1b;
+  }
+  .quiz-feedback strong { display: block; margin-bottom: 2px; }
+
+  .quiz-next-btn {
+    display: block;
+    margin: 16px auto 0;
+    padding: 10px 28px;
+    border: none;
+    border-radius: 8px;
+    background: var(--gray-900);
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 10.5pt;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .quiz-next-btn:hover { background: var(--gray-700); }
+
+  .quiz-results {
+    text-align: center;
+    padding: 40px 20px;
+    animation: fadeIn 0.4s ease;
+  }
+  .results-icon { font-size: 48pt; margin-bottom: 12px; }
+  .results-score {
+    font-family: 'Merriweather', serif;
+    font-size: 28pt;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 8px;
+  }
+  .results-message {
+    font-size: 12pt;
+    color: var(--gray-600);
+    margin-bottom: 24px;
+  }
+  .results-breakdown {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 24px;
+  }
+  .results-breakdown .rb-item {
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 9pt;
+    font-weight: 600;
+  }
+  .rb-correct { background: #d1fae5; color: #059669; }
+  .rb-wrong { background: #fee2e2; color: #dc2626; }
+
+  .quiz-btn {
+    padding: 10px 24px;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 10.5pt;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 0 6px;
+    transition: all 0.2s;
+  }
+  .quiz-btn-primary { background: var(--gray-900); color: white; }
+  .quiz-btn-primary:hover { background: var(--gray-700); }
+  .quiz-btn-secondary { background: var(--gray-100); color: var(--gray-700); border: 1px solid var(--gray-200); }
+  .quiz-btn-secondary:hover { background: var(--gray-200); }
+</style>
+
+<script>
+const QUESTIONS = [
+  // ===== REFORMATION =====
+  { topic: "reformation", topicLabel: "Reformation", color: "#2563eb",
+    q: "What did Martin Luther nail to the church door in Wittenberg in 1517?",
+    options: ["A Papal Bull", "The 95 Theses", "The Bible in German", "A list of corrupt priests"],
+    correct: 1,
+    explanation: "Luther nailed his 95 Theses — arguments against the sale of indulgences — to the Castle Church door in Wittenberg on 31 October 1517."
+  },
+  { topic: "reformation", topicLabel: "Reformation", color: "#2563eb",
+    q: "What is 'simony'?",
+    options: ["Selling holy relics", "Buying and selling Church positions", "Preaching without permission", "Translating the Bible without approval"],
+    correct: 1,
+    explanation: "Simony was one of the key abuses in the Church — the buying and selling of positions like bishoprics."
+  },
+  { topic: "reformation", topicLabel: "Reformation", color: "#2563eb",
+    q: "Johann Tetzel was famous for selling what?",
+    options: ["Bibles", "Church positions", "Indulgences", "Holy water"],
+    correct: 2,
+    explanation: "Tetzel was a Dominican friar who sold indulgences near Wittenberg. His slogan: 'As soon as the coin in the coffer rings, the soul from Purgatory springs.'"
+  },
+  { topic: "reformation", topicLabel: "Reformation", color: "#2563eb",
+    q: "What happened at the Diet of Worms in 1521?",
+    options: ["Luther was executed", "Luther refused to take back his ideas", "The Pope forgave Luther", "Luther became a bishop"],
+    correct: 1,
+    explanation: "Emperor Charles V summoned Luther to the Diet of Worms. Luther refused to retract his writings, saying: 'Here I stand. I can do no other.' He was declared an outlaw."
+  },
+  { topic: "reformation", topicLabel: "Reformation", color: "#2563eb",
+    q: "What technology helped Luther's ideas spread rapidly across Europe?",
+    options: ["The postal service", "The printing press", "Ships and trade routes", "Carrier pigeons"],
+    correct: 1,
+    explanation: "The printing press (invented by Gutenberg c.1440) allowed Luther's theses and writings to be copied and distributed quickly across Europe."
+  },
+  { topic: "reformation", topicLabel: "Reformation", color: "#2563eb",
+    q: "Who founded the Jesuits?",
+    options: ["Martin Luther", "John Calvin", "Ignatius of Loyola", "Pope Leo X"],
+    correct: 2,
+    explanation: "Ignatius of Loyola founded the Society of Jesus (Jesuits) in 1534. They focused on education and missionary work to win people back to Catholicism."
+  },
+  { topic: "reformation", topicLabel: "Reformation", color: "#2563eb",
+    q: "What was the Council of Trent (1545-1563)?",
+    options: ["A meeting to plan the Crusades", "A court to punish heretics", "Church meetings that reformed abuses and reaffirmed Catholic doctrine", "A Protestant assembly in Germany"],
+    correct: 2,
+    explanation: "The Council of Trent was the Catholic Church's response to the Reformation. It banned abuses like simony, reaffirmed seven sacraments, and confirmed the Pope's authority."
+  },
+  { topic: "reformation", topicLabel: "Reformation", color: "#2563eb",
+    q: "Luther believed people are saved by...",
+    options: ["Good works alone", "Faith alone", "Paying indulgences", "Following the Pope"],
+    correct: 1,
+    explanation: "Luther's core belief was 'salvation by faith alone' (sola fide) — that only faith in God, not good works or payments, could save your soul."
+  },
+  { topic: "reformation", topicLabel: "Reformation", color: "#2563eb",
+    q: "What did John Calvin believe about who goes to heaven?",
+    options: ["Everyone is saved", "Only monks and nuns", "God has already decided (predestination)", "Only those who pay indulgences"],
+    correct: 2,
+    explanation: "Calvin believed in predestination — that God has already decided who will be saved and who won't, regardless of their actions."
+  },
+  { topic: "reformation", topicLabel: "Reformation", color: "#2563eb",
+    q: "Why did Henry VIII break from Rome in 1534?",
+    options: ["He agreed with Luther's theology", "The Pope wouldn't annul his marriage", "He wanted to become Pope", "He was excommunicated for heresy"],
+    correct: 1,
+    explanation: "Henry VIII wanted to annul his marriage to Catherine of Aragon (she hadn't produced a male heir). When the Pope refused, Henry made himself head of the Church of England."
+  },
+
+  // ===== PLANTATIONS =====
+  { topic: "plantations", topicLabel: "Plantations", color: "#059669",
+    q: "Which was the first official plantation in Ireland?",
+    options: ["Munster", "Ulster", "Laois-Offaly", "Cromwellian"],
+    correct: 2,
+    explanation: "The Laois-Offaly Plantation (1556) under Mary I was the first official plantation. The counties were renamed King's County and Queen's County."
+  },
+  { topic: "plantations", topicLabel: "Plantations", color: "#059669",
+    q: "What was the 'Flight of the Earls' (1607)?",
+    options: ["English earls fleeing Ireland", "Hugh O'Neill and Rory O'Donnell fleeing to Europe", "Scottish earls arriving in Ulster", "Catholic bishops escaping persecution"],
+    correct: 1,
+    explanation: "The Gaelic Irish earls Hugh O'Neill and Rory O'Donnell fled Ireland for Europe in 1607. Their departure left their Ulster lands open for confiscation and plantation."
+  },
+  { topic: "plantations", topicLabel: "Plantations", color: "#059669",
+    q: "In the Ulster Plantation, who got the BEST land?",
+    options: ["Native Irish", "Servitors", "Undertakers", "Catholic clergy"],
+    correct: 2,
+    explanation: "Undertakers — English and Scottish Protestants — received the best land (up to 2,000 acres). They had to bring Protestant settlers and build a castle or bawn."
+  },
+  { topic: "plantations", topicLabel: "Plantations", color: "#059669",
+    q: "What was a 'bawn'?",
+    options: ["An Irish word for farmer", "A Protestant church", "A fortified enclosure for defence", "A type of crop grown by settlers"],
+    correct: 2,
+    explanation: "A bawn was a fortified enclosure or courtyard that Undertakers had to build around their houses for protection against Irish attacks."
+  },
+  { topic: "plantations", topicLabel: "Plantations", color: "#059669",
+    q: "Why did the Munster Plantation largely fail?",
+    options: ["Too many settlers arrived", "Not enough settlers; destroyed in the Nine Years' War", "The Pope ordered it stopped", "The soil was too poor for farming"],
+    correct: 1,
+    explanation: "Not enough English settlers came, and many Undertakers hired Irish workers (who were cheaper). The plantation was largely destroyed during the Nine Years' War (1594-1603)."
+  },
+  { topic: "plantations", topicLabel: "Plantations", color: "#059669",
+    q: "What does 'To Hell or to Connacht' refer to?",
+    options: ["A rallying cry of the 1641 rebellion", "Cromwell's policy of forcing Catholics west of the Shannon", "An order to deport Irish to the Caribbean", "A punishment for Protestant settlers"],
+    correct: 1,
+    explanation: "Under the Cromwellian Plantation (1652), Catholic landowners were forced west of the Shannon into Connacht or faced execution. Catholic land ownership dropped to about 8%."
+  },
+  { topic: "plantations", topicLabel: "Plantations", color: "#059669",
+    q: "How many counties were planted in the Ulster Plantation?",
+    options: ["Three", "Four", "Six", "Nine"],
+    correct: 2,
+    explanation: "Six Ulster counties were planted: Donegal, Derry, Tyrone, Armagh, Cavan, and Fermanagh."
+  },
+  { topic: "plantations", topicLabel: "Plantations", color: "#059669",
+    q: "Which city was given to London guilds and renamed?",
+    options: ["Belfast", "Armagh", "Derry (Londonderry)", "Donegal"],
+    correct: 2,
+    explanation: "Derry was given to London merchant guilds to develop and was renamed Londonderry. They built the famous city walls which still stand today."
+  },
+  { topic: "plantations", topicLabel: "Plantations", color: "#059669",
+    q: "Who were the 'Adventurers' in the Cromwellian Plantation?",
+    options: ["Explorers who discovered new lands", "Financial backers who funded Cromwell's conquest", "Irish rebels who escaped abroad", "Catholic priests in hiding"],
+    correct: 1,
+    explanation: "Adventurers were wealthy investors who lent money to fund Cromwell's conquest of Ireland. They were repaid with confiscated Irish land."
+  },
+  { topic: "plantations", topicLabel: "Plantations", color: "#059669",
+    q: "What was a lasting consequence of the plantations?",
+    options: ["Ireland became fully Protestant", "A Catholic-Protestant divide that still affects Northern Ireland", "Irish became the dominant language", "Land was redistributed equally"],
+    correct: 1,
+    explanation: "The plantations created a deep religious and cultural divide between Protestant settlers and Catholic Irish — a divide that still shapes politics in Northern Ireland today."
+  },
+
+  // ===== AMERICAN REVOLUTION =====
+  { topic: "us-revolution", topicLabel: "US Revolution", color: "#7c3aed",
+    q: "What was the colonists' main rallying cry?",
+    options: ["Give me liberty or give me death", "No taxation without representation", "United we stand", "All men are created equal"],
+    correct: 1,
+    explanation: "'No taxation without representation' — the colonists objected to being taxed by the British Parliament when they had no elected representatives in it."
+  },
+  { topic: "us-revolution", topicLabel: "US Revolution", color: "#7c3aed",
+    q: "What happened at the Boston Tea Party (1773)?",
+    options: ["Colonists had a formal protest dinner", "British soldiers fired on protesters", "Colonists dumped 342 chests of tea into the harbour", "The colonial parliament voted for independence"],
+    correct: 2,
+    explanation: "Colonists disguised as Native Americans boarded British ships and dumped 342 chests of tea into Boston Harbour to protest the Tea Act and British monopoly on tea sales."
+  },
+  { topic: "us-revolution", topicLabel: "US Revolution", color: "#7c3aed",
+    q: "Who was the main author of the Declaration of Independence?",
+    options: ["George Washington", "Benjamin Franklin", "John Adams", "Thomas Jefferson"],
+    correct: 3,
+    explanation: "Thomas Jefferson was the main author of the Declaration of Independence (1776). It declared 'all men are created equal' with rights to 'life, liberty and the pursuit of happiness.'"
+  },
+  { topic: "us-revolution", topicLabel: "US Revolution", color: "#7c3aed",
+    q: "Which country entered the war on the American side in 1778?",
+    options: ["Spain", "France", "Netherlands", "Germany"],
+    correct: 1,
+    explanation: "France entered the war in 1778, providing troops, ships, and money. Their support was crucial at the decisive Battle of Yorktown (1781)."
+  },
+  { topic: "us-revolution", topicLabel: "US Revolution", color: "#7c3aed",
+    q: "What was the last major battle of the American Revolution?",
+    options: ["Battle of Bunker Hill", "Battle of Saratoga", "Battle of Yorktown", "Battle of Lexington"],
+    correct: 2,
+    explanation: "The Battle of Yorktown (October 1781) was the last major battle. British General Cornwallis surrendered to George Washington, effectively ending the war."
+  },
+  { topic: "us-revolution", topicLabel: "US Revolution", color: "#7c3aed",
+    q: "What treaty officially ended the American Revolution?",
+    options: ["Treaty of Versailles", "Treaty of Paris (1783)", "Treaty of Yorktown", "Treaty of Philadelphia"],
+    correct: 1,
+    explanation: "The Treaty of Paris (1783) officially ended the war. Britain recognised American independence."
+  },
+  { topic: "us-revolution", topicLabel: "US Revolution", color: "#7c3aed",
+    q: "Who was the first President of the United States?",
+    options: ["Thomas Jefferson", "Benjamin Franklin", "John Adams", "George Washington"],
+    correct: 3,
+    explanation: "George Washington was the first President, elected in 1789. He had commanded the Continental Army throughout the war."
+  },
+  { topic: "us-revolution", topicLabel: "US Revolution", color: "#7c3aed",
+    q: "The 'shot heard round the world' refers to which event?",
+    options: ["Boston Massacre", "Declaration of Independence", "Battles of Lexington and Concord (1775)", "Battle of Yorktown"],
+    correct: 2,
+    explanation: "The Battles of Lexington and Concord (April 1775) were the first military engagements of the revolution — 'the shot heard round the world.'"
+  },
+  { topic: "us-revolution", topicLabel: "US Revolution", color: "#7c3aed",
+    q: "What was a major limitation of the new American republic?",
+    options: ["It had no written constitution", "Slavery continued; women and Native Americans couldn't vote", "It remained under British control", "It had no elected leader"],
+    correct: 1,
+    explanation: "Despite declaring 'all men are created equal,' slavery continued, women could not vote, and Native Americans were excluded from the new rights."
+  },
+  { topic: "us-revolution", topicLabel: "US Revolution", color: "#7c3aed",
+    q: "What were the Intolerable Acts (1774)?",
+    options: ["Laws banning the slave trade", "Britain's punishment for the Boston Tea Party", "Colonial taxes on British imports", "French trade restrictions"],
+    correct: 1,
+    explanation: "The Intolerable Acts were Britain's punishment: closing Boston port, banning town meetings, and forcing colonists to house British soldiers. They united the colonies against Britain."
+  },
+
+  // ===== 1798 REBELLION =====
+  { topic: "1798", topicLabel: "1798 Rebellion", color: "#ea580c",
+    q: "Where and when were the United Irishmen founded?",
+    options: ["Dublin, 1789", "Belfast, October 1791", "Wexford, 1798", "Cork, 1795"],
+    correct: 1,
+    explanation: "The United Irishmen were founded in Belfast in October 1791 by Wolfe Tone, Thomas Russell, and others. A Dublin branch followed the next month."
+  },
+  { topic: "1798", topicLabel: "1798 Rebellion", color: "#ea580c",
+    q: "What was Wolfe Tone's main aim?",
+    options: ["To restore the Catholic monarchy", "To unite Catholic, Protestant and Dissenter and establish an Irish republic", "To join Ireland with France", "To reform the Penal Laws only"],
+    correct: 1,
+    explanation: "Tone wanted to 'unite Catholic, Protestant and Dissenter' under the common name of Irishman, break the connection with England, and establish an Irish republic."
+  },
+  { topic: "1798", topicLabel: "1798 Rebellion", color: "#ea580c",
+    q: "Why did the French fleet fail at Bantry Bay in 1796?",
+    options: ["They were defeated by the British Navy", "Storms scattered the fleet and they never landed", "Wolfe Tone called it off", "The Irish weren't ready to fight"],
+    correct: 1,
+    explanation: "15,000 French troops under General Hoche sailed for Ireland, but fierce storms scattered the fleet. They came within sight of land but never managed to disembark."
+  },
+  { topic: "1798", topicLabel: "1798 Rebellion", color: "#ea580c",
+    q: "Where was the most significant fighting in 1798?",
+    options: ["Dublin", "Belfast", "Wexford", "Cork"],
+    correct: 2,
+    explanation: "The Wexford rising was the most significant. Led by Father John Murphy, rebels won at Oulart Hill and Enniscorthy before being defeated at the Battle of Vinegar Hill."
+  },
+  { topic: "1798", topicLabel: "1798 Rebellion", color: "#ea580c",
+    q: "What happened at the Battle of Vinegar Hill?",
+    options: ["The rebels defeated the British army", "20,000 British troops defeated the rebel camp, ending the Wexford rising", "The French landed reinforcements", "Wolfe Tone was captured"],
+    correct: 1,
+    explanation: "On 21 June 1798, 20,000 British troops attacked the rebel camp at Vinegar Hill near Enniscorthy. The rebels were defeated, effectively ending the Wexford rising."
+  },
+  { topic: "1798", topicLabel: "1798 Rebellion", color: "#ea580c",
+    q: "Where did General Humbert land with French troops?",
+    options: ["Bantry Bay, Cork", "Killala, Mayo", "Wexford Harbour", "Belfast Lough"],
+    correct: 1,
+    explanation: "General Humbert landed at Killala, Co. Mayo in August 1798 with about 1,000 French troops. They won the 'Races of Castlebar' but were eventually defeated at Ballinamuck."
+  },
+  { topic: "1798", topicLabel: "1798 Rebellion", color: "#ea580c",
+    q: "What was the main result of the 1798 Rebellion?",
+    options: ["Ireland became a republic", "The Penal Laws were repealed", "The Act of Union (1800) abolished the Irish Parliament", "France took control of Ireland"],
+    correct: 2,
+    explanation: "The rebellion's failure convinced Britain that direct rule was needed. The Act of Union (1800) abolished the Irish Parliament, and Ireland was governed from Westminster."
+  },
+  { topic: "1798", topicLabel: "1798 Rebellion", color: "#ea580c",
+    q: "What were the Penal Laws?",
+    options: ["Laws protecting Catholic rights", "Laws discriminating against Catholics and Presbyterians", "Laws banning the Irish language", "Laws preventing emigration"],
+    correct: 1,
+    explanation: "The Penal Laws restricted Catholics and Presbyterians from voting, holding office, owning land freely, or attending university. They were a major cause of the 1798 rebellion."
+  },
+  { topic: "1798", topicLabel: "1798 Rebellion", color: "#ea580c",
+    q: "Who led a failed rising in Dublin in 1803?",
+    options: ["Wolfe Tone", "Daniel O'Connell", "Robert Emmet", "Henry Joy McCracken"],
+    correct: 2,
+    explanation: "Robert Emmet led a small, failed rising in 1803. He was captured and executed. His famous speech from the dock became a key text in Irish nationalism."
+  },
+  { topic: "1798", topicLabel: "1798 Rebellion", color: "#ea580c",
+    q: "Why is Wolfe Tone called the 'Father of Irish Republicanism'?",
+    options: ["He was the first Irish president", "He was first to seek a non-sectarian Irish republic free from British rule", "He wrote the Irish constitution", "He defeated the British at Vinegar Hill"],
+    correct: 1,
+    explanation: "Tone was the first major figure to articulate the vision of an independent Irish republic that would unite all religions. His ideas inspired every subsequent generation of Irish republicans."
+  },
+
+  // ===== FAMINE =====
+  { topic: "famine", topicLabel: "The Famine", color: "#dc2626",
+    q: "What fungus caused the potato blight?",
+    options: ["Aspergillus niger", "Phytophthora infestans", "Botrytis cinerea", "Fusarium oxysporum"],
+    correct: 1,
+    explanation: "Phytophthora infestans was the fungus that caused the potato blight. It arrived in Ireland in September 1845, probably from North America, turning potatoes into black rot."
+  },
+  { topic: "famine", topicLabel: "The Famine", color: "#dc2626",
+    q: "What was Ireland's population before the Famine?",
+    options: ["About 4 million", "About 6 million", "Over 8 million", "About 10 million"],
+    correct: 2,
+    explanation: "Ireland's population was over 8 million by 1841. It had grown rapidly thanks to the potato, which was cheap, nutritious, and grew well in Ireland."
+  },
+  { topic: "famine", topicLabel: "The Famine", color: "#dc2626",
+    q: "What did PM Robert Peel import to help the starving?",
+    options: ["Wheat from France", "Rice from India", "Indian corn (maize) from America", "Potatoes from Scotland"],
+    correct: 2,
+    explanation: "Peel imported Indian corn (maize) from America. It was unpopular and hard to digest — people called it 'Peel's Brimstone' — but it did provide some relief."
+  },
+  { topic: "famine", topicLabel: "The Famine", color: "#dc2626",
+    q: "What does 'laissez-faire' mean and why does it matter?",
+    options: ["A French recipe for soup", "Government should not interfere with the market — Russell used this to justify minimal help", "A type of emigrant ship", "A tax on Irish exports"],
+    correct: 1,
+    explanation: "Laissez-faire ('let it be') was the economic belief that government should not interfere with markets. PM Russell used it to justify limited intervention while people starved."
+  },
+  { topic: "famine", topicLabel: "The Famine", color: "#dc2626",
+    q: "What was the Gregory Clause (1847)?",
+    options: ["A law banning emigration", "Anyone with more than a quarter-acre of land couldn't receive relief", "A tax on potatoes", "A rule forcing landlords to feed tenants"],
+    correct: 1,
+    explanation: "The Gregory Clause meant anyone holding more than a quarter-acre of land could not receive famine relief. It forced people to give up their land just to get food."
+  },
+  { topic: "famine", topicLabel: "The Famine", color: "#dc2626",
+    q: "What were 'coffin ships'?",
+    options: ["Ships carrying coffins from England", "Overcrowded emigrant ships where many died from disease", "Navy ships attacking Irish fishing boats", "Ships exporting food from Ireland"],
+    correct: 1,
+    explanation: "Coffin ships were overcrowded, disease-ridden emigrant ships. Many passengers died from typhus, cholera, and dysentery during the crossing to America and Canada."
+  },
+  { topic: "famine", topicLabel: "The Famine", color: "#dc2626",
+    q: "Why is 1847 called 'Black '47'?",
+    options: ["A volcanic eruption darkened the sky", "It was the year of worst death and suffering", "The potato turned black that year", "British ships blockaded Irish ports"],
+    correct: 1,
+    explanation: "1847 is called 'Black '47' because it was the year of worst suffering. Although blight was less severe, almost nothing had been planted, so there was mass starvation and disease."
+  },
+  { topic: "famine", topicLabel: "The Famine", color: "#dc2626",
+    q: "How many people approximately died during the Famine?",
+    options: ["About 100,000", "About 500,000", "About 1 million", "About 3 million"],
+    correct: 2,
+    explanation: "Approximately 1 million people died from starvation and famine-related diseases (typhus, cholera, dysentery). Another 1 million+ emigrated."
+  },
+  { topic: "famine", topicLabel: "The Famine", color: "#dc2626",
+    q: "Who was Charles Trevelyan?",
+    options: ["An Irish nationalist leader", "Head of the British Treasury who oversaw famine relief", "A landlord who helped his tenants", "A doctor who treated famine victims"],
+    correct: 1,
+    explanation: "Trevelyan was head of the Treasury and oversaw relief efforts. He believed too much help would make the Irish 'dependent,' ended food imports early, and declared the famine 'over.'"
+  },
+  { topic: "famine", topicLabel: "The Famine", color: "#dc2626",
+    q: "What long-term effect did the Famine have on the Irish language?",
+    options: ["It became more popular", "Irish-speaking areas were hardest hit, so the language declined sharply", "The British banned it", "It was replaced by French"],
+    correct: 1,
+    explanation: "The Irish-speaking areas in the west were hardest hit by death and emigration. English became increasingly dominant as the Famine devastated Gaeltacht communities."
+  }
+];
+
+let currentTopic = 'all';
+let currentQuestions = [];
+let currentIndex = 0;
+let score = 0;
+let answers = [];
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function startQuiz(topic) {
+  if (topic) {
+    currentTopic = topic;
+    document.querySelectorAll('.quiz-topic-btn').forEach(b => {
+      b.classList.toggle('active', b.dataset.topic === topic);
+    });
+  }
+
+  const pool = currentTopic === 'all' ? QUESTIONS : QUESTIONS.filter(q => q.topic === currentTopic);
+  currentQuestions = shuffle(pool).slice(0, Math.min(10, pool.length));
+  currentIndex = 0;
+  score = 0;
+  answers = [];
+
+  document.getElementById('quizResults').style.display = 'none';
+  document.getElementById('quizContainer').style.display = 'block';
+  showQuestion();
+}
+
+function showQuestion() {
+  const q = currentQuestions[currentIndex];
+  const total = currentQuestions.length;
+  const pct = ((currentIndex) / total) * 100;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('quizScore').textContent = `Question ${currentIndex + 1} of ${total} • Score: ${score}/${currentIndex}`;
+
+  const letters = ['A', 'B', 'C', 'D'];
+  const container = document.getElementById('quizContainer');
+  container.innerHTML = `
+    <div class="quiz-card">
+      <div class="qc-topic" style="color:${q.color};">${q.topicLabel}</div>
+      <div class="qc-question">${q.q}</div>
+      <div class="quiz-options">
+        ${q.options.map((opt, i) => `
+          <button class="quiz-option" onclick="selectAnswer(${i})" data-idx="${i}">
+            <span class="opt-letter">${letters[i]}</span>
+            <span>${opt}</span>
+          </button>
+        `).join('')}
+      </div>
+      <div id="feedback"></div>
+    </div>
+  `;
+}
+
+function selectAnswer(idx) {
+  const q = currentQuestions[currentIndex];
+  const isCorrect = idx === q.correct;
+  if (isCorrect) score++;
+  answers.push({ q: q.q, topic: q.topicLabel, correct: isCorrect, selected: idx, answer: q.correct });
+
+  const options = document.querySelectorAll('.quiz-option');
+  options.forEach((opt, i) => {
+    opt.classList.add('disabled');
+    opt.onclick = null;
+    if (i === q.correct) opt.classList.add('correct');
+    if (i === idx && !isCorrect) opt.classList.add('wrong');
+  });
+
+  const fb = document.getElementById('feedback');
+  fb.innerHTML = `
+    <div class="quiz-feedback ${isCorrect ? 'correct-feedback' : 'wrong-feedback'}">
+      <strong>${isCorrect ? 'Correct!' : 'Not quite.'}</strong>
+      ${q.explanation}
+    </div>
+    <button class="quiz-next-btn" onclick="${currentIndex < currentQuestions.length - 1 ? 'nextQuestion()' : 'showResults()'}">
+      ${currentIndex < currentQuestions.length - 1 ? 'Next Question →' : 'See Results'}
+    </button>
+  `;
+}
+
+function nextQuestion() {
+  currentIndex++;
+  showQuestion();
+}
+
+function showResults() {
+  document.getElementById('quizContainer').style.display = 'none';
+  document.getElementById('progressFill').style.width = '100%';
+
+  const pct = Math.round((score / currentQuestions.length) * 100);
+  let icon, msg;
+  if (pct >= 90) { icon = '⭐'; msg = 'Outstanding! You really know your stuff.'; }
+  else if (pct >= 70) { icon = '💪'; msg = 'Strong work! Review the ones you missed and go again.'; }
+  else if (pct >= 50) { icon = '📚'; msg = 'Getting there. Re-read the notes on your weak topics and try again.'; }
+  else { icon = '🔄'; msg = 'Time to hit the study notes. You\'ll get it — try again after reviewing.'; }
+
+  document.getElementById('resultsIcon').textContent = icon;
+  document.getElementById('resultsScore').textContent = `${score} / ${currentQuestions.length} (${pct}%)`;
+  document.getElementById('resultsMessage').textContent = msg;
+  document.getElementById('quizScore').textContent = `Finished • Score: ${score}/${currentQuestions.length}`;
+
+  const breakdown = document.getElementById('resultsBreakdown');
+  breakdown.innerHTML = answers.map((a, i) =>
+    `<span class="rb-item ${a.correct ? 'rb-correct' : 'rb-wrong'}">Q${i+1}: ${a.correct ? '✓' : '✗'} ${a.topic}</span>`
+  ).join('');
+
+  document.getElementById('quizResults').style.display = 'block';
+}
+
+document.querySelectorAll('.quiz-topic-btn').forEach(btn => {
+  btn.addEventListener('click', () => startQuiz(btn.dataset.topic));
+});
+
+startQuiz('all');
+</script>
+
 <div style="text-align: center; padding: 40px; color: var(--gray-600); font-size: 10pt;">
   <p style="font-weight: 700; margin-bottom: 4px;">Good luck with the exam!</p>
   <p>Study the notes, test yourself with the flashcards, and practise the exam questions.</p>
