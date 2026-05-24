@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Junior Cert History Study Deck</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@400;700&display=swap');
+
+  :root {
+    --blue: #2563eb;
+    --blue-light: #dbeafe;
+    --green: #059669;
+    --green-light: #d1fae5;
+    --purple: #7c3aed;
+    --purple-light: #ede9fe;
+    --orange: #ea580c;
+    --orange-light: #ffedd5;
+    --red: #dc2626;
+    --red-light: #fee2e2;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
+    --gray-900: #111827;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--gray-800);
+    line-height: 1.6;
+    background: white;
+    font-size: 11pt;
+  }
+
+  @media print {
+    body { font-size: 10pt; }
+    .page-break { page-break-before: always; }
+    .no-break { page-break-inside: avoid; }
+    @page { margin: 1.5cm; }
+    .print-hide { display: none !important; }
+    .flashcard-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  }
+
+  /* Cover Page */
+  .cover {
+    text-align: center;
+    padding: 80px 40px;
+    border-bottom: 4px solid var(--gray-200);
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .cover h1 {
+    font-family: 'Merriweather', serif;
+    font-size: 42pt;
+    color: var(--gray-900);
+    margin-bottom: 8px;
+    letter-spacing: -1px;
+  }
+  .cover .subtitle {
+    font-size: 18pt;
+    color: var(--gray-600);
+    margin-bottom: 40px;
+  }
+  .cover .topics-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+  .cover .topic-badge {
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 11pt;
+  }
+  .badge-blue { background: var(--blue-light); color: var(--blue); }
+  .badge-green { background: var(--green-light); color: var(--green); }
+  .badge-purple { background: var(--purple-light); color: var(--purple); }
+  .badge-orange { background: var(--orange-light); color: var(--orange); }
+  .badge-red { background: var(--red-light); color: var(--red); }
+  .cover .exam-tip {
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+    padding: 16px 24px;
+    max-width: 500px;
+    margin: 0 auto;
+    font-size: 10pt;
+    color: var(--gray-600);
+  }
+
+  /* Table of Contents */
+  .toc {
+    padding: 40px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .toc h2 {
+    font-family: 'Merriweather', serif;
+    font-size: 20pt;
+    margin-bottom: 20px;
+    color: var(--gray-900);
+  }
+  .toc-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px dotted var(--gray-200);
+    font-size: 11pt;
+  }
+  .toc-item .toc-section { font-weight: 600; }
+  .toc-item .toc-page { color: var(--gray-600); }
+
+  /* Section Headers */
+  .section-header {
+    padding: 30px 40px 20px;
+    border-bottom: 3px solid;
+    margin-bottom: 24px;
+  }
+  .section-header h2 {
+    font-family: 'Merriweather', serif;
+    font-size: 22pt;
+    margin-bottom: 4px;
+  }
+  .section-header .section-dates {
+    font-size: 12pt;
+    font-weight: 500;
+  }
+  .section-header .section-summary {
+    font-size: 10pt;
+    color: var(--gray-600);
+    margin-top: 8px;
+    max-width: 700px;
+  }
+
+  .blue-section .section-header { border-color: var(--blue); }
+  .blue-section .section-header h2 { color: var(--blue); }
+  .blue-section .section-header .section-dates { color: var(--blue); }
+  .green-section .section-header { border-color: var(--green); }
+  .green-section .section-header h2 { color: var(--green); }
+  .green-section .section-header .section-dates { color: var(--green); }
+  .purple-section .section-header { border-color: var(--purple); }
+  .purple-section .section-header h2 { color: var(--purple); }
+  .purple-section .section-header .section-dates { color: var(--purple); }
+  .orange-section .section-header { border-color: var(--orange); }
+  .orange-section .section-header h2 { color: var(--orange); }
+  .orange-section .section-header .section-dates { color: var(--orange); }
+  .red-section .section-header { border-color: var(--red); }
+  .red-section .section-header h2 { color: var(--red); }
+  .red-section .section-header .section-dates { color: var(--red); }
+
+  /* Content */
+  .content { padding: 0 40px 30px; }
+
+  .subsection {
+    margin-bottom: 24px;
+  }
+  .subsection h3 {
+    font-size: 13pt;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--gray-900);
+    border-bottom: 1px solid var(--gray-200);
+    padding-bottom: 4px;
+  }
+  .subsection h4 {
+    font-size: 11pt;
+    font-weight: 600;
+    margin: 12px 0 6px;
+    color: var(--gray-700);
+  }
+  .subsection p, .subsection li {
+    font-size: 10.5pt;
+    color: var(--gray-700);
+    line-height: 1.65;
+  }
+  .subsection ul, .subsection ol {
+    padding-left: 20px;
+    margin-bottom: 8px;
+  }
+  .subsection li { margin-bottom: 3px; }
+
+  /* Key Term inline */
+  .key-term {
+    font-weight: 700;
+    color: var(--gray-900);
+  }
+
+  /* Callout boxes */
+  .callout {
+    border-left: 4px solid;
+    padding: 10px 16px;
+    margin: 12px 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 10pt;
+  }
+  .callout-blue { border-color: var(--blue); background: var(--blue-light); }
+  .callout-green { border-color: var(--green); background: var(--green-light); }
+  .callout-purple { border-color: var(--purple); background: var(--purple-light); }
+  .callout-orange { border-color: var(--orange); background: var(--orange-light); }
+  .callout-red { border-color: var(--red); background: var(--red-light); }
+  .callout strong { display: block; margin-bottom: 2px; }
+
+  /* People to Know */
+  .people-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin: 12px 0;
+  }
+  .person-card {
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+    padding: 10px 14px;
+  }
+  .person-card .person-name {
+    font-weight: 700;
+    font-size: 10.5pt;
+    color: var(--gray-900);
+  }
+  .person-card .person-role {
+    font-size: 9pt;
+    color: var(--gray-600);
+    margin-top: 2px;
+  }
+
+  /* Timeline */
+  .timeline {
+    border-left: 3px solid var(--gray-200);
+    padding-left: 20px;
+    margin: 12px 0;
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px dotted var(--gray-100);
+  }
+  .timeline-item:last-child { border-bottom: none; }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -26px;
+    top: 5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--gray-600);
+  }
+  .timeline-item .t-date {
+    font-weight: 700;
+    font-size: 10pt;
+    color: var(--gray-900);
+  }
+  .timeline-item .t-event {
+    font-size: 10pt;
+    color: var(--gray-700);
+  }
+
+  /* Flashcards */
+  .flashcard-section-title {
+    font-family: 'Merriweather', serif;
+    font-size: 20pt;
+    text-align: center;
+    margin: 30px 0 10px;
+    color: var(--gray-900);
+  }
+  .flashcard-instructions {
+    text-align: center;
+    font-size: 10pt;
+    color: var(--gray-600);
+    margin-bottom: 20px;
+  }
+  .flashcard-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    padding: 0 30px 30px;
+  }
+  .flashcard {
+    border: 2px solid var(--gray-200);
+    border-radius: 10px;
+    padding: 14px 16px;
+    min-height: 110px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .flashcard .fc-topic {
+    font-size: 8pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .flashcard .fc-q {
+    font-weight: 700;
+    font-size: 10.5pt;
+    color: var(--gray-900);
+    margin-bottom: 8px;
+  }
+  .flashcard .fc-a {
+    font-size: 9.5pt;
+    color: var(--gray-700);
+    border-top: 1px dashed var(--gray-200);
+    padding-top: 8px;
+  }
+
+  .fc-reformation .fc-topic { color: var(--blue); }
+  .fc-reformation { border-color: var(--blue-light); }
+  .fc-plantations .fc-topic { color: var(--green); }
+  .fc-plantations { border-color: var(--green-light); }
+  .fc-us .fc-topic { color: var(--purple); }
+  .fc-us { border-color: var(--purple-light); }
+  .fc-1798 .fc-topic { color: var(--orange); }
+  .fc-1798 { border-color: var(--orange-light); }
+  .fc-famine .fc-topic { color: var(--red); }
+  .fc-famine { border-color: var(--red-light); }
+
+  /* Exam Tips */
+  .exam-section {
+    padding: 20px 40px 30px;
+  }
+  .exam-section h2 {
+    font-family: 'Merriweather', serif;
+    font-size: 18pt;
+    color: var(--gray-900);
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  .exam-q {
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 12px;
+  }
+  .exam-q .eq-topic {
+    font-size: 8pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+  .exam-q .eq-question {
+    font-weight: 700;
+    font-size: 10.5pt;
+    margin-bottom: 6px;
+    color: var(--gray-900);
+  }
+  .exam-q .eq-hints {
+    font-size: 9.5pt;
+    color: var(--gray-600);
+  }
+  .exam-q .eq-hints ul {
+    padding-left: 16px;
+    margin-top: 4px;
+  }
+
+  /* Quick Reference Table */
+  .ref-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10pt;
+    margin: 12px 0;
+  }
+  .ref-table th {
+    background: var(--gray-100);
+    text-align: left;
+    padding: 8px 12px;
+    font-weight: 700;
+    border-bottom: 2px solid var(--gray-200);
+  }
+  .ref-table td {
+    padding: 6px 12px;
+    border-bottom: 1px solid var(--gray-100);
+    vertical-align: top;
+  }
+  .ref-table tr:last-child td { border-bottom: none; }
+
+  /* Mnemonics */
+  .mnemonic {
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-size: 10pt;
+  }
+  .mnemonic strong { color: #92400e; }
+</style>
+</head>
+<body>
+
+<!-- ===== COVER PAGE ===== -->
+<div class="cover">
+  <h1>Junior Cert History</h1>
+  <div class="subtitle">Study Deck &mdash; 5 Key Topics</div>
+  <div class="topics-list">
+    <span class="topic-badge badge-blue">The Reformation</span>
+    <span class="topic-badge badge-green">Plantations</span>
+    <span class="topic-badge badge-purple">American Revolution</span>
+    <span class="topic-badge badge-orange">1798 Rebellion</span>
+    <span class="topic-badge badge-red">The Great Famine</span>
+  </div>
+  <div class="exam-tip">
+    <strong>How to use this deck:</strong> Study notes first, then test yourself with the flashcards (cover the answers). Practice the exam-style questions at the back. Cut out flashcards for revision on the go.
+  </div>
+</div>
+
+<!-- ===== TABLE OF CONTENTS ===== -->
+<div class="page-break"></div>
+<div class="toc">
+  <h2>Contents</h2>
+  <div class="toc-item"><span class="toc-section">1. The Reformation &amp; Martin Luther</span></div>
+  <div class="toc-item"><span class="toc-section">2. The Plantations in Ireland</span></div>
+  <div class="toc-item"><span class="toc-section">3. The American Revolution</span></div>
+  <div class="toc-item"><span class="toc-section">4. The 1798 Rebellion</span></div>
+  <div class="toc-item"><span class="toc-section">5. The Great Famine</span></div>
+  <div class="toc-item"><span class="toc-section">Flashcards &mdash; All Topics</span></div>
+  <div class="toc-item"><span class="toc-section">Exam-Style Questions &amp; Answer Hints</span></div>
+  <div class="toc-item"><span class="toc-section">Master Timeline</span></div>
+</div>
+
+<!-- =========================================================== -->
+<!-- TOPIC 1: THE REFORMATION                                     -->
+<!-- =========================================================== -->
+<div class="page-break"></div>
+<div class="blue-section">
+  <div class="section-header">
+    <h2>1. The Reformation &amp; Martin Luther</h2>
+    <div class="section-dates">1517 &ndash; 1563</div>
+    <div class="section-summary">The Reformation was a religious revolution that split Western Christianity into Catholic and Protestant. It began with Martin Luther's challenge to the Catholic Church and transformed Europe forever.</div>
+  </div>
+
+  <div class="content">
+    <div class="subsection no-break">
+      <h3>Background: Problems in the Catholic Church</h3>
+      <p>By the early 1500s, many people were unhappy with the Catholic Church. Key abuses included:</p>
+      <ul>
+        <li><span class="key-term">Simony</span> &mdash; Buying and selling Church positions (bishoprics, etc.)</li>
+        <li><span class="key-term">Absenteeism</span> &mdash; Clergy not living in the area they were supposed to serve</li>
+        <li><span class="key-term">Pluralism</span> &mdash; Holding multiple Church positions at the same time</li>
+        <li><span class="key-term">Nepotism</span> &mdash; Giving Church jobs to family members</li>
+        <li><span class="key-term">Sale of Indulgences</span> &mdash; Paying money to the Church to reduce time in Purgatory. Johann Tetzel was a famous seller: <em>"As soon as the coin in the coffer rings, the soul from Purgatory springs."</em></li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Martin Luther (1483&ndash;1546)</h3>
+      <ul>
+        <li>Born in Saxony, Germany. Became an Augustinian monk and theology professor at the University of Wittenberg.</li>
+        <li>Was outraged by Tetzel selling indulgences near Wittenberg.</li>
+        <li>On <strong>31 October 1517</strong>, he nailed his <span class="key-term">Ninety-Five Theses</span> (arguments against indulgences) to the door of the Castle Church in Wittenberg.</li>
+        <li>Thanks to the <span class="key-term">printing press</span> (invented by Gutenberg, c.1440), his ideas spread rapidly across Europe.</li>
+      </ul>
+
+      <h4>Luther's Key Beliefs</h4>
+      <ul>
+        <li><strong>Salvation by faith alone</strong> &mdash; Good works alone cannot save you. Only faith in God can.</li>
+        <li><strong>The Bible is the sole authority</strong> &mdash; Not the Pope. Luther translated the Bible into German so ordinary people could read it.</li>
+        <li><strong>Priesthood of all believers</strong> &mdash; All Christians are equal; you don't need a priest as a go-between with God.</li>
+        <li>Only two sacraments (Baptism and Eucharist), not seven.</li>
+        <li>Clergy should be allowed to marry.</li>
+      </ul>
+
+      <h4>What Happened to Luther?</h4>
+      <ul>
+        <li><strong>1520:</strong> Pope Leo X issued a <span class="key-term">Papal Bull</span> (official letter) threatening to excommunicate Luther. Luther burned it publicly.</li>
+        <li><strong>1521:</strong> Luther was excommunicated. He was summoned to the <span class="key-term">Diet of Worms</span> (an assembly, not food!) by Emperor Charles V. Luther refused to take back his ideas: <em>"Here I stand. I can do no other."</em></li>
+        <li>He was declared an outlaw but was protected by Frederick the Wise of Saxony and hidden in Wartburg Castle, where he translated the New Testament into German.</li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>The Spread of Protestantism</h3>
+      <ul>
+        <li><strong>Lutheranism</strong> spread through Germany and Scandinavia.</li>
+        <li><strong>John Calvin</strong> founded Calvinism in Geneva, Switzerland. He believed in <span class="key-term">predestination</span> (God has already decided who is saved).</li>
+        <li><strong>Henry VIII</strong> broke from Rome in 1534 (not for religious reasons but because the Pope wouldn't annul his marriage to Catherine of Aragon). He became head of the <span class="key-term">Church of England</span> (Anglican Church).</li>
+        <li><strong>John Knox</strong> brought Calvinism to Scotland (Presbyterianism).</li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>The Counter-Reformation (Catholic Response)</h3>
+      <p>The Catholic Church launched its own reform movement:</p>
+      <ul>
+        <li><span class="key-term">Council of Trent (1545&ndash;1563)</span> &mdash; A series of meetings that reformed abuses (banned simony, indulgence selling), reaffirmed Catholic doctrine (seven sacraments, Pope's authority, good works AND faith needed).</li>
+        <li><span class="key-term">The Jesuits</span> &mdash; Founded by Ignatius of Loyola in 1534. A religious order focused on education and missionary work. They helped win back lands for Catholicism.</li>
+        <li><span class="key-term">The Inquisition</span> &mdash; A court set up to find and punish heresy (beliefs against Church teaching).</li>
+        <li><span class="key-term">Index of Forbidden Books</span> &mdash; A list of books Catholics were banned from reading.</li>
+      </ul>
+    </div>
+
+    <div class="callout callout-blue no-break">
+      <strong>Exam Tip: "Account" Questions</strong>
+      If asked to give an "account of the Reformation," structure your answer: (1) Problems in the Church, (2) Luther's actions, (3) His beliefs, (4) How it spread, (5) Counter-Reformation. Hit all five and you're sorted.
+    </div>
+
+    <div class="subsection no-break">
+      <h3>People to Know</h3>
+      <div class="people-grid">
+        <div class="person-card"><div class="person-name">Martin Luther</div><div class="person-role">German monk who started the Reformation with his 95 Theses (1517)</div></div>
+        <div class="person-card"><div class="person-name">Johann Tetzel</div><div class="person-role">Dominican friar who sold indulgences near Wittenberg</div></div>
+        <div class="person-card"><div class="person-name">Pope Leo X</div><div class="person-role">Pope who excommunicated Luther in 1521</div></div>
+        <div class="person-card"><div class="person-name">John Calvin</div><div class="person-role">French reformer, founded Calvinism in Geneva; predestination</div></div>
+        <div class="person-card"><div class="person-name">Henry VIII</div><div class="person-role">English king who broke from Rome to annul his marriage (1534)</div></div>
+        <div class="person-card"><div class="person-name">Ignatius of Loyola</div><div class="person-role">Founded the Jesuits (1534) to defend and spread Catholicism</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================== -->
+<!-- TOPIC 2: PLANTATIONS                                         -->
+<!-- =========================================================== -->
+<div class="page-break"></div>
+<div class="green-section">
+  <div class="section-header">
+    <h2>2. The Plantations in Ireland</h2>
+    <div class="section-dates">1556 &ndash; 1652</div>
+    <div class="section-summary">Plantations involved confiscating Irish land and giving it to loyal English and Scottish settlers (planters). The aim was to control Ireland and spread Protestantism. The Ulster Plantation (1609) was the most significant.</div>
+  </div>
+
+  <div class="content">
+    <div class="subsection no-break">
+      <h3>Why Did the English Plant Ireland?</h3>
+      <ul>
+        <li><strong>Political control</strong> &mdash; Ireland was seen as a backdoor for England's enemies (Spain, France) to attack.</li>
+        <li><strong>Religious control</strong> &mdash; Ireland remained Catholic after the Reformation. England wanted to spread Protestantism.</li>
+        <li><strong>Economic gain</strong> &mdash; Irish land and resources were valuable.</li>
+        <li><strong>Punish rebellion</strong> &mdash; After Irish rebellions, land was confiscated as punishment.</li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>The Main Plantations</h3>
+
+      <h4>1. Laois-Offaly Plantation (1556) &mdash; Mary I</h4>
+      <ul>
+        <li>First official plantation. Counties renamed King's County (Offaly) and Queen's County (Laois).</li>
+        <li>The O'Moore and O'Connor clans were removed from their lands.</li>
+        <li><strong>Result: Failed.</strong> Not enough planters came. The Irish kept attacking settlers.</li>
+      </ul>
+
+      <h4>2. Munster Plantation (1586) &mdash; Elizabeth I</h4>
+      <ul>
+        <li>After the Desmond Rebellions in Munster, 600,000 acres were confiscated.</li>
+        <li><span class="key-term">Undertakers</span> were granted large estates and had to bring in English tenants, build defences and ban Irish tenants.</li>
+        <li>Famous planter: Sir Walter Raleigh (also brought potatoes and tobacco to Ireland).</li>
+        <li><strong>Result: Partially failed.</strong> Not enough English settlers. Many undertakers employed Irish workers (cheaper). Destroyed in the Nine Years' War (1594&ndash;1603).</li>
+      </ul>
+
+      <h4>3. Ulster Plantation (1609) &mdash; James I (MOST IMPORTANT)</h4>
+      <ul>
+        <li>After the <span class="key-term">Flight of the Earls (1607)</span> &mdash; Hugh O'Neill and Rory O'Donnell fled to Europe &mdash; their lands in six Ulster counties were confiscated.</li>
+        <li>Counties: Donegal, Derry, Tyrone, Armagh, Cavan, Fermanagh.</li>
+      </ul>
+
+      <div class="callout callout-green">
+        <strong>Three Types of Grantees:</strong>
+        <ul style="margin-top:6px; padding-left: 16px;">
+          <li><strong>Undertakers</strong> &mdash; English/Scottish Protestants. Got the best land (up to 2,000 acres). Had to bring in Protestant settlers and build a castle or bawn (fortified enclosure). Could NOT have Irish tenants.</li>
+          <li><strong>Servitors</strong> &mdash; Former English soldiers/officials. Got medium-quality land. COULD have some Irish tenants.</li>
+          <li><strong>Native Irish</strong> &mdash; Got the worst, least productive land. Had to pay higher rent and follow English law and customs.</li>
+        </ul>
+      </div>
+
+      <p><strong>Success of the Ulster Plantation:</strong></p>
+      <ul>
+        <li>More successful than earlier plantations &mdash; large numbers of Scottish Presbyterians settled in Ulster.</li>
+        <li>Derry was given to London guilds and renamed <strong>Londonderry</strong>. They built walls around the city (still standing today).</li>
+        <li>New towns were built with market squares, churches, and schools.</li>
+        <li>However, many undertakers still secretly hired Irish workers (cheaper labour).</li>
+        <li>Irish were pushed onto poor land &mdash; created deep resentment that led to the <strong>1641 Rebellion</strong>.</li>
+      </ul>
+
+      <h4>4. Cromwellian Plantation (1652)</h4>
+      <ul>
+        <li>After Oliver Cromwell's brutal conquest of Ireland (1649&ndash;1652), massive land confiscation.</li>
+        <li>The <span class="key-term">Act of Settlement (1652)</span>: Catholic landowners were sent <em>"To Hell or to Connacht"</em> &mdash; forced west of the Shannon.</li>
+        <li>Land was given to Cromwell's soldiers and financial backers (<span class="key-term">Adventurers</span>).</li>
+        <li>By 1660, Catholic ownership of land fell from 60% to about 8&ndash;9%.</li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Consequences of the Plantations</h3>
+      <ul>
+        <li><strong>Land ownership:</strong> Catholics lost almost all their land.</li>
+        <li><strong>Religious divide:</strong> Protestant settlers vs. Catholic Irish &mdash; a divide that still affects Northern Ireland.</li>
+        <li><strong>Cultural change:</strong> English language, law, and customs replaced Irish traditions in planted areas.</li>
+        <li><strong>Resentment:</strong> Irish bitterness led to rebellions in 1641, 1798, and beyond.</li>
+        <li><strong>New towns:</strong> Planned towns with market squares, churches, and streets built by planters.</li>
+      </ul>
+    </div>
+
+    <div class="mnemonic no-break">
+      <strong>Remember the 4 Plantations in order:</strong> <strong>L</strong>aois-Offaly, <strong>M</strong>unster, <strong>U</strong>lster, <strong>C</strong>romwellian &mdash; <strong>"Lazy Monks Usually Complain"</strong>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Quick Comparison Table</h3>
+      <table class="ref-table">
+        <tr><th>Plantation</th><th>Date</th><th>Monarch</th><th>Success?</th></tr>
+        <tr><td>Laois-Offaly</td><td>1556</td><td>Mary I</td><td>Failed &mdash; too few settlers</td></tr>
+        <tr><td>Munster</td><td>1586</td><td>Elizabeth I</td><td>Partial &mdash; destroyed in war</td></tr>
+        <tr><td>Ulster</td><td>1609</td><td>James I</td><td>Most successful &mdash; big settler numbers</td></tr>
+        <tr><td>Cromwellian</td><td>1652</td><td>Cromwell</td><td>Devastating for Catholic land ownership</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================== -->
+<!-- TOPIC 3: AMERICAN REVOLUTION                                 -->
+<!-- =========================================================== -->
+<div class="page-break"></div>
+<div class="purple-section">
+  <div class="section-header">
+    <h2>3. The American Revolution</h2>
+    <div class="section-dates">1765 &ndash; 1783</div>
+    <div class="section-summary">The thirteen American colonies fought for and won their independence from Britain. The revolution was driven by unfair taxation and a desire for self-government. Its ideas of liberty and equality inspired revolutions in France and Ireland.</div>
+  </div>
+
+  <div class="content">
+    <div class="subsection no-break">
+      <h3>Background: The Thirteen Colonies</h3>
+      <ul>
+        <li>By the 1760s, Britain controlled 13 colonies along the east coast of North America.</li>
+        <li>After the <strong>Seven Years' War</strong> (1756&ndash;1763) against France, Britain had huge debts and decided to tax the American colonists to pay for it.</li>
+        <li>The colonists had <strong>no representatives in the British Parliament</strong> &mdash; they had no say in these taxes.</li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Causes of the Revolution</h3>
+      <ul>
+        <li><span class="key-term">"No taxation without representation"</span> &mdash; The colonists' rallying cry. They argued it was unjust to be taxed by a parliament they had no voice in.</li>
+        <li><strong>Stamp Act (1765)</strong> &mdash; Tax on all printed documents (newspapers, legal papers, playing cards). Colonists were furious. Repealed in 1766.</li>
+        <li><strong>Townshend Acts (1767)</strong> &mdash; Taxes on glass, paint, paper, and tea. Colonists boycotted British goods.</li>
+        <li><strong>Boston Massacre (1770)</strong> &mdash; British soldiers fired on a crowd of protesters in Boston, killing 5 people. Used as propaganda against the British.</li>
+        <li><strong>Tea Act (1773) &amp; Boston Tea Party</strong> &mdash; Britain gave the East India Company a monopoly on tea sales. In protest, colonists dressed as Native Americans boarded ships and dumped 342 chests of tea into Boston Harbour.</li>
+        <li><strong>Intolerable Acts (1774)</strong> &mdash; Britain's punishment: closed Boston port, banned town meetings, forced colonists to house British soldiers. This united the colonies against Britain.</li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Key Events of the War</h3>
+      <div class="timeline">
+        <div class="timeline-item"><span class="t-date">April 1775</span><span class="t-event"> &mdash; Battles of Lexington and Concord: first shots of the war ("the shot heard round the world"). The American War of Independence begins.</span></div>
+        <div class="timeline-item"><span class="t-date">July 1776</span><span class="t-event"> &mdash; Declaration of Independence signed (mainly written by Thomas Jefferson). Declared "all men are created equal" with rights to "life, liberty and the pursuit of happiness."</span></div>
+        <div class="timeline-item"><span class="t-date">1777&ndash;78</span><span class="t-event"> &mdash; Terrible winter at Valley Forge (Pennsylvania). Washington's army suffered but survived, emerging stronger.</span></div>
+        <div class="timeline-item"><span class="t-date">1778</span><span class="t-event"> &mdash; France entered the war on the American side (revenge against Britain). Provided troops, ships, and money.</span></div>
+        <div class="timeline-item"><span class="t-date">October 1781</span><span class="t-event"> &mdash; Battle of Yorktown: the last major battle. British General Cornwallis surrendered to Washington. The war was effectively over.</span></div>
+        <div class="timeline-item"><span class="t-date">1783</span><span class="t-event"> &mdash; Treaty of Paris: Britain officially recognised American independence.</span></div>
+      </div>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Results &amp; Importance</h3>
+      <ul>
+        <li>The <span class="key-term">United States of America</span> was born &mdash; a republic with an elected president (George Washington, 1789).</li>
+        <li>A <strong>Constitution</strong> was written (1787) with a <strong>Bill of Rights</strong> guaranteeing freedoms (speech, religion, press).</li>
+        <li>Inspired the <strong>French Revolution</strong> (1789) and the <strong>1798 Irish Rebellion</strong>.</li>
+        <li><strong>Limitations:</strong> Slavery continued. Women could not vote. Native Americans were excluded.</li>
+      </ul>
+    </div>
+
+    <div class="callout callout-purple no-break">
+      <strong>Link to Ireland:</strong>
+      The American Revolution directly inspired Wolfe Tone and the United Irishmen. The idea that people could overthrow an unfair government and create a republic gave Irish rebels hope and a model to follow.
+    </div>
+
+    <div class="subsection no-break">
+      <h3>People to Know</h3>
+      <div class="people-grid">
+        <div class="person-card"><div class="person-name">George Washington</div><div class="person-role">Commander of Continental Army; 1st US President (1789)</div></div>
+        <div class="person-card"><div class="person-name">Thomas Jefferson</div><div class="person-role">Main author of the Declaration of Independence; 3rd President</div></div>
+        <div class="person-card"><div class="person-name">Benjamin Franklin</div><div class="person-role">Diplomat who persuaded France to support the revolution</div></div>
+        <div class="person-card"><div class="person-name">King George III</div><div class="person-role">British king who refused to compromise with the colonies</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================== -->
+<!-- TOPIC 4: 1798 REBELLION                                      -->
+<!-- =========================================================== -->
+<div class="page-break"></div>
+<div class="orange-section">
+  <div class="section-header">
+    <h2>4. The 1798 Rebellion</h2>
+    <div class="section-dates">1791 &ndash; 1803</div>
+    <div class="section-summary">Inspired by the American and French revolutions, the United Irishmen attempted to overthrow British rule and establish an Irish republic. The rebellion was crushed, and Ireland was merged with Britain under the Act of Union (1800).</div>
+  </div>
+
+  <div class="content">
+    <div class="subsection no-break">
+      <h3>Background: Ireland in the 1790s</h3>
+      <ul>
+        <li>Ireland was ruled by the <strong>Irish Parliament in Dublin</strong>, but only Protestants (mainly Church of Ireland/Anglicans) could sit in it.</li>
+        <li>The <span class="key-term">Penal Laws</span> discriminated against Catholics and Presbyterians: they couldn't vote, hold office, own land freely, or attend university.</li>
+        <li>The <strong>American Revolution</strong> (1776) and <strong>French Revolution</strong> (1789) spread ideas of liberty, equality, and republicanism.</li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>The United Irishmen</h3>
+      <ul>
+        <li>Founded in <strong>Belfast in October 1791</strong> by <span class="key-term">Theobald Wolfe Tone</span>, Thomas Russell, and others.</li>
+        <li>A Dublin branch was set up the following month, led by <strong>Napper Tandy</strong>.</li>
+        <li><strong>Aims:</strong> Unite Catholic, Protestant, and Dissenter (Presbyterian) to reform parliament and achieve Catholic emancipation. Eventually became revolutionary &mdash; seeking an Irish republic with French help.</li>
+        <li>Initially a <strong>legal, peaceful</strong> reform movement. After being banned in 1794, they became a <strong>secret, revolutionary</strong> organisation.</li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Wolfe Tone (1763&ndash;1798)</h3>
+      <ul>
+        <li>A Dublin-born Protestant lawyer. Believed the main problem in Ireland was English interference.</li>
+        <li>Published <em>An Argument on Behalf of the Catholics of Ireland</em> (1791).</li>
+        <li>Travelled to <strong>France</strong> to seek military help for an Irish rebellion.</li>
+        <li><strong>1796: Bantry Bay Expedition</strong> &mdash; 15,000 French troops under General Hoche sailed for Ireland but were scattered by storms. Never landed. A massive missed opportunity.</li>
+        <li>Captured in 1798 during a second French expedition. Sentenced to death. Died in prison (suicide or murder &mdash; debated).</li>
+        <li>Known as the <em>"Father of Irish Republicanism."</em></li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>The 1798 Rebellion</h3>
+      <h4>Before the Rising</h4>
+      <ul>
+        <li>The British government infiltrated the United Irishmen with <strong>spies and informers</strong>.</li>
+        <li>Key leaders like <strong>Lord Edward Fitzgerald</strong> were arrested before the rebellion began.</li>
+        <li>The government used harsh tactics: <strong>flogging, pitch-capping, half-hanging</strong> to terrorise the population and find hidden weapons.</li>
+      </ul>
+
+      <h4>The Rising (May&ndash;September 1798)</h4>
+      <ul>
+        <li><strong>Leinster:</strong> The planned Dublin rising failed because leaders were captured. Scattered fighting in Kildare, Carlow, Meath, Wicklow.</li>
+        <li><strong>Wexford:</strong> The most significant rising. Led by <strong>Father John Murphy</strong>, rebels won early battles at Oulart Hill and Enniscorthy, and set up a camp on <strong>Vinegar Hill</strong>.</li>
+        <li><strong>Battle of Vinegar Hill (21 June 1798)</strong> &mdash; 20,000 British troops attacked. The rebels were defeated. This effectively ended the Wexford rising.</li>
+        <li><strong>Ulster:</strong> Henry Joy McCracken led a rising in Antrim; Henry Munro led one in Down. Both were quickly defeated.</li>
+        <li><strong>French Landing at Killala (August 1798)</strong> &mdash; General Humbert landed with 1,000 French troops in Mayo. Won the "Races of Castlebar" (British fled). Eventually defeated at <strong>Ballinamuck, Co. Longford</strong>.</li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Results of the 1798 Rebellion</h3>
+      <ul>
+        <li><strong>30,000+ people killed</strong> &mdash; mostly rebels and civilians.</li>
+        <li>Wolfe Tone captured and died in prison.</li>
+        <li>Britain decided direct rule was needed &mdash; led to the <span class="key-term">Act of Union (1800)</span>.</li>
+        <li>The Irish Parliament was abolished. Ireland was now governed directly from <strong>Westminster</strong> (London).</li>
+        <li>The promise of <strong>Catholic Emancipation</strong> was broken (King George III blocked it).</li>
+        <li><strong>Robert Emmet's Rising (1803)</strong> &mdash; A small, failed attempt to revive the cause. Emmet was executed. His speech from the dock became famous in Irish nationalism.</li>
+      </ul>
+    </div>
+
+    <div class="callout callout-orange no-break">
+      <strong>Why 1798 Matters:</strong>
+      It was the first attempt at an Irish republic uniting Catholic and Protestant. Its failure led to the Act of Union, which shaped Irish politics for the next 120 years and fuelled every subsequent independence movement.
+    </div>
+
+    <div class="subsection no-break">
+      <h3>People to Know</h3>
+      <div class="people-grid">
+        <div class="person-card"><div class="person-name">Theobald Wolfe Tone</div><div class="person-role">Founder of United Irishmen; "Father of Irish Republicanism"</div></div>
+        <div class="person-card"><div class="person-name">Lord Edward Fitzgerald</div><div class="person-role">United Irishman leader; arrested before the rising, died of wounds</div></div>
+        <div class="person-card"><div class="person-name">Father John Murphy</div><div class="person-role">Led the Wexford rising; executed after Vinegar Hill</div></div>
+        <div class="person-card"><div class="person-name">General Humbert</div><div class="person-role">French general who landed at Killala with 1,000 troops</div></div>
+        <div class="person-card"><div class="person-name">Henry Joy McCracken</div><div class="person-role">Led the Ulster rising in Antrim; executed</div></div>
+        <div class="person-card"><div class="person-name">Robert Emmet</div><div class="person-role">Led a failed rising in 1803; famous speech from the dock</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================== -->
+<!-- TOPIC 5: THE GREAT FAMINE                                    -->
+<!-- =========================================================== -->
+<div class="page-break"></div>
+<div class="red-section">
+  <div class="section-header">
+    <h2>5. The Great Famine</h2>
+    <div class="section-dates">1845 &ndash; 1852</div>
+    <div class="section-summary">The Great Famine (An Gorta M&oacute;r) was the worst disaster in Irish history. A potato blight caused mass starvation and emigration, killing approximately 1 million people and forcing another 1 million to emigrate.</div>
+  </div>
+
+  <div class="content">
+    <div class="subsection no-break">
+      <h3>Background: Ireland Before the Famine</h3>
+      <ul>
+        <li>Ireland's population had grown rapidly &mdash; from ~5 million in 1800 to <strong>over 8 million by 1841</strong>.</li>
+        <li>Most people were <strong>poor tenant farmers</strong> renting small plots from landlords.</li>
+        <li>The <span class="key-term">potato</span> was the main food source &mdash; cheap, nutritious, and grew well in Ireland. A family of six might eat 5&ndash;6 kg of potatoes per day.</li>
+        <li><strong>Over-dependence on one crop</strong> made Ireland extremely vulnerable.</li>
+        <li>The <span class="key-term">Subdivision</span> of land meant farms got smaller with each generation.</li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>The Blight Arrives</h3>
+      <ul>
+        <li>In <strong>September 1845</strong>, a fungus called <span class="key-term">Phytophthora infestans</span> (potato blight) arrived, probably from North America.</li>
+        <li>It turned potatoes into black, mushy, inedible rot &mdash; sometimes overnight.</li>
+        <li><strong>1845:</strong> About one-third of the crop destroyed.</li>
+        <li><strong>1846:</strong> Almost the entire crop destroyed. This was the worst year.</li>
+        <li><strong>1847:</strong> "Black '47" &mdash; less blight but almost nothing had been planted. Mass death and disease.</li>
+        <li><strong>1848&ndash;49:</strong> Blight returned. Famine continued.</li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Government Response</h3>
+      <h4>Under PM Robert Peel (Conservative, to June 1846)</h4>
+      <ul>
+        <li>Imported <strong>Indian corn (maize)</strong> from America. It was unpopular and hard to digest (called "Peel's Brimstone").</li>
+        <li>Set up <strong>public works schemes</strong> (road building) so people could earn money to buy food.</li>
+        <li>Repealed the <strong>Corn Laws</strong> (which kept grain prices high) to allow cheaper food imports. This cost him his job.</li>
+      </ul>
+
+      <h4>Under PM Lord John Russell (Whig, from June 1846)</h4>
+      <ul>
+        <li>Believed in <span class="key-term">laissez-faire</span> economics &mdash; the government should NOT interfere with the market. Let trade sort itself out.</li>
+        <li>Also believed the famine was <strong>God's judgement</strong> on the Irish (providentialism).</li>
+        <li><strong>Soup kitchens</strong> set up in 1847 &mdash; fed up to 3 million people daily at their peak. But closed after just 6 months.</li>
+        <li>Public works continued but <strong>wages were too low</strong> and work was too hard for starving people. Many died working on roads.</li>
+        <li>The <span class="key-term">Gregory Clause</span> (1847) &mdash; Anyone holding more than a quarter-acre of land could not receive relief. Forced people to give up their land to get food.</li>
+        <li><strong>Charles Trevelyan</strong> (head of Treasury) oversaw relief. He believed too much help would make the Irish "dependent." He ended food imports, saying the famine was "over."</li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Emigration &amp; the Coffin Ships</h3>
+      <ul>
+        <li>Over 1 million people emigrated during the Famine, mainly to <strong>America, Canada, England</strong>, and <strong>Australia</strong>.</li>
+        <li><span class="key-term">Coffin ships</span> &mdash; Overcrowded, disease-ridden ships with appalling conditions. Many died en route from typhus, cholera, and dysentery.</li>
+        <li><strong>Grosse &Icirc;le</strong> (quarantine island near Quebec, Canada) &mdash; thousands died in quarantine after arriving.</li>
+        <li>Some landlords paid for tenants' passage to clear them off the land (<span class="key-term">assisted emigration</span>).</li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Evictions &amp; Workhouses</h3>
+      <ul>
+        <li>Tenants who couldn't pay rent were <strong>evicted</strong>. Their homes were "tumbled" (knocked down) so they couldn't return.</li>
+        <li><span class="key-term">Workhouses</span> were built under the <strong>Poor Law</strong> system. Conditions were deliberately harsh to discourage entry: families were separated, food was basic, work was hard.</li>
+        <li>Workhouses became overcrowded &mdash; became breeding grounds for disease. Many entered healthy and died inside.</li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Consequences of the Famine</h3>
+      <ul>
+        <li><strong>Death toll:</strong> Approximately 1 million died from starvation and disease.</li>
+        <li><strong>Emigration:</strong> Over 1 million emigrated during the Famine. Emigration continued for decades &mdash; population fell from 8.2 million (1841) to 4.4 million (1901).</li>
+        <li><strong>Irish language decline:</strong> Irish-speaking areas (the West) were hardest hit. English became dominant.</li>
+        <li><strong>Land reform:</strong> Led eventually to campaigns for tenant rights and the Land League (1879).</li>
+        <li><strong>Anti-British feeling:</strong> Many Irish blamed Britain for the Famine. Fuelled nationalism, Fenianism, and the independence movement.</li>
+        <li><strong>The Irish diaspora:</strong> Irish communities in America, Britain, and Australia became powerful political forces.</li>
+        <li><strong>Marriage patterns changed:</strong> Later marriage, inheritance going to one son only (to avoid subdivision).</li>
+      </ul>
+    </div>
+
+    <div class="callout callout-red no-break">
+      <strong>Exam Debate: Was the Famine genocide?</strong>
+      Some historians argue Britain could have done far more &mdash; food was exported from Ireland throughout the Famine. Others say the British response was inadequate but not deliberate extermination. The exam may ask you to discuss both sides. Always use evidence: name policies, dates, and outcomes.
+    </div>
+
+    <div class="subsection no-break">
+      <h3>People to Know</h3>
+      <div class="people-grid">
+        <div class="person-card"><div class="person-name">Robert Peel</div><div class="person-role">PM who imported Indian corn and repealed the Corn Laws</div></div>
+        <div class="person-card"><div class="person-name">Lord John Russell</div><div class="person-role">PM who adopted laissez-faire approach; closed soup kitchens</div></div>
+        <div class="person-card"><div class="person-name">Charles Trevelyan</div><div class="person-role">Head of Treasury; ended food imports; said famine was "over"</div></div>
+        <div class="person-card"><div class="person-name">Daniel O'Connell</div><div class="person-role">"The Liberator" &mdash; campaigned for Catholic rights; died 1847</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================== -->
+<!-- FLASHCARDS                                                    -->
+<!-- =========================================================== -->
+<div class="page-break"></div>
+<div class="flashcard-section-title">Flashcards</div>
+<div class="flashcard-instructions">Cover the answer (below the dashed line) and test yourself. Cut along the card borders for portable revision.</div>
+
+<!-- Reformation Flashcards -->
+<div class="flashcard-grid">
+  <div class="flashcard fc-reformation no-break">
+    <div class="fc-topic">Reformation</div>
+    <div class="fc-q">What were the 95 Theses?</div>
+    <div class="fc-a">Arguments against indulgences written by Martin Luther and nailed to the church door in Wittenberg on 31 October 1517.</div>
+  </div>
+  <div class="flashcard fc-reformation no-break">
+    <div class="fc-topic">Reformation</div>
+    <div class="fc-q">What is simony?</div>
+    <div class="fc-a">The buying and selling of Church positions. One of the key abuses Luther condemned.</div>
+  </div>
+  <div class="flashcard fc-reformation no-break">
+    <div class="fc-topic">Reformation</div>
+    <div class="fc-q">What was the Diet of Worms (1521)?</div>
+    <div class="fc-a">An assembly where Emperor Charles V ordered Luther to take back his ideas. Luther refused: "Here I stand. I can do no other."</div>
+  </div>
+  <div class="flashcard fc-reformation no-break">
+    <div class="fc-topic">Reformation</div>
+    <div class="fc-q">What was the Council of Trent?</div>
+    <div class="fc-a">A series of Catholic Church meetings (1545&ndash;1563) that reformed abuses, reaffirmed Catholic doctrine, and launched the Counter-Reformation.</div>
+  </div>
+  <div class="flashcard fc-reformation no-break">
+    <div class="fc-topic">Reformation</div>
+    <div class="fc-q">Who were the Jesuits?</div>
+    <div class="fc-a">A religious order founded by Ignatius of Loyola in 1534. Focused on education and missions to win people back to Catholicism.</div>
+  </div>
+  <div class="flashcard fc-reformation no-break">
+    <div class="fc-topic">Reformation</div>
+    <div class="fc-q">What did Luther believe about salvation?</div>
+    <div class="fc-a">Salvation by faith alone &mdash; good works alone cannot save you. Only faith in God matters. The Bible is the sole authority, not the Pope.</div>
+  </div>
+
+  <!-- Plantations Flashcards -->
+  <div class="flashcard fc-plantations no-break">
+    <div class="fc-topic">Plantations</div>
+    <div class="fc-q">What was the Flight of the Earls (1607)?</div>
+    <div class="fc-a">Hugh O'Neill and Rory O'Donnell fled Ireland to Europe. Their Ulster lands were confiscated, leading to the Ulster Plantation.</div>
+  </div>
+  <div class="flashcard fc-plantations no-break">
+    <div class="fc-topic">Plantations</div>
+    <div class="fc-q">Name the three types of grantees in the Ulster Plantation.</div>
+    <div class="fc-a"><strong>Undertakers</strong> (best land, Protestant settlers only), <strong>Servitors</strong> (ex-soldiers, could have some Irish), <strong>Native Irish</strong> (worst land, highest rent).</div>
+  </div>
+  <div class="flashcard fc-plantations no-break">
+    <div class="fc-topic">Plantations</div>
+    <div class="fc-q">What did "To Hell or to Connacht" mean?</div>
+    <div class="fc-a">Cromwell's policy (1652): Catholic landowners were forced west of the Shannon to Connacht or faced death. Catholic land ownership dropped to ~8%.</div>
+  </div>
+  <div class="flashcard fc-plantations no-break">
+    <div class="fc-topic">Plantations</div>
+    <div class="fc-q">Which was the most successful plantation and why?</div>
+    <div class="fc-a">The Ulster Plantation (1609) &mdash; large numbers of Scottish Presbyterians settled, new towns were built, and the planter community took permanent root.</div>
+  </div>
+  <div class="flashcard fc-plantations no-break">
+    <div class="fc-topic">Plantations</div>
+    <div class="fc-q">What was a "bawn"?</div>
+    <div class="fc-a">A fortified enclosure or courtyard that Undertakers had to build around their house for protection from Irish attacks.</div>
+  </div>
+  <div class="flashcard fc-plantations no-break">
+    <div class="fc-topic">Plantations</div>
+    <div class="fc-q">Why did the Munster Plantation fail?</div>
+    <div class="fc-a">Not enough English settlers came. Many Undertakers hired Irish workers instead (cheaper). The plantation was destroyed during the Nine Years' War (1594&ndash;1603).</div>
+  </div>
+
+  <!-- American Revolution Flashcards -->
+  <div class="flashcard fc-us no-break">
+    <div class="fc-topic">American Revolution</div>
+    <div class="fc-q">What was the colonists' main complaint against Britain?</div>
+    <div class="fc-a">"No taxation without representation" &mdash; they were taxed by the British Parliament but had no representatives in it and no voice in decisions.</div>
+  </div>
+  <div class="flashcard fc-us no-break">
+    <div class="fc-topic">American Revolution</div>
+    <div class="fc-q">What happened at the Boston Tea Party (1773)?</div>
+    <div class="fc-a">Colonists disguised as Native Americans dumped 342 chests of tea into Boston Harbour to protest the Tea Act and British monopoly on tea.</div>
+  </div>
+  <div class="flashcard fc-us no-break">
+    <div class="fc-topic">American Revolution</div>
+    <div class="fc-q">What was the Declaration of Independence?</div>
+    <div class="fc-a">Signed 4 July 1776, mainly written by Thomas Jefferson. Declared the colonies independent, stating "all men are created equal" with rights to "life, liberty and the pursuit of happiness."</div>
+  </div>
+  <div class="flashcard fc-us no-break">
+    <div class="fc-topic">American Revolution</div>
+    <div class="fc-q">Why was France's entry important?</div>
+    <div class="fc-a">France entered in 1778, providing troops, ships, and money. French help was crucial at the final Battle of Yorktown (1781) where Britain was defeated.</div>
+  </div>
+  <div class="flashcard fc-us no-break">
+    <div class="fc-topic">American Revolution</div>
+    <div class="fc-q">How did the American Revolution affect Ireland?</div>
+    <div class="fc-a">It inspired Wolfe Tone and the United Irishmen to seek an Irish republic. The idea that people could overthrow unjust rule spread to Ireland and France.</div>
+  </div>
+  <div class="flashcard fc-us no-break">
+    <div class="fc-topic">American Revolution</div>
+    <div class="fc-q">What was the Treaty of Paris (1783)?</div>
+    <div class="fc-a">The treaty where Britain officially recognised American independence, ending the War of Independence.</div>
+  </div>
+</div>
+
+<div class="page-break"></div>
+<div class="flashcard-grid">
+  <!-- 1798 Flashcards -->
+  <div class="flashcard fc-1798 no-break">
+    <div class="fc-topic">1798 Rebellion</div>
+    <div class="fc-q">Who founded the United Irishmen and when?</div>
+    <div class="fc-a">Theobald Wolfe Tone, Thomas Russell, and others in Belfast, October 1791. Their aim was to unite Catholic, Protestant, and Dissenter.</div>
+  </div>
+  <div class="flashcard fc-1798 no-break">
+    <div class="fc-topic">1798 Rebellion</div>
+    <div class="fc-q">What happened at Bantry Bay (1796)?</div>
+    <div class="fc-a">15,000 French troops under General Hoche sailed to Ireland to support the rebellion, but storms scattered the fleet and they never landed.</div>
+  </div>
+  <div class="flashcard fc-1798 no-break">
+    <div class="fc-topic">1798 Rebellion</div>
+    <div class="fc-q">What was the Battle of Vinegar Hill?</div>
+    <div class="fc-a">21 June 1798: 20,000 British troops attacked the rebel camp at Vinegar Hill, Enniscorthy, Co. Wexford. Rebels defeated; ended the Wexford rising.</div>
+  </div>
+  <div class="flashcard fc-1798 no-break">
+    <div class="fc-topic">1798 Rebellion</div>
+    <div class="fc-q">What was the Act of Union (1800)?</div>
+    <div class="fc-a">The Irish Parliament was abolished. Ireland was governed directly from Westminster (London). A direct result of the 1798 Rebellion.</div>
+  </div>
+  <div class="flashcard fc-1798 no-break">
+    <div class="fc-topic">1798 Rebellion</div>
+    <div class="fc-q">Who was Father John Murphy?</div>
+    <div class="fc-a">A Catholic priest who led the Wexford rising. Won battles at Oulart Hill and Enniscorthy before being defeated at Vinegar Hill. Executed.</div>
+  </div>
+  <div class="flashcard fc-1798 no-break">
+    <div class="fc-topic">1798 Rebellion</div>
+    <div class="fc-q">What were the Penal Laws?</div>
+    <div class="fc-a">Laws that discriminated against Catholics and Presbyterians: couldn't vote, hold office, own land freely, or attend university. A key cause of the rebellion.</div>
+  </div>
+
+  <!-- Famine Flashcards -->
+  <div class="flashcard fc-famine no-break">
+    <div class="fc-topic">The Famine</div>
+    <div class="fc-q">What caused the Great Famine?</div>
+    <div class="fc-a">Potato blight (Phytophthora infestans) &mdash; a fungus that destroyed the potato crop. Ireland's over-dependence on the potato made the impact catastrophic.</div>
+  </div>
+  <div class="flashcard fc-famine no-break">
+    <div class="fc-topic">The Famine</div>
+    <div class="fc-q">What was "laissez-faire" and how did it affect famine relief?</div>
+    <div class="fc-a">The belief the government should not interfere with the free market. PM Russell's government used this to justify minimal intervention while people starved.</div>
+  </div>
+  <div class="flashcard fc-famine no-break">
+    <div class="fc-topic">The Famine</div>
+    <div class="fc-q">What were coffin ships?</div>
+    <div class="fc-a">Overcrowded, disease-ridden emigrant ships. Many passengers died from typhus, cholera, and dysentery during the crossing to America and Canada.</div>
+  </div>
+  <div class="flashcard fc-famine no-break">
+    <div class="fc-topic">The Famine</div>
+    <div class="fc-q">What was the Gregory Clause (1847)?</div>
+    <div class="fc-a">A rule that anyone with more than a quarter-acre of land could not receive famine relief. Forced people to surrender their land to get food.</div>
+  </div>
+  <div class="flashcard fc-famine no-break">
+    <div class="fc-topic">The Famine</div>
+    <div class="fc-q">What were the main consequences of the Famine?</div>
+    <div class="fc-a">~1 million dead, 1+ million emigrated. Population halved over 60 years. Irish language declined. Anti-British feeling intensified. Irish diaspora formed worldwide.</div>
+  </div>
+  <div class="flashcard fc-famine no-break">
+    <div class="fc-topic">The Famine</div>
+    <div class="fc-q">How did Peel respond differently to Russell?</div>
+    <div class="fc-a">Peel acted: imported Indian corn, set up public works, repealed Corn Laws. Russell was laissez-faire: limited help, closed soup kitchens, Gregory Clause.</div>
+  </div>
+</div>
+
+<!-- =========================================================== -->
+<!-- EXAM-STYLE QUESTIONS                                          -->
+<!-- =========================================================== -->
+<div class="page-break"></div>
+<div class="exam-section">
+  <h2>Exam-Style Questions &amp; Answer Hints</h2>
+
+  <div class="exam-q no-break">
+    <div class="eq-topic" style="color: var(--blue);">REFORMATION</div>
+    <div class="eq-question">Give an account of the life and work of Martin Luther.</div>
+    <div class="eq-hints"><strong>Include:</strong>
+      <ul>
+        <li>Born Saxony, monk, professor at Wittenberg</li>
+        <li>95 Theses (1517) &mdash; against indulgences and Tetzel</li>
+        <li>Key beliefs: faith alone, Bible authority, priesthood of all believers</li>
+        <li>Excommunicated 1521, Diet of Worms, hidden by Frederick the Wise</li>
+        <li>Translated Bible into German, spread of Lutheranism</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="exam-q no-break">
+    <div class="eq-topic" style="color: var(--blue);">REFORMATION</div>
+    <div class="eq-question">What was the Counter-Reformation? What reforms did the Catholic Church make?</div>
+    <div class="eq-hints"><strong>Include:</strong>
+      <ul>
+        <li>Catholic Church's response to Protestantism</li>
+        <li>Council of Trent (1545&ndash;63): banned abuses, reaffirmed seven sacraments, Pope's authority</li>
+        <li>Jesuits founded by Ignatius of Loyola &mdash; education, missions</li>
+        <li>Inquisition and Index of Forbidden Books</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="exam-q no-break">
+    <div class="eq-topic" style="color: var(--green);">PLANTATIONS</div>
+    <div class="eq-question">Describe the Ulster Plantation of 1609. Why was it more successful than earlier plantations?</div>
+    <div class="eq-hints"><strong>Include:</strong>
+      <ul>
+        <li>Flight of the Earls (1607) &mdash; 6 counties confiscated</li>
+        <li>Three types of grantees: Undertakers, Servitors, Native Irish</li>
+        <li>London guilds given Derry (Londonderry), built walls</li>
+        <li>More settlers (Scottish Presbyterians), new towns, more organised</li>
+        <li>But still problems: Irish secretly hired, resentment, 1641 rebellion</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="exam-q no-break">
+    <div class="eq-topic" style="color: var(--purple);">AMERICAN REVOLUTION</div>
+    <div class="eq-question">What were the causes and results of the American Revolution?</div>
+    <div class="eq-hints"><strong>Include:</strong>
+      <ul>
+        <li>Causes: taxation without representation, Stamp Act, Boston Tea Party, Intolerable Acts</li>
+        <li>Declaration of Independence (1776) &mdash; Jefferson, "all men created equal"</li>
+        <li>French support, Battle of Yorktown (1781), Treaty of Paris (1783)</li>
+        <li>Results: USA born, Constitution, Bill of Rights, inspired French/Irish revolutions</li>
+        <li>Limitations: slavery continued, women and Native Americans excluded</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="exam-q no-break">
+    <div class="eq-topic" style="color: var(--orange);">1798 REBELLION</div>
+    <div class="eq-question">Give an account of the 1798 Rebellion. Why did it fail?</div>
+    <div class="eq-hints"><strong>Include:</strong>
+      <ul>
+        <li>United Irishmen founded 1791 by Wolfe Tone &mdash; aims</li>
+        <li>Bantry Bay (1796) &mdash; French fleet scattered by storms</li>
+        <li>Leaders arrested before rising, spies and informers</li>
+        <li>Wexford rising, Vinegar Hill (21 June 1798), Ulster risings crushed</li>
+        <li>Humbert at Killala (August 1798), defeated at Ballinamuck</li>
+        <li>Failed because: leaders captured, poor coordination, French help too late/too small</li>
+        <li>Result: Act of Union 1800</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="exam-q no-break">
+    <div class="eq-topic" style="color: var(--red);">THE FAMINE</div>
+    <div class="eq-question">What were the causes and consequences of the Great Famine?</div>
+    <div class="eq-hints"><strong>Include:</strong>
+      <ul>
+        <li>Causes: over-dependence on potato, rapid population growth, subdivision of land, potato blight (1845)</li>
+        <li>Government response: Peel (corn, public works, Corn Laws) vs. Russell (laissez-faire, Gregory Clause)</li>
+        <li>Consequences: ~1m dead, 1m+ emigrated, coffin ships, population decline, Irish language decline</li>
+        <li>Long-term: anti-British feeling, Fenianism, Land League, Irish diaspora</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="exam-q no-break">
+    <div class="eq-topic" style="color: var(--red);">THE FAMINE</div>
+    <div class="eq-question">"The British government did not do enough to help during the Famine." Do you agree? Explain your answer.</div>
+    <div class="eq-hints"><strong>For:</strong> laissez-faire policy, Gregory Clause, soup kitchens closed after 6 months, food exported while people starved, Trevelyan ended imports.
+      <br><strong>Against:</strong> Peel did import corn and repeal Corn Laws, public works employed people, workhouses built, the blight was a natural disaster.
+      <br><strong>Conclude:</strong> Give your own opinion with evidence.</div>
+  </div>
+</div>
+
+<!-- =========================================================== -->
+<!-- MASTER TIMELINE                                               -->
+<!-- =========================================================== -->
+<div class="page-break"></div>
+<div class="exam-section">
+  <h2>Master Timeline &mdash; All Topics</h2>
+
+  <table class="ref-table">
+    <tr><th style="width:100px;">Date</th><th>Event</th><th style="width:130px;">Topic</th></tr>
+    <tr><td>1517</td><td>Luther's 95 Theses nailed to Wittenberg church door</td><td style="color:var(--blue);">Reformation</td></tr>
+    <tr><td>1521</td><td>Luther excommunicated; Diet of Worms</td><td style="color:var(--blue);">Reformation</td></tr>
+    <tr><td>1534</td><td>Henry VIII breaks from Rome; Jesuits founded</td><td style="color:var(--blue);">Reformation</td></tr>
+    <tr><td>1545&ndash;63</td><td>Council of Trent (Counter-Reformation)</td><td style="color:var(--blue);">Reformation</td></tr>
+    <tr><td>1556</td><td>Laois-Offaly Plantation (Mary I)</td><td style="color:var(--green);">Plantations</td></tr>
+    <tr><td>1586</td><td>Munster Plantation (Elizabeth I)</td><td style="color:var(--green);">Plantations</td></tr>
+    <tr><td>1607</td><td>Flight of the Earls</td><td style="color:var(--green);">Plantations</td></tr>
+    <tr><td>1609</td><td>Ulster Plantation begins (James I)</td><td style="color:var(--green);">Plantations</td></tr>
+    <tr><td>1641</td><td>Irish Rebellion (partly caused by plantations)</td><td style="color:var(--green);">Plantations</td></tr>
+    <tr><td>1649&ndash;52</td><td>Cromwell's conquest of Ireland</td><td style="color:var(--green);">Plantations</td></tr>
+    <tr><td>1652</td><td>Cromwellian Plantation; "To Hell or to Connacht"</td><td style="color:var(--green);">Plantations</td></tr>
+    <tr><td>1765</td><td>Stamp Act &mdash; sparks colonial protests</td><td style="color:var(--purple);">US Revolution</td></tr>
+    <tr><td>1770</td><td>Boston Massacre</td><td style="color:var(--purple);">US Revolution</td></tr>
+    <tr><td>1773</td><td>Boston Tea Party</td><td style="color:var(--purple);">US Revolution</td></tr>
+    <tr><td>1775</td><td>Battles of Lexington &amp; Concord &mdash; war begins</td><td style="color:var(--purple);">US Revolution</td></tr>
+    <tr><td>1776</td><td>Declaration of Independence</td><td style="color:var(--purple);">US Revolution</td></tr>
+    <tr><td>1781</td><td>Battle of Yorktown &mdash; British surrender</td><td style="color:var(--purple);">US Revolution</td></tr>
+    <tr><td>1783</td><td>Treaty of Paris &mdash; American independence recognised</td><td style="color:var(--purple);">US Revolution</td></tr>
+    <tr><td>1791</td><td>United Irishmen founded in Belfast</td><td style="color:var(--orange);">1798</td></tr>
+    <tr><td>1796</td><td>Bantry Bay expedition fails (storms)</td><td style="color:var(--orange);">1798</td></tr>
+    <tr><td>May 1798</td><td>1798 Rebellion begins</td><td style="color:var(--orange);">1798</td></tr>
+    <tr><td>June 1798</td><td>Battle of Vinegar Hill</td><td style="color:var(--orange);">1798</td></tr>
+    <tr><td>Aug 1798</td><td>French land at Killala; defeated at Ballinamuck</td><td style="color:var(--orange);">1798</td></tr>
+    <tr><td>1800</td><td>Act of Union &mdash; Irish Parliament abolished</td><td style="color:var(--orange);">1798</td></tr>
+    <tr><td>1803</td><td>Robert Emmet's failed rising</td><td style="color:var(--orange);">1798</td></tr>
+    <tr><td>1845</td><td>Potato blight arrives in Ireland</td><td style="color:var(--red);">Famine</td></tr>
+    <tr><td>1846</td><td>Worst year of blight; Russell becomes PM</td><td style="color:var(--red);">Famine</td></tr>
+    <tr><td>1847</td><td>"Black '47" &mdash; mass death; soup kitchens open then close; Gregory Clause</td><td style="color:var(--red);">Famine</td></tr>
+    <tr><td>1848&ndash;49</td><td>Blight returns; famine continues</td><td style="color:var(--red);">Famine</td></tr>
+    <tr><td>1852</td><td>Famine effectively ends</td><td style="color:var(--red);">Famine</td></tr>
+  </table>
+</div>
+
+<!-- =========================================================== -->
+<!-- KEY TERMS GLOSSARY                                            -->
+<!-- =========================================================== -->
+<div class="page-break"></div>
+<div class="exam-section">
+  <h2>Key Terms Glossary</h2>
+  <table class="ref-table">
+    <tr><th style="width:180px;">Term</th><th>Definition</th></tr>
+    <tr><td>Indulgence</td><td>A payment to the Church to reduce punishment for sins / time in Purgatory</td></tr>
+    <tr><td>Simony</td><td>Buying and selling Church positions</td></tr>
+    <tr><td>Absenteeism</td><td>Clergy not living in the area they were supposed to serve</td></tr>
+    <tr><td>Predestination</td><td>Calvin's belief that God has already decided who will be saved</td></tr>
+    <tr><td>Papal Bull</td><td>An official letter or decree from the Pope</td></tr>
+    <tr><td>Excommunication</td><td>Being expelled from the Catholic Church</td></tr>
+    <tr><td>Undertaker</td><td>English/Scottish Protestant granted plantation land; had to bring in settlers</td></tr>
+    <tr><td>Servitor</td><td>Former English soldier/official given plantation land</td></tr>
+    <tr><td>Bawn</td><td>A fortified enclosure planters had to build for defence</td></tr>
+    <tr><td>Adventurers</td><td>Financial backers who funded Cromwell's conquest and received land</td></tr>
+    <tr><td>Penal Laws</td><td>Laws discriminating against Catholics &amp; Presbyterians (voting, land, education)</td></tr>
+    <tr><td>Republic</td><td>A country governed by elected representatives, not a king or queen</td></tr>
+    <tr><td>Laissez-faire</td><td>Economic belief that the government should not interfere with the market</td></tr>
+    <tr><td>Phytophthora infestans</td><td>The fungus that caused the potato blight</td></tr>
+    <tr><td>Coffin ships</td><td>Overcrowded emigrant ships where many died from disease</td></tr>
+    <tr><td>Gregory Clause</td><td>Rule that anyone with 0.25+ acres of land could not receive famine relief</td></tr>
+    <tr><td>Workhouse</td><td>Institution for the destitute under the Poor Law; deliberately harsh conditions</td></tr>
+    <tr><td>Diaspora</td><td>Irish communities scattered around the world due to emigration</td></tr>
+    <tr><td>Act of Union (1800)</td><td>Abolished the Irish Parliament; Ireland governed from Westminster</td></tr>
+    <tr><td>Providentialism</td><td>Belief that the famine was God's judgement/punishment</td></tr>
+  </table>
+</div>
+
+<!-- =========================================================== -->
+<!-- CONNECTIONS BETWEEN TOPICS                                    -->
+<!-- =========================================================== -->
+<div class="page-break"></div>
+<div class="exam-section">
+  <h2>How the Topics Connect</h2>
+  <p style="text-align:center; color: var(--gray-600); font-size: 10pt; margin-bottom: 20px;">The exam loves questions that link topics together. Here are the key connections:</p>
+
+  <div class="callout callout-blue no-break" style="margin-bottom: 16px;">
+    <strong>Reformation &rarr; Plantations</strong>
+    The Reformation created the Catholic&ndash;Protestant divide. England became Protestant; Ireland stayed Catholic. Plantations were partly about spreading Protestantism in Ireland and controlling the Catholic population.
+  </div>
+
+  <div class="callout callout-green no-break" style="margin-bottom: 16px;">
+    <strong>Plantations &rarr; 1798 &amp; Famine</strong>
+    Plantations created the landlord system: Protestant landlords, Catholic tenants. This land system drove resentment behind 1798 and made the poor dependent on small plots of potato land &mdash; a direct cause of the Famine.
+  </div>
+
+  <div class="callout callout-purple no-break" style="margin-bottom: 16px;">
+    <strong>American Revolution &rarr; 1798</strong>
+    The American Revolution proved a colony could overthrow its ruler. Its ideas of liberty and equality directly inspired Wolfe Tone and the United Irishmen. The French, having helped America, were also willing to help Ireland.
+  </div>
+
+  <div class="callout callout-orange no-break" style="margin-bottom: 16px;">
+    <strong>1798 &rarr; Act of Union &rarr; Famine</strong>
+    The 1798 Rebellion failed, leading to the Act of Union (1800). When the Famine struck, Ireland had no parliament of its own &mdash; decisions were made in London by politicians who often didn't understand or prioritise Irish suffering.
+  </div>
+</div>
+
+<div style="text-align: center; padding: 40px; color: var(--gray-600); font-size: 10pt;">
+  <p style="font-weight: 700; margin-bottom: 4px;">Good luck with the exam!</p>
+  <p>Study the notes, test yourself with the flashcards, and practise the exam questions.</p>
+</div>
+
+</body>
+</html>
