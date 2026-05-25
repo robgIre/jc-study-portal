@@ -776,8 +776,31 @@
     </div>
 
     <div class="subsection no-break">
+      <h3>Set-Builder Notation (HL)</h3>
+      <p>Instead of listing elements, describe the set using a rule:</p>
+      <ul>
+        <li>{x : x &gt; 3} means "the set of all x such that x is greater than 3"</li>
+        <li>{x : x &isin; &#8469;, x &lt; 8} = {1, 2, 3, 4, 5, 6, 7} (natural numbers less than 8)</li>
+        <li>The colon ":" means "such that"</li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
       <h3>3-Set Venn Diagrams (HL)</h3>
       <p>Work from the <strong>centre out</strong>: fill in the intersection of all three sets first, then the pairwise intersections, then the remaining parts of each circle, then outside all circles.</p>
+      <h4>Worked Example</h4>
+      <p>60 students were surveyed about sports. 25 play football (F), 20 play hurling (H), 22 play basketball (B). 8 play F and H, 6 play F and B, 5 play H and B, 3 play all three. How many play none?</p>
+      <ol>
+        <li>Centre (all three): <strong>3</strong></li>
+        <li>F &cap; H only: 8 &minus; 3 = <strong>5</strong></li>
+        <li>F &cap; B only: 6 &minus; 3 = <strong>3</strong></li>
+        <li>H &cap; B only: 5 &minus; 3 = <strong>2</strong></li>
+        <li>F only: 25 &minus; 5 &minus; 3 &minus; 3 = <strong>14</strong></li>
+        <li>H only: 20 &minus; 5 &minus; 2 &minus; 3 = <strong>10</strong></li>
+        <li>B only: 22 &minus; 3 &minus; 2 &minus; 3 = <strong>14</strong></li>
+        <li>Total in at least one: 14 + 10 + 14 + 5 + 3 + 2 + 3 = <strong>51</strong></li>
+        <li>None: 60 &minus; 51 = <strong>9</strong></li>
+      </ol>
     </div>
   </div>
 </div>
@@ -829,6 +852,27 @@
         <li>If first differences are constant &rarr; it's linear. Use T(n) = dn + (a &minus; d).</li>
         <li>If first differences aren't constant, find <strong>second differences</strong> (HL: quadratic).</li>
       </ol>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Decreasing Sequences</h3>
+      <p>Sequences can go <strong>down</strong> too. The method is exactly the same &mdash; the common difference will be <strong>negative</strong>.</p>
+      <h4>Example: 20, 17, 14, 11, 8, ...</h4>
+      <ul>
+        <li>d = &minus;3, a = 20</li>
+        <li>T(n) = &minus;3n + (20 &minus; (&minus;3)) = &minus;3n + 23</li>
+        <li>Check: T(1) = &minus;3 + 23 = 20 &#10004;</li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Table of Values Method</h3>
+      <p>The exam often gives you a table to complete. Fill in the table, then find the pattern:</p>
+      <table class="ref-table">
+        <tr><th>n</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>n</th></tr>
+        <tr><td>T(n)</td><td>5</td><td>8</td><td>11</td><td>14</td><td>17</td><td>3n + 2</td></tr>
+        <tr><td>1st diff</td><td></td><td>+3</td><td>+3</td><td>+3</td><td>+3</td><td>constant &rarr; linear</td></tr>
+      </table>
     </div>
 
     <div class="subsection no-break">
@@ -989,6 +1033,49 @@
     </div>
 
     <div class="subsection no-break">
+      <h3>Depreciation (HL)</h3>
+      <p>When something <strong>loses value</strong> over time (cars, computers). Works like compound interest but the value goes <strong>down</strong>.</p>
+      <div class="callout callout-teal">
+        <strong>A = P(1 &minus; r/100)<sup>n</sup></strong><br>
+        Same as compound interest but with a <strong>minus</strong> sign.
+      </div>
+      <h4>Worked Example</h4>
+      <p>A car worth &euro;20,000 depreciates by 15% per year. What is it worth after 3 years?</p>
+      <ul>
+        <li>A = 20000 &times; (1 &minus; 0.15)&sup3; = 20000 &times; (0.85)&sup3; = 20000 &times; 0.614125 = <strong>&euro;12,282.50</strong></li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Successive Percentage Changes</h3>
+      <p>When a price goes up by one percentage and then down by another (or vice versa), you <strong>cannot just subtract the percentages</strong>.</p>
+      <h4>Example: A &euro;200 item increases by 10% then decreases by 10%.</h4>
+      <ul>
+        <li>After increase: 200 &times; 1.10 = &euro;220</li>
+        <li>After decrease: 220 &times; 0.90 = <strong>&euro;198</strong> (NOT &euro;200!)</li>
+      </ul>
+      <p>The result is <strong>not</strong> the original price because the decrease is applied to the <strong>new, higher</strong> amount.</p>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Reading Bills</h3>
+      <p>Exam questions may show an electricity, phone, or gas bill. Key things to look for:</p>
+      <ul>
+        <li><strong>Standing charge</strong> &mdash; a fixed daily/monthly charge regardless of usage</li>
+        <li><strong>Unit rate</strong> &mdash; the price per unit of electricity/gas used (e.g., cent per kWh)</li>
+        <li><strong>Total before VAT</strong> = standing charge + (units used &times; unit rate)</li>
+        <li><strong>Total with VAT</strong> = total &times; (1 + VAT rate)</li>
+        <li>Read the bill carefully &mdash; some have <strong>day rates</strong> and <strong>night rates</strong> (different prices)</li>
+      </ul>
+      <h4>Worked Example</h4>
+      <p>Standing charge: &euro;10/month. Rate: 18c per kWh. Usage: 350 kWh. VAT: 13.5%.</p>
+      <ul>
+        <li>Cost = &euro;10 + (350 &times; &euro;0.18) = &euro;10 + &euro;63 = &euro;73</li>
+        <li>With VAT: &euro;73 &times; 1.135 = <strong>&euro;82.86</strong></li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
       <h3>Best Buys (Unit Pricing)</h3>
       <p>To compare value, calculate the <strong>price per unit</strong> (per gram, per litre, per item) for each option. The lowest unit price is the best buy.</p>
       <h4>Example</h4>
@@ -1059,6 +1146,29 @@
     </div>
 
     <div class="subsection no-break">
+      <h3>Perimeter</h3>
+      <p>Perimeter = the <strong>total distance around the outside</strong> of a shape. Add up all the sides.</p>
+      <ul>
+        <li><strong>Rectangle:</strong> P = 2(l + w)</li>
+        <li><strong>Square:</strong> P = 4s</li>
+        <li><strong>Circle (circumference):</strong> C = 2&pi;r = &pi;d</li>
+        <li><strong>Semicircle:</strong> C = &pi;r + 2r (half the circumference + the diameter)</li>
+        <li><strong>Compound shapes:</strong> Add the outer edges only &mdash; don't include internal boundaries.</li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Answers "In Terms of &pi;"</h3>
+      <p>When the exam says <em>"give your answer in terms of &pi;"</em>, do NOT multiply by 3.14. Leave &pi; as a symbol in your answer.</p>
+      <h4>Example: Area of a circle with radius 5 cm</h4>
+      <ul>
+        <li>A = &pi;r&sup2; = &pi;(5)&sup2; = <strong>25&pi; cm&sup2;</strong> &#10004;</li>
+        <li>NOT 78.54 cm&sup2; &#10008;</li>
+      </ul>
+      <p>This gives an <strong>exact answer</strong> rather than a rounded decimal.</p>
+    </div>
+
+    <div class="subsection no-break">
       <h3>Compound Shapes</h3>
       <p>For irregular shapes, <strong>split them into simpler shapes</strong> (rectangles, triangles, semicircles), calculate each area separately, then add (or subtract) them.</p>
     </div>
@@ -1119,6 +1229,37 @@
     </div>
 
     <div class="subsection no-break">
+      <h3>Substitution</h3>
+      <p>Replace letters with numbers and calculate the result. Follow <strong>BIMDAS</strong> (Brackets, Indices, Multiply, Divide, Add, Subtract).</p>
+      <h4>Example: If a = 3 and b = &minus;2, find the value of 2a&sup2; &minus; 3b</h4>
+      <ul>
+        <li>= 2(3)&sup2; &minus; 3(&minus;2)</li>
+        <li>= 2(9) &minus; (&minus;6)</li>
+        <li>= 18 + 6 = <strong>24</strong></li>
+      </ul>
+      <p><strong>Watch out:</strong> (&minus;2)&sup2; = 4 (positive!), but &minus;2&sup2; = &minus;4. Brackets matter!</p>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Forming Equations from Word Problems</h3>
+      <p>Read the problem, assign a letter (usually x) to the unknown, write the equation, then solve.</p>
+      <h4>Example: "I think of a number, double it, and add 5. The answer is 19. What's the number?"</h4>
+      <ol>
+        <li>Let the number = x</li>
+        <li>Equation: 2x + 5 = 19</li>
+        <li>2x = 14</li>
+        <li>x = <strong>7</strong></li>
+      </ol>
+      <h4>Example: "A rectangle's length is 3 more than its width. The perimeter is 26 cm. Find the dimensions."</h4>
+      <ol>
+        <li>Let width = x, so length = x + 3</li>
+        <li>Perimeter: 2(x + x + 3) = 26</li>
+        <li>2(2x + 3) = 26 &rarr; 4x + 6 = 26 &rarr; 4x = 20 &rarr; x = 5</li>
+        <li>Width = <strong>5 cm</strong>, Length = <strong>8 cm</strong></li>
+      </ol>
+    </div>
+
+    <div class="subsection no-break">
       <h3>Solving Linear Equations</h3>
       <p>Goal: get the letter on one side, numbers on the other.</p>
       <h4>Example: 3x + 7 = 22</h4>
@@ -1150,6 +1291,44 @@
         <li>Add the equations: 3x = 9, so x = 3</li>
         <li>Sub x = 3 into first equation: 2(3) + y = 7, so y = 1</li>
         <li>Answer: <strong>x = 3, y = 1</strong></li>
+      </ol>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Inequalities</h3>
+      <p>Solved exactly like equations, but the answer is a <strong>range</strong> of values, not a single number.</p>
+      <table class="ref-table">
+        <tr><th>Symbol</th><th>Meaning</th></tr>
+        <tr><td>&lt;</td><td>Less than</td></tr>
+        <tr><td>&gt;</td><td>Greater than</td></tr>
+        <tr><td>&le;</td><td>Less than or equal to</td></tr>
+        <tr><td>&ge;</td><td>Greater than or equal to</td></tr>
+      </table>
+      <h4>Example: Solve 3x &minus; 2 &gt; 10</h4>
+      <ol>
+        <li>3x &gt; 12</li>
+        <li>x &gt; 4</li>
+      </ol>
+      <p><strong>On a number line:</strong> open circle at 4 (not included), arrow pointing right.</p>
+      <p>If it was x &ge; 4: <strong>filled circle</strong> at 4 (included), arrow pointing right.</p>
+      <div class="callout callout-teal">
+        <strong>Key rule:</strong> If you multiply or divide both sides by a <strong>negative number</strong>, you must <strong>flip the inequality sign</strong>.<br>
+        E.g., &minus;2x &gt; 6 &rarr; x <strong>&lt;</strong> &minus;3 (sign flips!)
+      </div>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Changing the Subject of a Formula (HL)</h3>
+      <p>Rearrange a formula to isolate a different variable. Use the same rules as solving equations.</p>
+      <h4>Example: Make r the subject of A = &pi;r&sup2;</h4>
+      <ol>
+        <li>r&sup2; = A &divide; &pi;</li>
+        <li>r = &radic;(A/&pi;)</li>
+      </ol>
+      <h4>Example: Make t the subject of v = u + at</h4>
+      <ol>
+        <li>v &minus; u = at</li>
+        <li>t = (v &minus; u) &divide; a</li>
       </ol>
     </div>
 
@@ -1188,10 +1367,11 @@
         <tr><td>5</td><td><strong>Angle of 60&deg;</strong></td><td>Draw a ray. Open compass to any length. Arc from the endpoint. Without changing compass, arc from where first arc hits the ray. Join to get 60&deg;.</td></tr>
         <tr><td>6</td><td><strong>Angle of 30&deg;</strong></td><td>Construct 60&deg;, then bisect it.</td></tr>
         <tr><td>7</td><td><strong>Angle of 90&deg;</strong></td><td>Construct 60&deg;, then construct another 60&deg; from the first, and bisect the second 60&deg;. Or use perpendicular bisector.</td></tr>
-        <tr><td>8</td><td><strong>Divide a line into equal parts</strong></td><td>Draw a ray at an angle. Mark equal steps with compass. Join last mark to end of original line. Draw parallels through each mark.</td></tr>
-        <tr><td>9</td><td><strong>Triangle (SSS, SAS, ASA)</strong></td><td>SSS: draw base, arc from each end with the other two sides. SAS: draw base, construct angle, mark length. ASA: draw base, construct both angles.</td></tr>
-        <tr><td>10</td><td><strong>Circumscribed circle (circumcircle)</strong></td><td>Bisect any two sides of the triangle. Where the bisectors meet = circumcentre. Open compass from centre to any vertex &rarr; draw circle.</td></tr>
-        <tr><td>11</td><td><strong>Inscribed circle (incircle)</strong></td><td>Bisect any two angles of the triangle. Where the bisectors meet = incentre. Perpendicular from centre to any side = radius &rarr; draw circle.</td></tr>
+        <tr><td>8</td><td><strong>Copy a given angle</strong></td><td>Arc from vertex of original angle. Same compass width, arc from new vertex. Measure the chord of the original arc. Transfer that chord to the new arc. Join.</td></tr>
+        <tr><td>9</td><td><strong>Divide a line into equal parts</strong></td><td>Draw a ray at an angle. Mark equal steps with compass. Join last mark to end of original line. Draw parallels through each mark.</td></tr>
+        <tr><td>10</td><td><strong>Triangle (SSS, SAS, ASA)</strong></td><td>SSS: draw base, arc from each end with the other two sides. SAS: draw base, construct angle, mark length. ASA: draw base, construct both angles.</td></tr>
+        <tr><td>11</td><td><strong>Circumscribed circle (circumcircle)</strong></td><td>Bisect any two sides of the triangle. Where the bisectors meet = circumcentre. Open compass from centre to any vertex &rarr; draw circle.</td></tr>
+        <tr><td>12</td><td><strong>Inscribed circle (incircle)</strong></td><td>Bisect any two angles of the triangle. Where the bisectors meet = incentre. Perpendicular from centre to any side = radius &rarr; draw circle.</td></tr>
       </table>
     </div>
 
@@ -1228,7 +1408,9 @@
       <span class="formula">Triangle: A = &frac12;bh</span><br>
       <span class="formula">Circle: A = &pi;r&sup2;</span><br>
       <span class="formula">Trapezium: A = &frac12;(a+b)h</span><br>
-      <span class="formula">Parallelogram: A = bh</span>
+      <span class="formula">Parallelogram: A = bh</span><br>
+      <span class="formula">Circumference: C = 2&pi;r</span><br>
+      <span class="formula">Perimeter rect: P = 2(l+w)</span>
     </div>
     <div class="formula-box no-break">
       <h4>Volume</h4>
@@ -1243,7 +1425,8 @@
       <span class="formula">Simple I = PRT &divide; 100</span><br>
       <span class="formula">Compound A = P(1+r/100)<sup>n</sup></span><br>
       <span class="formula">% Profit = (Profit&divide;CP)&times;100</span><br>
-      <span class="formula">VAT incl. = Price &times; 1.23</span>
+      <span class="formula">VAT incl. = Price &times; 1.23</span><br>
+      <span class="formula">Depreciation A = P(1&minus;r/100)<sup>n</sup></span>
     </div>
     <div class="formula-box no-break">
       <h4>Speed, Distance, Time</h4>
@@ -1343,6 +1526,26 @@
     <div class="fc-topic">Algebra</div>
     <div class="fc-q">Factorise: x&sup2; &minus; 9</div>
     <div class="fc-a">(x + 3)(x &minus; 3) &mdash; difference of two squares.</div>
+  </div>
+  <div class="flashcard fc-maths no-break">
+    <div class="fc-topic">Algebra</div>
+    <div class="fc-q">If a = 4 and b = &minus;3, find 2a &minus; b&sup2;</div>
+    <div class="fc-a">2(4) &minus; (&minus;3)&sup2; = 8 &minus; 9 = &minus;1. Remember: (&minus;3)&sup2; = 9, not &minus;9.</div>
+  </div>
+  <div class="flashcard fc-maths no-break">
+    <div class="fc-topic">Algebra</div>
+    <div class="fc-q">Solve: 2x + 1 &gt; 9</div>
+    <div class="fc-a">2x &gt; 8, so x &gt; 4. On a number line: open circle at 4, arrow right.</div>
+  </div>
+  <div class="flashcard fc-maths no-break">
+    <div class="fc-topic">Financial Maths</div>
+    <div class="fc-q">A car worth &euro;15,000 depreciates 20% per year. Value after 2 years?</div>
+    <div class="fc-a">15000 &times; (0.80)&sup2; = 15000 &times; 0.64 = &euro;9,600</div>
+  </div>
+  <div class="flashcard fc-maths no-break">
+    <div class="fc-topic">Area &amp; Volume</div>
+    <div class="fc-q">What does "give your answer in terms of &pi;" mean?</div>
+    <div class="fc-a">Leave &pi; as a symbol. E.g., write 25&pi; cm&sup2;, NOT 78.54 cm&sup2;.</div>
   </div>
   <div class="flashcard fc-maths no-break">
     <div class="fc-topic">Constructions</div>
@@ -1618,6 +1821,60 @@ const QUESTIONS = [
     options: ["The protractor angle", "All construction arcs", "A written explanation", "Coloured lines"],
     correct: 1,
     explanation: "You MUST show all construction arcs — no arcs = no marks. Don't rub them out."
+  },
+  { topic: "algebra", topicLabel: "Algebra", color: "#0d9488",
+    q: "If a = 5 and b = −2, find a² + 3b",
+    options: ["19", "31", "21", "29"],
+    correct: 0,
+    explanation: "a² + 3b = (5)² + 3(−2) = 25 + (−6) = 19."
+  },
+  { topic: "algebra", topicLabel: "Algebra", color: "#0d9488",
+    q: "Solve the inequality: 5x − 3 ≤ 17",
+    options: ["x ≤ 4", "x < 4", "x ≤ 2.8", "x ≥ 4"],
+    correct: 0,
+    explanation: "5x ≤ 20, so x ≤ 4. On a number line: filled circle at 4 (included because ≤), arrow left."
+  },
+  { topic: "algebra", topicLabel: "Algebra", color: "#0d9488",
+    q: "'I think of a number, treble it, subtract 4 and get 14.' What equation models this?",
+    options: ["3x + 4 = 14", "3x − 4 = 14", "3(x − 4) = 14", "x/3 − 4 = 14"],
+    correct: 1,
+    explanation: "Treble it = 3x, subtract 4 = 3x − 4, equals 14 → 3x − 4 = 14. Solving: x = 6."
+  },
+  { topic: "algebra", topicLabel: "Algebra", color: "#0d9488",
+    q: "Make r the subject of A = πr²",
+    options: ["r = A/π", "r = √(A/π)", "r = A²/π", "r = π/A"],
+    correct: 1,
+    explanation: "A = πr² → r² = A/π → r = √(A/π). Divide by π first, then square root."
+  },
+  { topic: "financial", topicLabel: "Financial Maths", color: "#0d9488",
+    q: "A laptop worth €1,200 depreciates by 25% per year. What is it worth after 2 years?",
+    options: ["€600", "€675", "€900", "€750"],
+    correct: 1,
+    explanation: "A = 1200 × (0.75)² = 1200 × 0.5625 = €675. Depreciation uses (1 − rate)."
+  },
+  { topic: "financial", topicLabel: "Financial Maths", color: "#0d9488",
+    q: "A price increases by 20% then decreases by 20%. Is the final price the same as the original?",
+    options: ["Yes, they cancel out", "No, it's 4% less than the original", "No, it's 4% more", "No, it's 2% less"],
+    correct: 1,
+    explanation: "E.g., €100 × 1.20 = €120, then €120 × 0.80 = €96. That's €4 less = 4% less. Successive changes don't cancel."
+  },
+  { topic: "area", topicLabel: "Area & Volume", color: "#0d9488",
+    q: "A circle has radius 6 cm. What is its circumference in terms of π?",
+    options: ["36π cm", "12π cm", "6π cm", "18π cm"],
+    correct: 1,
+    explanation: "C = 2πr = 2 × π × 6 = 12π cm. 'In terms of π' means leave π as a symbol."
+  },
+  { topic: "sets", topicLabel: "Sets", color: "#0d9488",
+    q: "What does {x : x ∈ ℕ, x < 5} mean?",
+    options: ["{1, 2, 3, 4}", "{0, 1, 2, 3, 4}", "{5, 6, 7, ...}", "{1, 2, 3, 4, 5}"],
+    correct: 0,
+    explanation: "Set-builder notation: 'the set of natural numbers less than 5'. ℕ = {1, 2, 3, ...} so the answer is {1, 2, 3, 4}."
+  },
+  { topic: "patterns", topicLabel: "Patterns", color: "#0d9488",
+    q: "The sequence is 30, 26, 22, 18... What is the nth term?",
+    options: ["−4n + 34", "4n + 34", "−4n + 30", "4n − 30"],
+    correct: 0,
+    explanation: "d = −4, a = 30. T(n) = −4n + (30 − (−4)) = −4n + 34. Check: T(1) = −4 + 34 = 30 ✓"
   }
 ];
 let currentTopic = 'all';
