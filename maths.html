@@ -505,6 +505,7 @@
   .quiz-topic-btn.active[data-topic="area"] { background: var(--teal); color: white !important; }
   .quiz-topic-btn.active[data-topic="algebra"] { background: var(--teal); color: white !important; }
   .quiz-topic-btn.active[data-topic="constructions"] { background: var(--teal); color: white !important; }
+  .quiz-topic-btn.active[data-topic="probability"] { background: var(--teal); color: white !important; }
 
   .quiz-progress {
     margin: 16px 0;
@@ -696,7 +697,7 @@
 
 <div class="cover">
   <h1>Maths</h1>
-  <div class="subtitle">Study Deck &mdash; 7 Topics</div>
+  <div class="subtitle">Study Deck &mdash; 8 Topics</div>
   <div class="topics-list">
     <span class="topic-badge badge-teal">Sets</span>
     <span class="topic-badge badge-teal">Patterns</span>
@@ -705,6 +706,7 @@
     <span class="topic-badge badge-teal">Area &amp; Volume</span>
     <span class="topic-badge badge-teal">Algebra</span>
     <span class="topic-badge badge-teal">Constructions</span>
+    <span class="topic-badge badge-teal">Probability</span>
   </div>
   <div class="exam-tip">
     <strong>Common Level in 2nd Year:</strong> All students cover the same material. Higher Level content is clearly marked (HL) &mdash; useful to know but focus on the core material first.
@@ -721,6 +723,7 @@
   <div class="toc-item"><span class="toc-section">5. Area &amp; Volume</span></div>
   <div class="toc-item"><span class="toc-section">6. Algebra</span></div>
   <div class="toc-item"><span class="toc-section">7. Constructions</span></div>
+  <div class="toc-item"><span class="toc-section">8. Probability</span></div>
   <div class="toc-item"><span class="toc-section">Formula Sheet</span></div>
   <div class="toc-item"><span class="toc-section">Flashcards</span></div>
   <div class="toc-item"><span class="toc-section">Exam-Style Questions</span></div>
@@ -1394,6 +1397,158 @@
 </div>
 
 <!-- =========================================================== -->
+<!-- MATHS: PROBABILITY                                            -->
+<!-- =========================================================== -->
+<div class="page-break"></div>
+<div class="teal-section">
+  <div class="section-header">
+    <h2>13. Probability</h2>
+    <div class="section-dates">Junior Cycle Maths &mdash; Strand: Statistics &amp; Probability</div>
+    <div class="section-summary">Probability measures how likely something is to happen. It's always a number between 0 (impossible) and 1 (certain).</div>
+  </div>
+  <div class="content">
+    <div class="subsection no-break">
+      <h3>The Basics</h3>
+      <div class="callout callout-teal">
+        <strong>Probability of an event = Number of favourable outcomes &divide; Total number of possible outcomes</strong><br>
+        P(A) = favourable &divide; total
+      </div>
+      <ul>
+        <li><strong>P = 0</strong> &mdash; Impossible (e.g., rolling a 7 on a standard die)</li>
+        <li><strong>P = 1</strong> &mdash; Certain (e.g., getting heads or tails on a coin flip)</li>
+        <li><strong>P = 0.5</strong> &mdash; Even chance (e.g., getting heads on a fair coin)</li>
+        <li>Probability is always between <strong>0 and 1</strong> (or 0% and 100%)</li>
+        <li>Can be written as a <strong>fraction, decimal, or percentage</strong></li>
+      </ul>
+      <h4>Worked Example</h4>
+      <p>A bag has 3 red, 5 blue, and 2 green marbles. What is the probability of picking a blue marble?</p>
+      <ul>
+        <li>Total marbles = 3 + 5 + 2 = 10</li>
+        <li>P(blue) = 5/10 = <strong>1/2 = 0.5 = 50%</strong></li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Sample Space (Listing Outcomes)</h3>
+      <p>The <span class="key-term">sample space</span> is the complete list of all possible outcomes.</p>
+      <h4>Example: Rolling a die</h4>
+      <p>Sample space = {1, 2, 3, 4, 5, 6} &mdash; 6 outcomes</p>
+      <h4>Example: Flipping two coins</h4>
+      <p>Sample space = {HH, HT, TH, TT} &mdash; 4 outcomes</p>
+      <p><strong>Tip:</strong> For two events, use a <strong>table or grid</strong> to list all combinations systematically. Don't try to do it in your head.</p>
+
+      <h4>Two-Way Table for Two Dice</h4>
+      <p>To find the probability of getting a total of 7 with two dice:</p>
+      <ul>
+        <li>Total possible outcomes = 6 &times; 6 = 36</li>
+        <li>Combinations that give 7: (1,6), (2,5), (3,4), (4,3), (5,2), (6,1) = 6 outcomes</li>
+        <li>P(total = 7) = 6/36 = <strong>1/6</strong></li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Complement: P(not A)</h3>
+      <div class="callout callout-teal">
+        <strong>P(not A) = 1 &minus; P(A)</strong><br>
+        The probability of something NOT happening = 1 minus the probability of it happening.
+      </div>
+      <h4>Example</h4>
+      <p>P(rain tomorrow) = 0.3. What is P(no rain)?</p>
+      <ul>
+        <li>P(no rain) = 1 &minus; 0.3 = <strong>0.7</strong></li>
+      </ul>
+      <p>This is very useful when it's easier to calculate what you DON'T want.</p>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Expected Frequency</h3>
+      <div class="callout callout-teal">
+        <strong>Expected frequency = Probability &times; Number of trials</strong>
+      </div>
+      <h4>Example</h4>
+      <p>A spinner has P(red) = 1/4. If you spin it 200 times, how many times would you expect red?</p>
+      <ul>
+        <li>Expected = 1/4 &times; 200 = <strong>50 times</strong></li>
+      </ul>
+      <p><strong>Key point:</strong> Expected frequency is a prediction, not a guarantee. In practice, you might get 47 or 53 &mdash; the more trials you do, the closer the actual result gets to the expected value.</p>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Experimental vs Theoretical Probability</h3>
+      <table class="ref-table">
+        <tr><th>Theoretical</th><th>Experimental</th></tr>
+        <tr><td>Calculated using the formula (favourable &divide; total)</td><td>Calculated from actual results of an experiment</td></tr>
+        <tr><td>Based on equally likely outcomes</td><td>Based on what actually happened</td></tr>
+        <tr><td>P(heads) = 1/2 for a fair coin</td><td>Flipped 100 times, got 47 heads &rarr; P = 47/100 = 0.47</td></tr>
+        <tr><td>Doesn't change</td><td>Gets closer to theoretical as you do more trials</td></tr>
+      </table>
+      <p><span class="key-term">Relative frequency</span> = experimental probability = number of times event occurred &divide; total number of trials</p>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>The OR Rule (Addition)</h3>
+      <p>For <span class="key-term">mutually exclusive</span> events (can't happen at the same time):</p>
+      <div class="callout callout-teal">
+        <strong>P(A or B) = P(A) + P(B)</strong><br>
+        Only works when A and B cannot both happen.
+      </div>
+      <h4>Example</h4>
+      <p>Rolling a die: P(getting a 2 OR a 5) = 1/6 + 1/6 = <strong>2/6 = 1/3</strong></p>
+      <p>These are mutually exclusive &mdash; you can't roll a 2 and a 5 at the same time.</p>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>The AND Rule (Multiplication) &mdash; HL</h3>
+      <p>For <span class="key-term">independent</span> events (one doesn't affect the other):</p>
+      <div class="callout callout-teal">
+        <strong>P(A and B) = P(A) &times; P(B)</strong><br>
+        Only works when the events don't affect each other.
+      </div>
+      <h4>Example</h4>
+      <p>Flipping a coin AND rolling a die: P(heads AND 6) = 1/2 &times; 1/6 = <strong>1/12</strong></p>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Tree Diagrams (HL)</h3>
+      <p>Tree diagrams show all possible outcomes for two or more events. Each branch shows a probability, and you multiply along branches.</p>
+      <h4>Example: A bag has 3 red and 2 blue marbles. You pick one, replace it, then pick again.</h4>
+      <p><strong>First pick branches:</strong> P(R) = 3/5, P(B) = 2/5</p>
+      <p><strong>Second pick branches</strong> (with replacement, same probabilities):</p>
+      <ul>
+        <li>P(R then R) = 3/5 &times; 3/5 = 9/25</li>
+        <li>P(R then B) = 3/5 &times; 2/5 = 6/25</li>
+        <li>P(B then R) = 2/5 &times; 3/5 = 6/25</li>
+        <li>P(B then B) = 2/5 &times; 2/5 = 4/25</li>
+      </ul>
+      <p>Check: 9/25 + 6/25 + 6/25 + 4/25 = 25/25 = 1 &#10004;</p>
+
+      <h4>Without Replacement (HL)</h4>
+      <p>If you DON'T put the first marble back, the probabilities change for the second pick:</p>
+      <ul>
+        <li>First pick: P(R) = 3/5, P(B) = 2/5</li>
+        <li>If first was Red: P(R) = 2/4, P(B) = 2/4</li>
+        <li>If first was Blue: P(R) = 3/4, P(B) = 1/4</li>
+      </ul>
+    </div>
+
+    <div class="mnemonic no-break">
+      <strong>AND = Multiply, OR = Add.</strong> Think: "AND" makes things smaller (less likely both happen), "OR" makes things bigger (more ways to win).
+    </div>
+
+    <div class="callout callout-teal no-break">
+      <strong>Common Exam Mistakes</strong>
+      <ul style="margin-top:6px; padding-left: 16px;">
+        <li>Forgetting that probabilities must add up to <strong>1</strong> (use this to check!)</li>
+        <li>Confusing "with replacement" (same probabilities) and "without replacement" (probabilities change)</li>
+        <li>Writing probability as a number greater than 1 &mdash; impossible!</li>
+        <li>Not simplifying fractions in your final answer</li>
+        <li>Forgetting to list ALL outcomes in the sample space</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================== -->
 <!-- MATHS FORMULA SHEET                                           -->
 <!-- =========================================================== -->
 <div class="page-break"></div>
@@ -1456,6 +1611,14 @@
       <span class="formula">Cuboid: 2(lw+lh+wh)</span><br>
       <span class="formula">Cylinder: 2&pi;rh + 2&pi;r&sup2;</span><br>
       <span class="formula">Sphere: 4&pi;r&sup2;</span>
+    </div>
+    <div class="formula-box no-break">
+      <h4>Probability</h4>
+      <span class="formula">P(A) = favourable &divide; total</span><br>
+      <span class="formula">P(not A) = 1 &minus; P(A)</span><br>
+      <span class="formula">Expected = P &times; trials</span><br>
+      <span class="formula">P(A or B) = P(A) + P(B)</span><br>
+      <span class="formula">P(A and B) = P(A) &times; P(B)</span>
     </div>
   </div>
 </div>
@@ -1557,6 +1720,26 @@
     <div class="fc-q">How do you construct a 30&deg; angle?</div>
     <div class="fc-a">First construct 60&deg;, then bisect it. 60&deg; &divide; 2 = 30&deg;.</div>
   </div>
+  <div class="flashcard fc-maths no-break">
+    <div class="fc-topic">Probability</div>
+    <div class="fc-q">Formula for probability of an event?</div>
+    <div class="fc-a">P(A) = Number of favourable outcomes &divide; Total number of possible outcomes. Always between 0 and 1.</div>
+  </div>
+  <div class="flashcard fc-maths no-break">
+    <div class="fc-topic">Probability</div>
+    <div class="fc-q">P(rain) = 0.35. What is P(no rain)?</div>
+    <div class="fc-a">P(not A) = 1 &minus; P(A) = 1 &minus; 0.35 = 0.65</div>
+  </div>
+  <div class="flashcard fc-maths no-break">
+    <div class="fc-topic">Probability</div>
+    <div class="fc-q">AND = ? OR = ?</div>
+    <div class="fc-a">AND = Multiply (both must happen, less likely). OR = Add (either can happen, more likely).</div>
+  </div>
+  <div class="flashcard fc-maths no-break">
+    <div class="fc-topic">Probability</div>
+    <div class="fc-q">Expected frequency formula?</div>
+    <div class="fc-a">Expected frequency = Probability &times; Number of trials. E.g., P = 1/4, 200 trials &rarr; expect 50.</div>
+  </div>
 </div>
 
 <!-- =========================================================== -->
@@ -1647,6 +1830,18 @@
       </ul>
     </div>
   </div>
+
+  <div class="exam-q no-break">
+    <div class="eq-topic" style="color: var(--teal);">PROBABILITY</div>
+    <div class="eq-question">A bag contains 4 red, 6 blue, and 5 green beads. (a) What is the probability of picking a green bead? (b) A bead is picked and NOT replaced. A second bead is then picked. What is the probability that both beads are red?</div>
+    <div class="eq-hints"><strong>Method:</strong>
+      <ul>
+        <li>(a) Total = 15. P(green) = 5/15 = 1/3</li>
+        <li>(b) P(1st red) = 4/15. Without replacement: P(2nd red) = 3/14</li>
+        <li>P(both red) = 4/15 &times; 3/14 = 12/210 = 2/35</li>
+      </ul>
+    </div>
+  </div>
 </div>
 
 <!-- =========================================================== -->
@@ -1665,6 +1860,7 @@
       <button class="quiz-topic-btn" data-topic="area" style="border-color: var(--teal); color: var(--teal);">Area &amp; Volume</button>
       <button class="quiz-topic-btn" data-topic="algebra" style="border-color: var(--teal); color: var(--teal);">Algebra</button>
       <button class="quiz-topic-btn" data-topic="constructions" style="border-color: var(--teal); color: var(--teal);">Constructions</button>
+      <button class="quiz-topic-btn" data-topic="probability" style="border-color: var(--teal); color: var(--teal);">Probability</button>
     </div>
   </div>
   <div class="quiz-progress">
@@ -1875,6 +2071,54 @@ const QUESTIONS = [
     options: ["−4n + 34", "4n + 34", "−4n + 30", "4n − 30"],
     correct: 0,
     explanation: "d = −4, a = 30. T(n) = −4n + (30 − (−4)) = −4n + 34. Check: T(1) = −4 + 34 = 30 ✓"
+  },
+  { topic: "probability", topicLabel: "Probability", color: "#0d9488",
+    q: "A bag has 3 red and 7 blue marbles. What is P(red)?",
+    options: ["3/7", "3/10", "7/10", "1/3"],
+    correct: 1,
+    explanation: "P(red) = favourable ÷ total = 3 ÷ 10 = 3/10. Total marbles = 3 + 7 = 10."
+  },
+  { topic: "probability", topicLabel: "Probability", color: "#0d9488",
+    q: "P(A) = 0.6. What is P(not A)?",
+    options: ["0.6", "0.4", "0.06", "1.6"],
+    correct: 1,
+    explanation: "P(not A) = 1 − P(A) = 1 − 0.6 = 0.4. Probabilities of an event and its complement always add to 1."
+  },
+  { topic: "probability", topicLabel: "Probability", color: "#0d9488",
+    q: "What is the sample space for flipping two coins?",
+    options: ["{H, T}", "{HH, HT, TT}", "{HH, HT, TH, TT}", "{H, T, HH, TT}"],
+    correct: 2,
+    explanation: "Two coins give 4 outcomes: {HH, HT, TH, TT}. HT and TH are different outcomes (first coin vs second coin)."
+  },
+  { topic: "probability", topicLabel: "Probability", color: "#0d9488",
+    q: "A spinner has P(blue) = 1/5. If spun 300 times, how many blues expected?",
+    options: ["15", "30", "60", "150"],
+    correct: 2,
+    explanation: "Expected frequency = P × trials = 1/5 × 300 = 60."
+  },
+  { topic: "probability", topicLabel: "Probability", color: "#0d9488",
+    q: "You flip a coin and roll a die. What is P(heads AND 3)?",
+    options: ["1/2", "1/3", "1/6", "1/12"],
+    correct: 3,
+    explanation: "Independent events: P(H and 3) = P(H) × P(3) = 1/2 × 1/6 = 1/12. AND means multiply."
+  },
+  { topic: "probability", topicLabel: "Probability", color: "#0d9488",
+    q: "On a die, what is P(even OR 5)?",
+    options: ["1/2", "3/6", "4/6", "5/6"],
+    correct: 2,
+    explanation: "Even numbers: {2, 4, 6} = 3 outcomes. Plus 5 = 4 outcomes total. P = 4/6 = 2/3. (Mutually exclusive, so add.)"
+  },
+  { topic: "probability", topicLabel: "Probability", color: "#0d9488",
+    q: "What's the difference between experimental and theoretical probability?",
+    options: ["There is no difference", "Theoretical uses results; experimental uses formulas", "Theoretical uses equally likely outcomes; experimental uses actual trial results", "Experimental is always more accurate"],
+    correct: 2,
+    explanation: "Theoretical = calculated from equally likely outcomes (e.g., P(heads) = 1/2). Experimental = from actual results (e.g., 47 heads out of 100 flips = 0.47)."
+  },
+  { topic: "probability", topicLabel: "Probability", color: "#0d9488",
+    q: "A marble is picked from a bag (4 red, 6 blue) and NOT replaced. What is P(2nd is red) given 1st was red?",
+    options: ["4/10", "3/10", "3/9", "4/9"],
+    correct: 2,
+    explanation: "Without replacement: after removing 1 red, there are 3 red left out of 9 total. P = 3/9 = 1/3."
   }
 ];
 let currentTopic = 'all';
