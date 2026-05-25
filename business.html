@@ -1,0 +1,2363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Junior Cert Business Studies</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@400;700&display=swap');
+
+  :root {
+    --blue: #2563eb;
+    --blue-light: #dbeafe;
+    --green: #059669;
+    --green-light: #d1fae5;
+    --purple: #7c3aed;
+    --purple-light: #ede9fe;
+    --orange: #ea580c;
+    --orange-light: #ffedd5;
+    --red: #dc2626;
+    --red-light: #fee2e2;
+    --teal: #0d9488;
+    --teal-light: #ccfbf1;
+    --indigo: #4f46e5;
+    --indigo-light: #e0e7ff;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
+    --gray-900: #111827;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--gray-800);
+    line-height: 1.6;
+    background: white;
+    font-size: 11pt;
+  }
+
+  @media print {
+    body { font-size: 10pt; }
+    .page-break { page-break-before: always; }
+    .no-break { page-break-inside: avoid; }
+    @page { margin: 1.5cm; }
+    .print-hide { display: none !important; }
+    .flashcard-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  }
+
+  /* Cover Page */
+  .cover {
+    text-align: center;
+    padding: 80px 40px;
+    border-bottom: 4px solid var(--gray-200);
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .cover h1 {
+    font-family: 'Merriweather', serif;
+    font-size: 42pt;
+    color: var(--gray-900);
+    margin-bottom: 8px;
+    letter-spacing: -1px;
+  }
+  .cover .subtitle {
+    font-size: 18pt;
+    color: var(--gray-600);
+    margin-bottom: 40px;
+  }
+  .cover .topics-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+  .cover .topic-badge {
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 11pt;
+  }
+  .badge-blue { background: var(--blue-light); color: var(--blue); }
+  .badge-green { background: var(--green-light); color: var(--green); }
+  .badge-purple { background: var(--purple-light); color: var(--purple); }
+  .badge-orange { background: var(--orange-light); color: var(--orange); }
+  .badge-red { background: var(--red-light); color: var(--red); }
+  .badge-indigo { background: var(--indigo-light); color: var(--indigo); }
+  .cover .exam-tip {
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+    padding: 16px 24px;
+    max-width: 500px;
+    margin: 0 auto;
+    font-size: 10pt;
+    color: var(--gray-600);
+  }
+
+  /* Table of Contents */
+  .toc {
+    padding: 40px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .toc h2 {
+    font-family: 'Merriweather', serif;
+    font-size: 20pt;
+    margin-bottom: 20px;
+    color: var(--gray-900);
+  }
+  .toc-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px dotted var(--gray-200);
+    font-size: 11pt;
+  }
+  .toc-item .toc-section { font-weight: 600; }
+
+  /* Section Headers */
+  .section-header {
+    padding: 30px 40px 20px;
+    border-bottom: 3px solid;
+    margin-bottom: 24px;
+  }
+  .section-header h2 {
+    font-family: 'Merriweather', serif;
+    font-size: 22pt;
+    margin-bottom: 4px;
+  }
+  .section-header .section-dates {
+    font-size: 12pt;
+    font-weight: 500;
+  }
+  .section-header .section-summary {
+    font-size: 10pt;
+    color: var(--gray-600);
+    margin-top: 8px;
+    max-width: 700px;
+  }
+
+  .indigo-section .section-header { border-color: var(--indigo); }
+  .indigo-section .section-header h2 { color: var(--indigo); }
+  .indigo-section .section-header .section-dates { color: var(--indigo); }
+
+  /* Content */
+  .content { padding: 0 40px 30px; }
+
+  .subsection {
+    margin-bottom: 24px;
+  }
+  .subsection h3 {
+    font-size: 13pt;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--gray-900);
+    border-bottom: 1px solid var(--gray-200);
+    padding-bottom: 4px;
+  }
+  .subsection h4 {
+    font-size: 11pt;
+    font-weight: 600;
+    margin: 12px 0 6px;
+    color: var(--gray-700);
+  }
+  .subsection p, .subsection li {
+    font-size: 10.5pt;
+    color: var(--gray-700);
+    line-height: 1.65;
+  }
+  .subsection ul, .subsection ol {
+    padding-left: 20px;
+    margin-bottom: 8px;
+  }
+  .subsection li { margin-bottom: 3px; }
+
+  .key-term {
+    font-weight: 700;
+    color: var(--gray-900);
+  }
+
+  /* Callout boxes */
+  .callout {
+    border-left: 4px solid;
+    padding: 10px 16px;
+    margin: 12px 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 10pt;
+  }
+  .callout-blue { border-color: var(--blue); background: var(--blue-light); }
+  .callout-green { border-color: var(--green); background: var(--green-light); }
+  .callout-purple { border-color: var(--purple); background: var(--purple-light); }
+  .callout-orange { border-color: var(--orange); background: var(--orange-light); }
+  .callout-red { border-color: var(--red); background: var(--red-light); }
+  .callout-indigo { border-color: var(--indigo); background: var(--indigo-light); }
+  .callout strong { display: block; margin-bottom: 2px; }
+
+  /* Quick Reference Table */
+  .ref-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10pt;
+    margin: 12px 0;
+  }
+  .ref-table th {
+    background: var(--gray-100);
+    text-align: left;
+    padding: 8px 12px;
+    font-weight: 700;
+    border-bottom: 2px solid var(--gray-200);
+  }
+  .ref-table td {
+    padding: 6px 12px;
+    border-bottom: 1px solid var(--gray-100);
+    vertical-align: top;
+  }
+  .ref-table tr:last-child td { border-bottom: none; }
+
+  /* Mnemonics */
+  .mnemonic {
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-size: 10pt;
+  }
+  .mnemonic strong { color: #92400e; }
+
+  /* Formula / Reference boxes */
+  .formula-box {
+    background: var(--gray-50);
+    border: 2px solid var(--gray-200);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 12px 0;
+  }
+  .formula-box h4 {
+    font-size: 10.5pt;
+    font-weight: 700;
+    color: var(--indigo);
+    margin-bottom: 8px;
+  }
+  .formula-box .formula {
+    font-family: 'Courier New', monospace;
+    font-size: 11pt;
+    font-weight: 700;
+    color: var(--gray-900);
+    background: white;
+    padding: 4px 10px;
+    border-radius: 4px;
+    display: inline-block;
+    margin: 2px 0;
+    border: 1px solid var(--gray-200);
+  }
+  .formula-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin: 12px 0;
+  }
+
+  .nav-bar { background: #1e293b; padding: 10px 20px; display: flex; align-items: center; gap: 16px; position: sticky; top: 0; z-index: 100; }
+  .nav-bar a { color: #94a3b8; text-decoration: none; font-size: 10pt; font-weight: 600; transition: color 0.2s; }
+  .nav-bar a:hover { color: white; }
+  .nav-bar .nav-active { color: white; }
+  .nav-bar .nav-home { font-size: 14pt; }
+  @media print { .nav-bar { display: none !important; } }
+
+  /* Flashcards */
+  .flashcard-section-title {
+    font-family: 'Merriweather', serif;
+    font-size: 20pt;
+    text-align: center;
+    margin: 30px 0 10px;
+    color: var(--gray-900);
+  }
+  .flashcard-instructions {
+    text-align: center;
+    font-size: 10pt;
+    color: var(--gray-600);
+    margin-bottom: 20px;
+  }
+  .flashcard-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    padding: 0 30px 30px;
+  }
+  .flashcard {
+    border: 2px solid var(--gray-200);
+    border-radius: 10px;
+    padding: 14px 16px;
+    min-height: 110px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .flashcard .fc-topic {
+    font-size: 8pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .flashcard .fc-q {
+    font-weight: 700;
+    font-size: 10.5pt;
+    color: var(--gray-900);
+    margin-bottom: 8px;
+  }
+  .flashcard .fc-a {
+    font-size: 9.5pt;
+    color: var(--gray-700);
+    border-top: 1px dashed var(--gray-200);
+    padding-top: 8px;
+  }
+  .fc-business .fc-topic { color: var(--indigo); }
+  .fc-business { border-color: var(--indigo-light); }
+
+  /* Exam Tips */
+  .exam-section {
+    padding: 20px 40px 30px;
+  }
+  .exam-section h2 {
+    font-family: 'Merriweather', serif;
+    font-size: 18pt;
+    color: var(--gray-900);
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  .exam-q {
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 12px;
+  }
+  .exam-q .eq-topic {
+    font-size: 8pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+  .exam-q .eq-question {
+    font-weight: 700;
+    font-size: 10.5pt;
+    margin-bottom: 6px;
+    color: var(--gray-900);
+  }
+  .exam-q .eq-hints {
+    font-size: 9.5pt;
+    color: var(--gray-600);
+  }
+  .exam-q .eq-hints ul {
+    padding-left: 16px;
+    margin-top: 4px;
+  }
+</style>
+<style>
+  .quiz-wrapper {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 20px 30px 40px;
+  }
+  .quiz-topic-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  .quiz-topic-btn {
+    padding: 8px 18px;
+    border: 2px solid;
+    border-radius: 20px;
+    background: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 10pt;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .quiz-topic-btn:hover, .quiz-topic-btn.active {
+    color: white !important;
+    background: currentColor;
+  }
+  .quiz-topic-btn.active[data-topic="all"] { background: var(--gray-600); color: white !important; }
+  .quiz-topic-btn.active[data-topic="household-finance"] { background: var(--indigo); color: white !important; }
+  .quiz-topic-btn.active[data-topic="taxation"] { background: var(--indigo); color: white !important; }
+  .quiz-topic-btn.active[data-topic="bookkeeping"] { background: var(--indigo); color: white !important; }
+  .quiz-topic-btn.active[data-topic="documents"] { background: var(--indigo); color: white !important; }
+  .quiz-topic-btn.active[data-topic="employment"] { background: var(--indigo); color: white !important; }
+  .quiz-topic-btn.active[data-topic="insurance"] { background: var(--indigo); color: white !important; }
+  .quiz-topic-btn.active[data-topic="enterprise"] { background: var(--indigo); color: white !important; }
+  .quiz-topic-btn.active[data-topic="marketing"] { background: var(--indigo); color: white !important; }
+  .quiz-topic-btn.active[data-topic="consumer"] { background: var(--indigo); color: white !important; }
+  .quiz-topic-btn.active[data-topic="trade"] { background: var(--indigo); color: white !important; }
+  .quiz-topic-btn.active[data-topic="economics"] { background: var(--indigo); color: white !important; }
+  .quiz-topic-btn.active[data-topic="financial-institutions"] { background: var(--indigo); color: white !important; }
+  .quiz-topic-btn.active[data-topic="sustainability"] { background: var(--indigo); color: white !important; }
+
+  .quiz-progress {
+    margin: 16px 0;
+  }
+  .quiz-progress-bar {
+    height: 8px;
+    background: var(--gray-100);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+  .quiz-progress-fill {
+    height: 100%;
+    background: var(--indigo);
+    border-radius: 4px;
+    transition: width 0.4s ease;
+    width: 0%;
+  }
+  .quiz-score {
+    font-size: 10pt;
+    color: var(--gray-600);
+    text-align: center;
+    font-weight: 500;
+  }
+
+  .quiz-container {}
+
+  .quiz-card {
+    border: 2px solid var(--gray-200);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 16px;
+    animation: fadeIn 0.3s ease;
+  }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+  .quiz-card .qc-topic {
+    font-size: 8pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+  }
+  .quiz-card .qc-question {
+    font-size: 13pt;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+  .quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .quiz-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 16px;
+    border: 2px solid var(--gray-200);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 10.5pt;
+    color: var(--gray-700);
+    background: white;
+    text-align: left;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.5;
+  }
+  .quiz-option:hover:not(.disabled) {
+    border-color: var(--indigo);
+    background: var(--indigo-light);
+  }
+  .quiz-option .opt-letter {
+    font-weight: 700;
+    color: var(--gray-600);
+    min-width: 20px;
+  }
+  .quiz-option.correct {
+    border-color: #059669;
+    background: #d1fae5;
+    color: var(--gray-900);
+  }
+  .quiz-option.correct .opt-letter { color: #059669; }
+  .quiz-option.wrong {
+    border-color: #dc2626;
+    background: #fee2e2;
+    color: var(--gray-900);
+  }
+  .quiz-option.wrong .opt-letter { color: #dc2626; }
+  .quiz-option.disabled { cursor: default; opacity: 0.7; }
+  .quiz-option.disabled:hover { border-color: var(--gray-200); background: white; }
+
+  .quiz-feedback {
+    margin-top: 14px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 10pt;
+    line-height: 1.6;
+    animation: fadeIn 0.3s ease;
+  }
+  .quiz-feedback.correct-feedback {
+    background: #d1fae5;
+    border-left: 4px solid #059669;
+    color: #065f46;
+  }
+  .quiz-feedback.wrong-feedback {
+    background: #fee2e2;
+    border-left: 4px solid #dc2626;
+    color: #991b1b;
+  }
+  .quiz-feedback strong { display: block; margin-bottom: 2px; }
+
+  .quiz-next-btn {
+    display: block;
+    margin: 16px auto 0;
+    padding: 10px 28px;
+    border: none;
+    border-radius: 8px;
+    background: var(--gray-900);
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 10.5pt;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .quiz-next-btn:hover { background: var(--gray-700); }
+
+  .quiz-results {
+    text-align: center;
+    padding: 40px 20px;
+    animation: fadeIn 0.4s ease;
+  }
+  .results-icon { font-size: 48pt; margin-bottom: 12px; }
+  .results-score {
+    font-family: 'Merriweather', serif;
+    font-size: 28pt;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 8px;
+  }
+  .results-message {
+    font-size: 12pt;
+    color: var(--gray-600);
+    margin-bottom: 24px;
+  }
+  .results-breakdown {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 24px;
+  }
+  .results-breakdown .rb-item {
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 9pt;
+    font-weight: 600;
+  }
+  .rb-correct { background: #d1fae5; color: #059669; }
+  .rb-wrong { background: #fee2e2; color: #dc2626; }
+
+  .quiz-btn {
+    padding: 10px 24px;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 10.5pt;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 0 6px;
+    transition: all 0.2s;
+  }
+  .quiz-btn-primary { background: var(--gray-900); color: white; }
+  .quiz-btn-primary:hover { background: var(--gray-700); }
+  .quiz-btn-secondary { background: var(--gray-100); color: var(--gray-700); border: 1px solid var(--gray-200); }
+  .quiz-btn-secondary:hover { background: var(--gray-200); }
+</style>
+</head>
+<body>
+<div class="nav-bar">
+  <a href="index.html" class="nav-home">&#8592;</a>
+  <a href="history.html">History</a>
+  <a href="maths.html">Maths</a>
+  <a href="business.html" class="nav-active">Business</a>
+</div>
+
+<div class="cover">
+  <h1>Business Studies</h1>
+  <div class="subtitle">Study Deck &mdash; 13 Topics</div>
+  <div class="topics-list">
+    <span class="topic-badge badge-indigo">Household Finance</span>
+    <span class="topic-badge badge-indigo">Taxation</span>
+    <span class="topic-badge badge-indigo">Bookkeeping</span>
+    <span class="topic-badge badge-indigo">Business Documents</span>
+    <span class="topic-badge badge-indigo">Employment</span>
+    <span class="topic-badge badge-indigo">Insurance</span>
+    <span class="topic-badge badge-indigo">Enterprise</span>
+    <span class="topic-badge badge-indigo">Marketing</span>
+    <span class="topic-badge badge-indigo">Consumer Rights</span>
+    <span class="topic-badge badge-indigo">International Trade</span>
+    <span class="topic-badge badge-indigo">Economics</span>
+    <span class="topic-badge badge-indigo">Financial Institutions</span>
+    <span class="topic-badge badge-indigo">Sustainability</span>
+  </div>
+  <div class="exam-tip">
+    <strong>Junior Cycle Business Studies:</strong> Section A is short questions (40 marks). Section B is longer questions with calculations &mdash; budgets, accounts, invoices. Show all your workings.
+  </div>
+</div>
+
+<div class="page-break"></div>
+<div class="toc">
+  <h2>Contents</h2>
+  <div class="toc-item"><span class="toc-section">1. Household Finance</span></div>
+  <div class="toc-item"><span class="toc-section">2. Taxation</span></div>
+  <div class="toc-item"><span class="toc-section">3. Bookkeeping &amp; Accounts</span></div>
+  <div class="toc-item"><span class="toc-section">4. Business Documents</span></div>
+  <div class="toc-item"><span class="toc-section">5. Employment</span></div>
+  <div class="toc-item"><span class="toc-section">6. Insurance</span></div>
+  <div class="toc-item"><span class="toc-section">7. Enterprise &amp; Business</span></div>
+  <div class="toc-item"><span class="toc-section">8. Marketing</span></div>
+  <div class="toc-item"><span class="toc-section">9. Consumer Rights</span></div>
+  <div class="toc-item"><span class="toc-section">10. International Trade</span></div>
+  <div class="toc-item"><span class="toc-section">11. Economics</span></div>
+  <div class="toc-item"><span class="toc-section">12. Financial Institutions</span></div>
+  <div class="toc-item"><span class="toc-section">13. Sustainability &amp; Ethics</span></div>
+  <div class="toc-item"><span class="toc-section">Key Terms Reference</span></div>
+  <div class="toc-item"><span class="toc-section">Flashcards</span></div>
+  <div class="toc-item"><span class="toc-section">Exam-Style Questions</span></div>
+  <div class="toc-item"><span class="toc-section">Interactive Quizzes</span></div>
+</div>
+
+<!-- =========================================================== -->
+<!-- 1. HOUSEHOLD FINANCE                                         -->
+<!-- =========================================================== -->
+<div class="page-break"></div>
+<div class="indigo-section">
+  <div class="section-header">
+    <h2>1. Household Finance</h2>
+    <div class="section-dates">Junior Cycle Business Studies</div>
+    <div class="section-summary">How households manage money &mdash; income, expenditure, and budgets. Budget questions appear almost every year.</div>
+  </div>
+  <div class="content">
+    <div class="subsection no-break">
+      <h3>Types of Income</h3>
+      <table class="ref-table">
+        <tr><th>Type</th><th>Meaning</th><th>Examples</th></tr>
+        <tr><td><strong>Regular income</strong></td><td>Money received on a predictable, recurring basis</td><td>Wages, salary, Child Benefit, pension, rental income</td></tr>
+        <tr><td><strong>Irregular income</strong></td><td>Money that doesn't arrive on a set schedule</td><td>Bonus, overtime, inheritance, lottery win, birthday money, commission</td></tr>
+      </table>
+      <div class="callout callout-indigo">
+        <strong>Wages vs Salary</strong>
+        <strong>Wages</strong> = paid per hour/day/week, amount can vary. <strong>Salary</strong> = fixed annual amount, paid monthly. A factory worker earns wages; a teacher earns a salary.
+      </div>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Types of Expenditure</h3>
+      <table class="ref-table">
+        <tr><th>Type</th><th>Meaning</th><th>Examples</th></tr>
+        <tr><td><strong>Fixed expenditure</strong></td><td>Same amount every month, must be paid</td><td>Mortgage/rent, insurance, loan repayment, broadband</td></tr>
+        <tr><td><strong>Discretionary (irregular) expenditure</strong></td><td>Can be changed or cut &mdash; spending by choice</td><td>Holidays, entertainment, eating out, new clothes, hobbies</td></tr>
+        <tr><td><strong>Irregular expenditure</strong></td><td>Unexpected or one-off costs</td><td>Car repairs, medical bills, broken appliance, vet bills</td></tr>
+      </table>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Household Budget</h3>
+      <p>A <span class="key-term">budget</span> is a financial plan that lists expected income and expenditure over a period (usually a month).</p>
+      <h4>Key Budget Formulas</h4>
+      <div class="callout callout-indigo">
+        <strong>Net Cash = Total Income &minus; Total Expenditure</strong><br>
+        <strong>Closing Cash = Opening Cash + Net Cash</strong><br>
+        A positive net cash means the household has money left over (surplus). A negative net cash means overspending (deficit).
+      </div>
+      <h4>Why Prepare a Budget?</h4>
+      <ul>
+        <li>Helps plan spending and avoid debt</li>
+        <li>Shows if income covers all expenses</li>
+        <li>Identifies areas where spending can be cut</li>
+        <li>Helps save for future goals</li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Worked Example: The Murphy Family Budget (April)</h3>
+      <table class="ref-table">
+        <tr><th colspan="2" style="text-align:center; background: var(--indigo-light);">INCOME</th></tr>
+        <tr><td>Mother's salary</td><td style="text-align:right;">&euro;2,800</td></tr>
+        <tr><td>Father's wages</td><td style="text-align:right;">&euro;2,200</td></tr>
+        <tr><td>Child Benefit</td><td style="text-align:right;">&euro;280</td></tr>
+        <tr><td><strong>Total Income</strong></td><td style="text-align:right;"><strong>&euro;5,280</strong></td></tr>
+        <tr><th colspan="2" style="text-align:center; background: var(--indigo-light);">EXPENDITURE</th></tr>
+        <tr><td>Mortgage</td><td style="text-align:right;">&euro;1,400</td></tr>
+        <tr><td>Groceries</td><td style="text-align:right;">&euro;800</td></tr>
+        <tr><td>Car loan repayment</td><td style="text-align:right;">&euro;350</td></tr>
+        <tr><td>Insurance</td><td style="text-align:right;">&euro;200</td></tr>
+        <tr><td>Electricity &amp; gas</td><td style="text-align:right;">&euro;220</td></tr>
+        <tr><td>Entertainment</td><td style="text-align:right;">&euro;300</td></tr>
+        <tr><td>Broadband &amp; phones</td><td style="text-align:right;">&euro;120</td></tr>
+        <tr><td>Clothing</td><td style="text-align:right;">&euro;150</td></tr>
+        <tr><td><strong>Total Expenditure</strong></td><td style="text-align:right;"><strong>&euro;3,540</strong></td></tr>
+        <tr><th colspan="2" style="text-align:center; background: var(--green-light);">RESULT</th></tr>
+        <tr><td><strong>Net Cash</strong> (5,280 &minus; 3,540)</td><td style="text-align:right;"><strong>&euro;1,740 surplus</strong></td></tr>
+        <tr><td>Opening Cash (from March)</td><td style="text-align:right;">&euro;500</td></tr>
+        <tr><td><strong>Closing Cash</strong> (500 + 1,740)</td><td style="text-align:right;"><strong>&euro;2,240</strong></td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================== -->
+<!-- 2. TAXATION                                                   -->
+<!-- =========================================================== -->
+<div class="page-break"></div>
+<div class="indigo-section">
+  <div class="section-header">
+    <h2>2. Taxation</h2>
+    <div class="section-dates">Junior Cycle Business Studies</div>
+    <div class="section-summary">How the government raises money through taxes and what it spends it on.</div>
+  </div>
+  <div class="content">
+    <div class="subsection no-break">
+      <h3>Direct Tax vs Indirect Tax</h3>
+      <table class="ref-table">
+        <tr><th>Direct Tax</th><th>Indirect Tax</th></tr>
+        <tr><td>Paid directly to the government by the person</td><td>Added to the price of goods/services &mdash; paid by the consumer but collected by the seller</td></tr>
+        <tr><td>Based on income or wealth</td><td>Based on spending</td></tr>
+        <tr><td>Income Tax (PAYE), USC, PRSI, Motor Tax, LPT (Local Property Tax)</td><td>VAT, Excise Duty, Customs Duty, Carbon Tax, Sugar Tax</td></tr>
+      </table>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Key Tax Terms</h3>
+      <ul>
+        <li><span class="key-term">PAYE</span> (Pay As You Earn) &mdash; income tax deducted from your pay by your employer before you receive it</li>
+        <li><span class="key-term">Tax credits</span> &mdash; amounts that reduce the total tax you owe (e.g., Single Person's Tax Credit, Employee Tax Credit)</li>
+        <li><span class="key-term">USC</span> (Universal Social Charge) &mdash; a percentage tax on gross income</li>
+        <li><span class="key-term">PRSI</span> (Pay Related Social Insurance) &mdash; funds social welfare benefits (jobseeker's, pension, maternity)</li>
+        <li><span class="key-term">VAT</span> (Value Added Tax) &mdash; added to the price of most goods and services (standard rate 23%)</li>
+        <li><span class="key-term">Excise duty</span> &mdash; extra tax on alcohol, tobacco, and fuel</li>
+        <li><span class="key-term">LPT</span> (Local Property Tax) &mdash; annual tax based on the value of your home</li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>How PAYE is Calculated</h3>
+      <div class="callout callout-indigo">
+        <strong>Step 1:</strong> Calculate gross tax (income &times; tax rate)<br>
+        <strong>Step 2:</strong> Subtract tax credits = Tax payable<br>
+        <strong>Step 3:</strong> Also deduct USC and PRSI for total deductions<br>
+        <strong>Net pay = Gross pay &minus; Total deductions</strong>
+      </div>
+      <h4>Worked Example</h4>
+      <p>Sarah earns &euro;35,000 per year. Tax rate is 20%. Her annual tax credits are &euro;3,550. What is her annual income tax?</p>
+      <ul>
+        <li>Gross tax: &euro;35,000 &times; 20% = &euro;7,000</li>
+        <li>Tax payable: &euro;7,000 &minus; &euro;3,550 = <strong>&euro;3,450</strong></li>
+        <li>Monthly tax: &euro;3,450 &divide; 12 = <strong>&euro;287.50</strong></li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Government Income Sources</h3>
+      <ul>
+        <li>Income tax (PAYE, USC, PRSI) &mdash; the biggest source</li>
+        <li>VAT on goods and services</li>
+        <li>Excise duties on alcohol, tobacco, fuel</li>
+        <li>Corporation tax on company profits</li>
+        <li>EU grants and funding</li>
+        <li>Fees and fines (e.g., court fines, licence fees)</li>
+        <li>Sale of state assets (e.g., shares in state companies)</li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Government Spending</h3>
+      <ul>
+        <li>Health (HSE, hospitals)</li>
+        <li>Education (schools, universities)</li>
+        <li>Social welfare (jobseeker's, pensions, Child Benefit)</li>
+        <li>Housing and infrastructure (roads, public transport)</li>
+        <li>Defence (army, navy)</li>
+        <li>Servicing the national debt (interest on borrowings)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================== -->
+<!-- 3. BOOKKEEPING & ACCOUNTS                                     -->
+<!-- =========================================================== -->
+<div class="page-break"></div>
+<div class="indigo-section">
+  <div class="section-header">
+    <h2>3. Bookkeeping &amp; Accounts</h2>
+    <div class="section-dates">Junior Cycle Business Studies</div>
+    <div class="section-summary">How businesses record transactions. The Income Statement and Analysed Cash Book come up regularly.</div>
+  </div>
+  <div class="content">
+    <div class="subsection no-break">
+      <h3>The Income Statement (Trading, Profit &amp; Loss Account)</h3>
+      <p>Shows whether a business made a profit or loss over a period (usually one year).</p>
+      <div class="callout callout-indigo">
+        <strong>Cost of Sales = Opening Stock + Purchases &minus; Closing Stock</strong><br>
+        <strong>Gross Profit = Sales &minus; Cost of Sales</strong><br>
+        <strong>Net Profit = Gross Profit &minus; Expenses</strong>
+      </div>
+
+      <h4>Worked Income Statement</h4>
+      <table class="ref-table">
+        <tr><th colspan="2" style="text-align:center; background: var(--indigo-light);">Income Statement for year ending 31 Dec 2025</th></tr>
+        <tr><td>Sales</td><td style="text-align:right;">&euro;120,000</td></tr>
+        <tr><td>Less Cost of Sales:</td><td></td></tr>
+        <tr><td>&nbsp;&nbsp;Opening Stock</td><td style="text-align:right;">&euro;8,000</td></tr>
+        <tr><td>&nbsp;&nbsp;+ Purchases</td><td style="text-align:right;">&euro;65,000</td></tr>
+        <tr><td>&nbsp;&nbsp;&minus; Closing Stock</td><td style="text-align:right;">(&euro;10,000)</td></tr>
+        <tr><td><strong>Cost of Sales</strong></td><td style="text-align:right;"><strong>&euro;63,000</strong></td></tr>
+        <tr><td><strong>Gross Profit</strong></td><td style="text-align:right;"><strong>&euro;57,000</strong></td></tr>
+        <tr><td>Less Expenses:</td><td></td></tr>
+        <tr><td>&nbsp;&nbsp;Rent</td><td style="text-align:right;">&euro;12,000</td></tr>
+        <tr><td>&nbsp;&nbsp;Wages</td><td style="text-align:right;">&euro;18,000</td></tr>
+        <tr><td>&nbsp;&nbsp;Insurance</td><td style="text-align:right;">&euro;3,000</td></tr>
+        <tr><td>&nbsp;&nbsp;Light &amp; heat</td><td style="text-align:right;">&euro;2,500</td></tr>
+        <tr><td>&nbsp;&nbsp;Advertising</td><td style="text-align:right;">&euro;1,500</td></tr>
+        <tr><td><strong>Total Expenses</strong></td><td style="text-align:right;"><strong>&euro;37,000</strong></td></tr>
+        <tr><td><strong>Net Profit</strong></td><td style="text-align:right;"><strong>&euro;20,000</strong></td></tr>
+      </table>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Analysed Cash Book</h3>
+      <p>Records all money coming <strong>in</strong> (debit/left side) and going <strong>out</strong> (credit/right side), with columns analysed by type.</p>
+      <ul>
+        <li><strong>Debit side (left)</strong> = receipts (money IN): sales, lodgements, refunds received</li>
+        <li><strong>Credit side (right)</strong> = payments (money OUT): purchases, expenses, wages</li>
+        <li>Each entry shows <strong>date, details, total amount</strong> and is analysed into columns (e.g., Purchases, VAT, Wages, Expenses)</li>
+      </ul>
+
+      <h4>VAT in the Cash Book</h4>
+      <div class="callout callout-indigo">
+        <strong>To find VAT on an item (at 23%):</strong> Price incl. VAT &divide; 1.23 = Price excl. VAT. Then VAT = Total &minus; Excl. VAT.<br>
+        Example: Item costs &euro;123 incl. VAT. Excl. VAT = &euro;123 &divide; 1.23 = &euro;100. VAT = &euro;23.
+      </div>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Ledger Accounts</h3>
+      <p>Individual accounts for each type of income or expense (e.g., Sales Ledger, Purchases Ledger, Wages Account). Entries are <strong>posted from the cash book</strong> to the relevant ledger.</p>
+      <ul>
+        <li>Each ledger has a <strong>debit</strong> (left) and <strong>credit</strong> (right) side</li>
+        <li>The ledger is the opposite of the cash book: a debit entry in the cash book is posted to the credit side of the relevant ledger, and vice versa</li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Trial Balance</h3>
+      <p>A list of all ledger balances. The total of debit balances must equal the total of credit balances. If they don't match, there's an error somewhere.</p>
+      <div class="callout callout-indigo">
+        <strong>Total Debits = Total Credits</strong><br>
+        If they don't balance, check for: figures entered on wrong side, arithmetic errors, missing entries, figures transposed (e.g., &euro;540 written as &euro;450).
+      </div>
+    </div>
+
+    <div class="mnemonic no-break">
+      <strong>Cost of Sales memory aid:</strong> <strong>O</strong>pening stock + <strong>P</strong>urchases &minus; <strong>C</strong>losing stock = "OPC" &mdash; think "Open, Purchase, Close."
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================== -->
+<!-- 4. BUSINESS DOCUMENTS                                         -->
+<!-- =========================================================== -->
+<div class="page-break"></div>
+<div class="indigo-section">
+  <div class="section-header">
+    <h2>4. Business Documents</h2>
+    <div class="section-dates">Junior Cycle Business Studies</div>
+    <div class="section-summary">The trail of documents in a business transaction, from enquiry to payment.</div>
+  </div>
+  <div class="content">
+    <div class="subsection no-break">
+      <h3>The Document Trail (in order)</h3>
+      <table class="ref-table">
+        <tr><th style="width:30px;">#</th><th>Document</th><th>Purpose</th><th>Sent By</th></tr>
+        <tr><td>1</td><td><strong>Letter of Enquiry</strong></td><td>Asks about products, prices, availability</td><td>Buyer</td></tr>
+        <tr><td>2</td><td><strong>Quotation</strong></td><td>States prices, terms, discounts offered</td><td>Seller</td></tr>
+        <tr><td>3</td><td><strong>Purchase Order</strong></td><td>Officially orders the goods</td><td>Buyer</td></tr>
+        <tr><td>4</td><td><strong>Delivery Docket</strong></td><td>Accompanies goods; buyer signs to confirm receipt</td><td>Seller</td></tr>
+        <tr><td>5</td><td><strong>Invoice</strong></td><td>Bill for goods supplied &mdash; shows items, quantities, prices, discounts, VAT</td><td>Seller</td></tr>
+        <tr><td>6</td><td><strong>Credit Note</strong></td><td>Reduces amount owed (for returned/damaged goods)</td><td>Seller</td></tr>
+        <tr><td>7</td><td><strong>Statement of Account</strong></td><td>Monthly summary of all transactions</td><td>Seller</td></tr>
+        <tr><td>8</td><td><strong>Receipt / Cheque</strong></td><td>Proof of payment</td><td>Buyer pays</td></tr>
+      </table>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Key Discounts</h3>
+      <ul>
+        <li><span class="key-term">Trade discount</span> &mdash; given to trade customers (other businesses) who buy in bulk. Deducted BEFORE VAT.</li>
+        <li><span class="key-term">Cash discount</span> &mdash; given for paying early (e.g., "5% discount if paid within 10 days"). Deducted from the amount owed.</li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Worked Invoice Example</h3>
+      <p>O'Brien's Hardware orders 50 tins of paint at &euro;12 each and 20 brushes at &euro;5 each. Trade discount: 10%. VAT: 23%.</p>
+      <table class="ref-table">
+        <tr><th>Item</th><th>Qty</th><th>Unit Price</th><th>Total</th></tr>
+        <tr><td>Tins of paint</td><td>50</td><td>&euro;12.00</td><td>&euro;600.00</td></tr>
+        <tr><td>Brushes</td><td>20</td><td>&euro;5.00</td><td>&euro;100.00</td></tr>
+        <tr><td colspan="3"><strong>Subtotal</strong></td><td><strong>&euro;700.00</strong></td></tr>
+        <tr><td colspan="3">Less Trade Discount (10%)</td><td>(&euro;70.00)</td></tr>
+        <tr><td colspan="3"><strong>Net total</strong></td><td><strong>&euro;630.00</strong></td></tr>
+        <tr><td colspan="3">Add VAT (23%)</td><td>&euro;144.90</td></tr>
+        <tr><td colspan="3"><strong>Total Due</strong></td><td><strong>&euro;774.90</strong></td></tr>
+      </table>
+      <div class="callout callout-indigo">
+        <strong>Order matters!</strong> Trade discount is deducted FIRST, then VAT is calculated on the discounted price. Never calculate VAT on the original price.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================== -->
+<!-- 5. EMPLOYMENT                                                 -->
+<!-- =========================================================== -->
+<div class="page-break"></div>
+<div class="indigo-section">
+  <div class="section-header">
+    <h2>5. Employment</h2>
+    <div class="section-dates">Junior Cycle Business Studies</div>
+    <div class="section-summary">Employee and employer rights and responsibilities, pay structures, and the difference between gross and net pay.</div>
+  </div>
+  <div class="content">
+    <div class="subsection no-break">
+      <h3>Employee Rights</h3>
+      <ul>
+        <li>Right to a <strong>written contract</strong> of employment</li>
+        <li>Right to <strong>fair pay</strong> (at least the minimum wage &mdash; &euro;12.70/hour in 2024)</li>
+        <li>Right to <strong>safe working conditions</strong> (Health &amp; Safety)</li>
+        <li>Right to <strong>join a trade union</strong></li>
+        <li>Right to <strong>no discrimination</strong> (based on gender, age, race, religion, disability, etc.)</li>
+        <li>Right to <strong>holidays</strong> and <strong>breaks</strong></li>
+        <li>Right to a <strong>payslip</strong></li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Employee Responsibilities</h3>
+      <ul>
+        <li>Do an honest day's work</li>
+        <li>Be punctual and reliable</li>
+        <li>Follow health and safety rules</li>
+        <li>Show loyalty to the employer</li>
+        <li>Honour the terms of their contract</li>
+        <li>Treat colleagues and customers with respect</li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Employer Rights &amp; Responsibilities</h3>
+      <table class="ref-table">
+        <tr><th>Employer Rights</th><th>Employer Responsibilities</th></tr>
+        <tr><td>Expect honest work from employees</td><td>Pay fair wages on time</td></tr>
+        <tr><td>Set reasonable rules and procedures</td><td>Provide a safe workplace</td></tr>
+        <tr><td>Dismiss employees for serious misconduct</td><td>Give a written contract</td></tr>
+        <tr><td>Expect loyalty and confidentiality</td><td>Not discriminate in hiring or promotions</td></tr>
+        <tr><td></td><td>Provide training</td></tr>
+        <tr><td></td><td>Deduct and pay PAYE, PRSI, USC to Revenue</td></tr>
+      </table>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Types of Pay</h3>
+      <h4>Monetary Rewards</h4>
+      <ul>
+        <li><span class="key-term">Wages</span> &mdash; paid per hour/day/week (can include overtime)</li>
+        <li><span class="key-term">Salary</span> &mdash; fixed annual amount paid monthly</li>
+        <li><span class="key-term">Overtime</span> &mdash; extra pay for hours worked beyond normal (often time-and-a-half or double time)</li>
+        <li><span class="key-term">Bonus</span> &mdash; one-off payment for good performance</li>
+        <li><span class="key-term">Commission</span> &mdash; percentage of sales made (common in sales jobs)</li>
+      </ul>
+      <h4>Non-Monetary Rewards (Benefits in Kind)</h4>
+      <ul>
+        <li>Company car</li>
+        <li>Health insurance</li>
+        <li>Gym membership</li>
+        <li>Pension contributions</li>
+        <li>Staff discounts</li>
+        <li>Flexible working hours / work from home</li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Gross Pay vs Net Pay</h3>
+      <div class="callout callout-indigo">
+        <strong>Gross Pay</strong> = Total pay before any deductions (basic pay + overtime + bonus + commission)<br>
+        <strong>Net Pay</strong> = Gross Pay &minus; Deductions (PAYE + USC + PRSI + pension)<br>
+        Net pay is your "take-home pay" &mdash; what actually goes into your bank account.
+      </div>
+
+      <h4>Worked Example: Gross Pay Calculation</h4>
+      <p>Mark works 40 hours at &euro;14/hour. He does 6 hours overtime at time-and-a-half and 4 hours at double time. He also earns a &euro;100 bonus this week.</p>
+      <table class="ref-table">
+        <tr><td>Basic pay: 40 &times; &euro;14</td><td style="text-align:right;">&euro;560.00</td></tr>
+        <tr><td>Overtime (time-and-a-half): 6 &times; (&euro;14 &times; 1.5) = 6 &times; &euro;21</td><td style="text-align:right;">&euro;126.00</td></tr>
+        <tr><td>Overtime (double time): 4 &times; (&euro;14 &times; 2) = 4 &times; &euro;28</td><td style="text-align:right;">&euro;112.00</td></tr>
+        <tr><td>Bonus</td><td style="text-align:right;">&euro;100.00</td></tr>
+        <tr><td><strong>Gross Pay</strong></td><td style="text-align:right;"><strong>&euro;898.00</strong></td></tr>
+      </table>
+    </div>
+
+    <div class="mnemonic no-break">
+      <strong>Overtime rates:</strong> Time-and-a-half = normal rate &times; 1.5. Double time = normal rate &times; 2. Triple time = normal rate &times; 3.
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================== -->
+<!-- 6. INSURANCE                                                  -->
+<!-- =========================================================== -->
+<div class="page-break"></div>
+<div class="indigo-section">
+  <div class="section-header">
+    <h2>6. Insurance</h2>
+    <div class="section-dates">Junior Cycle Business Studies</div>
+    <div class="section-summary">Why we insure, types of insurance, and the principles behind it.</div>
+  </div>
+  <div class="content">
+    <div class="subsection no-break">
+      <h3>Why We Need Insurance</h3>
+      <p>Insurance protects against financial loss from unexpected events. You pay a small regular amount (premium) to avoid a potentially huge cost if something goes wrong.</p>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Key Insurance Terms</h3>
+      <table class="ref-table">
+        <tr><th>Term</th><th>Meaning</th></tr>
+        <tr><td><strong>Premium</strong></td><td>The amount you pay (monthly/annually) for insurance cover</td></tr>
+        <tr><td><strong>Policy</strong></td><td>The written contract between you and the insurance company</td></tr>
+        <tr><td><strong>Claim</strong></td><td>A request to the insurance company for payment after a loss</td></tr>
+        <tr><td><strong>Cover</strong></td><td>What the policy protects you against</td></tr>
+        <tr><td><strong>Excess</strong></td><td>The first part of a claim you must pay yourself (e.g., first &euro;250)</td></tr>
+        <tr><td><strong>No claims bonus</strong></td><td>A discount on your premium for not making claims</td></tr>
+        <tr><td><strong>Loading</strong></td><td>An extra charge added to your premium (e.g., for young drivers)</td></tr>
+      </table>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Types of Insurance</h3>
+      <table class="ref-table">
+        <tr><th>Type</th><th>What it covers</th></tr>
+        <tr><td>Motor insurance</td><td>Damage to your car, third-party damage, theft, personal injury</td></tr>
+        <tr><td>House insurance</td><td>Buildings (structure) and/or contents (belongings) against fire, flood, theft, storm</td></tr>
+        <tr><td>Health insurance</td><td>Medical costs &mdash; hospital stays, consultations, treatments</td></tr>
+        <tr><td>Life insurance</td><td>Pays out a lump sum to your family if you die</td></tr>
+        <tr><td>Travel insurance</td><td>Lost luggage, flight cancellations, medical emergencies abroad</td></tr>
+        <tr><td>Public liability</td><td>Covers a business if a customer is injured on their premises</td></tr>
+        <tr><td>Employer's liability</td><td>Covers a business if an employee is injured at work</td></tr>
+      </table>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Principles of Insurance</h3>
+      <ul>
+        <li><span class="key-term">Indemnity</span> &mdash; the insurance company will put you back in the same financial position you were in before the loss. You can't profit from insurance.</li>
+        <li><span class="key-term">Utmost good faith</span> &mdash; both sides must be completely honest. If you lie on your application (e.g., hide a medical condition), the policy can be cancelled.</li>
+        <li><span class="key-term">Insurable interest</span> &mdash; you can only insure something you would suffer a financial loss from. You can insure your own car but not your neighbour's car.</li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Exam Skill: Identifying Insurance Types from Scenarios</h3>
+      <div class="callout callout-indigo">
+        <strong>Typical exam question:</strong> "Name the type of insurance needed in each case."<br>
+        A family going on holiday to Spain = <strong>Travel insurance</strong><br>
+        A shop worker slips on a wet floor = <strong>Employer's liability</strong><br>
+        A tree falls on your roof = <strong>House (buildings) insurance</strong><br>
+        A driver crashes into another car = <strong>Motor insurance</strong>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================== -->
+<!-- 7. ENTERPRISE & BUSINESS                                      -->
+<!-- =========================================================== -->
+<div class="page-break"></div>
+<div class="indigo-section">
+  <div class="section-header">
+    <h2>7. Enterprise &amp; Business</h2>
+    <div class="section-dates">Junior Cycle Business Studies</div>
+    <div class="section-summary">Types of business, setting up a business, and the factors of production.</div>
+  </div>
+  <div class="content">
+    <div class="subsection no-break">
+      <h3>Types of Enterprise</h3>
+      <table class="ref-table">
+        <tr><th>Type</th><th>Key Features</th><th>Examples</th></tr>
+        <tr><td><strong>Sole Trader</strong></td><td>One owner, keeps all profits, unlimited liability, easy to set up</td><td>Local shop, plumber, hairdresser</td></tr>
+        <tr><td><strong>Partnership</strong></td><td>2&ndash;20 owners, share profits and risks, unlimited liability</td><td>Law firm, accountancy practice</td></tr>
+        <tr><td><strong>Private Limited Company (Ltd)</strong></td><td>Owned by shareholders, limited liability, cannot sell shares publicly</td><td>Many Irish businesses</td></tr>
+        <tr><td><strong>Public Limited Company (PLC)</strong></td><td>Shares traded on stock exchange, limited liability</td><td>Ryanair, CRH, Bank of Ireland</td></tr>
+        <tr><td><strong>Cooperative</strong></td><td>Owned and run by members, profits shared equally, democratic</td><td>Kerry Group (originally), credit unions</td></tr>
+        <tr><td><strong>Social Enterprise</strong></td><td>Exists to solve a social problem, profits reinvested</td><td>Charity shops, social housing organisations</td></tr>
+        <tr><td><strong>Community Enterprise</strong></td><td>Set up by a local community to create jobs and services locally</td><td>Community centres, local tourism projects</td></tr>
+      </table>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Limited vs Unlimited Liability</h3>
+      <div class="callout callout-indigo">
+        <strong>Unlimited liability</strong> (sole traders, partnerships): If the business owes money, the owner's personal assets (house, car, savings) can be taken to pay debts.<br>
+        <strong>Limited liability</strong> (Ltd, PLC): Shareholders can only lose the amount they invested. Personal assets are protected.
+      </div>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Factors of Production</h3>
+      <table class="ref-table">
+        <tr><th>Factor</th><th>Meaning</th><th>Example</th></tr>
+        <tr><td><strong>Land</strong></td><td>Natural resources used in production</td><td>Farmland, minerals, water, timber</td></tr>
+        <tr><td><strong>Labour</strong></td><td>The work done by people</td><td>Factory workers, teachers, nurses</td></tr>
+        <tr><td><strong>Capital</strong></td><td>Money, machinery, equipment used to produce goods</td><td>Ovens in a bakery, computers, delivery vans</td></tr>
+        <tr><td><strong>Enterprise</strong></td><td>The skill of combining the other three factors; risk-taking</td><td>The entrepreneur who starts the business</td></tr>
+      </table>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>The Business Plan</h3>
+      <p>A document prepared before starting a business. It helps the entrepreneur think through the idea and is needed to get a bank loan or grant.</p>
+      <h4>What's in a business plan:</h4>
+      <ul>
+        <li>Business idea / description of product or service</li>
+        <li>Target market and market research findings</li>
+        <li>Marketing plan (how you will attract customers)</li>
+        <li>Financial plan &mdash; start-up costs, projected income, cash flow forecasts</li>
+        <li>Location and premises</li>
+        <li>Staffing requirements</li>
+        <li>Sources of finance (own savings, bank loan, grants)</li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Impact of Business on a Community</h3>
+      <ul>
+        <li><strong>Jobs</strong> &mdash; reduces local unemployment</li>
+        <li><strong>Multiplier effect</strong> &mdash; workers spend wages locally, boosting other businesses</li>
+        <li><strong>Sponsorship</strong> &mdash; local teams and events</li>
+        <li><strong>Services</strong> &mdash; provides goods/services people need</li>
+        <li><strong>Taxes</strong> &mdash; contributes to government revenue</li>
+        <li><strong>Potential negatives</strong> &mdash; traffic, noise, pollution, competition for local shops</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================== -->
+<!-- 8. MARKETING                                                  -->
+<!-- =========================================================== -->
+<div class="page-break"></div>
+<div class="indigo-section">
+  <div class="section-header">
+    <h2>8. Marketing</h2>
+    <div class="section-dates">Junior Cycle Business Studies</div>
+    <div class="section-summary">How businesses identify customer needs and promote their products. The 4 Ps are essential.</div>
+  </div>
+  <div class="content">
+    <div class="subsection no-break">
+      <h3>The Marketing Mix &mdash; 4 Ps</h3>
+      <table class="ref-table">
+        <tr><th>P</th><th>Meaning</th><th>Key Questions</th></tr>
+        <tr><td><strong>Product</strong></td><td>What you are selling</td><td>What features does it have? Is it quality? What's the brand name? What packaging?</td></tr>
+        <tr><td><strong>Price</strong></td><td>How much you charge</td><td>Is it competitive? Are there discounts? Is it premium or budget?</td></tr>
+        <tr><td><strong>Place</strong></td><td>Where/how customers can buy it</td><td>In a shop? Online? Through a wholesaler? Delivered to your door?</td></tr>
+        <tr><td><strong>Promotion</strong></td><td>How you tell people about it</td><td>Advertising? Social media? Special offers? Sponsorship?</td></tr>
+      </table>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Advertising Methods</h3>
+      <ul>
+        <li><strong>Traditional:</strong> TV, radio, newspapers, magazines, billboards, posters</li>
+        <li><strong>Digital:</strong> Social media (TikTok, Instagram), websites, Google ads, email marketing, influencer marketing</li>
+        <li><strong>Other:</strong> Sponsorship of events/teams, product placement in films/TV</li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Sales Promotion Methods</h3>
+      <ul>
+        <li>Competitions and prize draws</li>
+        <li>Loyalty cards (e.g., Dunnes stores card)</li>
+        <li>Discounts and sales (e.g., Black Friday)</li>
+        <li>Free samples or trial periods</li>
+        <li>BOGOF (Buy One Get One Free)</li>
+        <li>Money-off coupons</li>
+        <li>Gift with purchase</li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Market Research</h3>
+      <table class="ref-table">
+        <tr><th>Primary (Field) Research</th><th>Secondary (Desk) Research</th></tr>
+        <tr><td>Collected first-hand by the business</td><td>Uses data already collected by someone else</td></tr>
+        <tr><td>Surveys, questionnaires, focus groups, interviews, observation</td><td>Internet research, government statistics (CSO), trade publications, competitor reports</td></tr>
+        <tr><td>More expensive and time-consuming</td><td>Cheaper and faster</td></tr>
+        <tr><td>Specific to your needs</td><td>May not be exactly what you need</td></tr>
+      </table>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Product Life Cycle</h3>
+      <p>Every product goes through stages:</p>
+      <ol>
+        <li><strong>Introduction</strong> &mdash; new product launched, sales low, high promotion costs</li>
+        <li><strong>Growth</strong> &mdash; sales increasing rapidly, profits begin</li>
+        <li><strong>Maturity</strong> &mdash; sales peak and level off, competition strong</li>
+        <li><strong>Decline</strong> &mdash; sales fall, product may be withdrawn or updated</li>
+      </ol>
+      <p><strong>Extension strategies</strong> (to delay decline): new packaging, target new market, add features, reduce price, new advertising campaign.</p>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Branding &amp; Packaging</h3>
+      <ul>
+        <li>A <span class="key-term">brand</span> is the name, logo, or design that identifies a product (e.g., Nike swoosh, Apple logo)</li>
+        <li>Good branding creates <strong>customer loyalty</strong> and allows higher prices</li>
+        <li><strong>Packaging</strong> protects the product, provides information (ingredients, instructions), and attracts customers</li>
+      </ul>
+    </div>
+
+    <div class="mnemonic no-break">
+      <strong>The 4 Ps:</strong> <strong>P</strong>roduct, <strong>P</strong>rice, <strong>P</strong>lace, <strong>P</strong>romotion. All four must work together &mdash; a great product at a wrong price in the wrong place with no promotion will fail.
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================== -->
+<!-- 9. CONSUMER RIGHTS                                            -->
+<!-- =========================================================== -->
+<div class="page-break"></div>
+<div class="indigo-section">
+  <div class="section-header">
+    <h2>9. Consumer Rights</h2>
+    <div class="section-dates">Junior Cycle Business Studies</div>
+    <div class="section-summary">What protects you when you buy goods or services, and what to do when things go wrong.</div>
+  </div>
+  <div class="content">
+    <div class="subsection no-break">
+      <h3>Consumer Rights (under the Consumer Rights Act 2022)</h3>
+      <p>When you buy goods, they must be:</p>
+      <ul>
+        <li><strong>Of satisfactory quality</strong> &mdash; work properly, no defects</li>
+        <li><strong>Fit for purpose</strong> &mdash; do what they're supposed to do</li>
+        <li><strong>As described</strong> &mdash; match the description on the label or advertisement</li>
+        <li><strong>Match the sample</strong> &mdash; same as any sample shown to you</li>
+      </ul>
+      <h4>If goods are faulty, you are entitled to:</h4>
+      <ul>
+        <li><strong>Repair</strong> of the product</li>
+        <li><strong>Replacement</strong> with an identical product</li>
+        <li><strong>Refund</strong> (full or partial)</li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>When You Are NOT Entitled to a Refund</h3>
+      <ul>
+        <li>You simply <strong>changed your mind</strong> (shops may offer exchange as goodwill but don't have to)</li>
+        <li>You were <strong>told about the fault</strong> before buying (e.g., shop sold it at a reduced price because of a scratch)</li>
+        <li>You <strong>caused the damage</strong> yourself through misuse</li>
+        <li>You bought the item <strong>too long ago</strong></li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Consumer Responsibilities</h3>
+      <ul>
+        <li>Always <strong>keep your receipt</strong> (proof of purchase)</li>
+        <li><strong>Shop around</strong> &mdash; compare prices before buying</li>
+        <li><strong>Read labels and contracts</strong> carefully</li>
+        <li><strong>Don't impulse buy</strong> &mdash; think before spending</li>
+        <li><strong>Know your rights</strong> &mdash; you can't exercise rights you don't know about</li>
+        <li><strong>Report faulty goods</strong> promptly to the seller</li>
+        <li><strong>Check your change</strong> and receipts</li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Online Shopping Rights</h3>
+      <ul>
+        <li>You have a <strong>14-day cooling-off period</strong> for online purchases &mdash; you can return for any reason within 14 days of receiving the item</li>
+        <li>The seller must clearly display their <strong>name, address, and contact details</strong></li>
+        <li>The total price including <strong>delivery charges</strong> must be shown before you pay</li>
+        <li>Same consumer rights apply as in-store (goods must be as described, fit for purpose, satisfactory quality)</li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Small Claims Court</h3>
+      <p>If a shop refuses to give a refund/replacement for a genuinely faulty item, you can take a case to the <span class="key-term">Small Claims Court</span>.</p>
+      <ul>
+        <li>Handles claims up to <strong>&euro;2,000</strong></li>
+        <li>Costs <strong>&euro;25</strong> to lodge a claim</li>
+        <li>No solicitor needed &mdash; designed to be simple</li>
+        <li>Can be done <strong>online</strong> at courts.ie</li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>CCPC &mdash; Competition and Consumer Protection Commission</h3>
+      <p>The government body that protects consumers. It:</p>
+      <ul>
+        <li>Investigates complaints</li>
+        <li>Provides information on consumer rights</li>
+        <li>Takes legal action against businesses that break consumer law</li>
+        <li>Promotes competition in the market</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================== -->
+<!-- 10. INTERNATIONAL TRADE                                       -->
+<!-- =========================================================== -->
+<div class="page-break"></div>
+<div class="indigo-section">
+  <div class="section-header">
+    <h2>10. International Trade</h2>
+    <div class="section-dates">Junior Cycle Business Studies</div>
+    <div class="section-summary">Why countries trade, visible and invisible trade, and the role of MNCs and the EU.</div>
+  </div>
+  <div class="content">
+    <div class="subsection no-break">
+      <h3>Why Countries Trade</h3>
+      <ul>
+        <li>No country can produce everything it needs</li>
+        <li>Some countries can produce certain goods more cheaply or efficiently</li>
+        <li>Trade gives consumers <strong>more choice</strong></li>
+        <li>Creates <strong>jobs</strong> in exporting industries</li>
+        <li>Improves relations between countries</li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Visible vs Invisible Trade</h3>
+      <table class="ref-table">
+        <tr><th></th><th>Visible Trade</th><th>Invisible Trade</th></tr>
+        <tr><td><strong>What?</strong></td><td>Physical goods you can see and touch</td><td>Services &mdash; you can't see or touch them</td></tr>
+        <tr><td><strong>Imports</strong></td><td>Cars, oil, clothing, electronics bought from abroad</td><td>Irish tourists spending money abroad, foreign consultants hired</td></tr>
+        <tr><td><strong>Exports</strong></td><td>Beef, dairy, pharmaceuticals, medical devices sold abroad</td><td>Software services, tourism income from foreign visitors, financial services</td></tr>
+      </table>
+      <div class="callout callout-indigo">
+        <strong>Balance of Trade = Visible Exports &minus; Visible Imports</strong><br>
+        If exports &gt; imports = <strong>trade surplus</strong> (good).<br>
+        If imports &gt; exports = <strong>trade deficit</strong> (bad).
+      </div>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Multinational Corporations (MNCs)</h3>
+      <p>Large companies that operate in more than one country (e.g., Apple, Google, Pfizer, Intel).</p>
+      <h4>Why MNCs come to Ireland:</h4>
+      <ul>
+        <li><strong>Low corporation tax</strong> (12.5% &mdash; one of the lowest in Europe)</li>
+        <li>Access to the <strong>EU single market</strong> (500+ million customers)</li>
+        <li><strong>English-speaking</strong>, well-educated workforce</li>
+        <li><strong>Government grants</strong> from IDA Ireland</li>
+        <li>Good infrastructure and technology</li>
+        <li>Stable political environment</li>
+      </ul>
+      <h4>Why MNCs might leave:</h4>
+      <ul>
+        <li>Found cheaper labour/costs elsewhere</li>
+        <li>Tax rates increased</li>
+        <li>Government grants ended</li>
+        <li>Brexit or other trade disruptions</li>
+        <li>Company restructuring globally</li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Benefits of EU Membership for Ireland</h3>
+      <ul>
+        <li><strong>Free trade</strong> &mdash; no tariffs or customs between EU countries</li>
+        <li><strong>EU funding</strong> &mdash; grants for infrastructure, farming (CAP), research</li>
+        <li><strong>Free movement</strong> &mdash; Irish people can live and work in any EU country</li>
+        <li><strong>Consumer protection</strong> laws across the EU</li>
+        <li><strong>The Euro</strong> &mdash; single currency makes trade easier, no exchange rate costs</li>
+        <li>Access to a market of 450+ million people</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================== -->
+<!-- 11. ECONOMICS                                                 -->
+<!-- =========================================================== -->
+<div class="page-break"></div>
+<div class="indigo-section">
+  <div class="section-header">
+    <h2>11. Economics</h2>
+    <div class="section-dates">Junior Cycle Business Studies</div>
+    <div class="section-summary">Supply and demand, inflation, interest rates, and the economic cycle.</div>
+  </div>
+  <div class="content">
+    <div class="subsection no-break">
+      <h3>Supply and Demand</h3>
+      <p><span class="key-term">Demand</span> = the quantity of a product consumers are willing to buy at a given price.<br>
+      <span class="key-term">Supply</span> = the quantity of a product producers are willing to sell at a given price.</p>
+
+      <h4>Law of Demand</h4>
+      <p>As price goes <strong>up</strong>, demand goes <strong>down</strong> (and vice versa). People buy less when things are expensive.</p>
+
+      <h4>Law of Supply</h4>
+      <p>As price goes <strong>up</strong>, supply goes <strong>up</strong> (and vice versa). Producers want to sell more when they can charge higher prices.</p>
+
+      <h4>Factors Affecting Demand</h4>
+      <ul>
+        <li>Price of the good</li>
+        <li>Consumer income (more income = more spending)</li>
+        <li>Price of substitutes (if Coke goes up, people buy Pepsi)</li>
+        <li>Fashion and trends</li>
+        <li>Advertising</li>
+        <li>Population changes</li>
+      </ul>
+
+      <h4>Factors Affecting Supply</h4>
+      <ul>
+        <li>Cost of production (raw materials, wages)</li>
+        <li>Technology improvements (makes production cheaper)</li>
+        <li>Government regulations/taxes</li>
+        <li>Weather (for agriculture)</li>
+        <li>Number of suppliers in the market</li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Inflation</h3>
+      <p><span class="key-term">Inflation</span> is a general rise in the price of goods and services over time. It means your money buys less than before.</p>
+      <h4>Causes of Inflation</h4>
+      <ul>
+        <li><strong>Demand-pull</strong> &mdash; too much demand for too few goods pushes prices up</li>
+        <li><strong>Cost-push</strong> &mdash; higher production costs (wages, raw materials, energy) are passed on as higher prices</li>
+      </ul>
+      <h4>Effects of Inflation</h4>
+      <ul>
+        <li>Savings lose value (your money buys less)</li>
+        <li>Workers demand higher wages</li>
+        <li>Fixed-income earners (pensioners) struggle</li>
+        <li>Irish goods become more expensive abroad (hurts exports)</li>
+        <li>Borrowers benefit (they repay loans in money that's worth less)</li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Interest Rates</h3>
+      <p><span class="key-term">Interest rate</span> = the cost of borrowing money, or the reward for saving it.</p>
+      <table class="ref-table">
+        <tr><th>If interest rates GO UP</th><th>If interest rates GO DOWN</th></tr>
+        <tr><td>Saving becomes more attractive (higher returns)</td><td>Saving becomes less attractive</td></tr>
+        <tr><td>Borrowing becomes more expensive</td><td>Borrowing becomes cheaper</td></tr>
+        <tr><td>People spend less &rarr; demand falls</td><td>People spend more &rarr; demand rises</td></tr>
+        <tr><td>Mortgage repayments go up</td><td>Mortgage repayments go down</td></tr>
+      </table>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Scarcity &amp; Opportunity Cost</h3>
+      <ul>
+        <li><span class="key-term">Scarcity</span> &mdash; resources are limited but wants are unlimited. We can't have everything.</li>
+        <li><span class="key-term">Opportunity cost</span> &mdash; the next best alternative you give up when making a choice. If you spend &euro;50 on a game, you can't also spend that &euro;50 on clothes &mdash; the clothes are the opportunity cost.</li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>The Economic Cycle</h3>
+      <ol>
+        <li><strong>Boom</strong> &mdash; economy growing fast, low unemployment, high spending, rising prices</li>
+        <li><strong>Recession</strong> &mdash; economy slowing, businesses closing, unemployment rising, spending falls</li>
+        <li><strong>Depression</strong> &mdash; severe and prolonged recession</li>
+        <li><strong>Recovery</strong> &mdash; economy begins to grow again, jobs created, confidence returns</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================== -->
+<!-- 12. FINANCIAL INSTITUTIONS                                    -->
+<!-- =========================================================== -->
+<div class="page-break"></div>
+<div class="indigo-section">
+  <div class="section-header">
+    <h2>12. Financial Institutions</h2>
+    <div class="section-dates">Junior Cycle Business Studies</div>
+    <div class="section-summary">Where you can save, borrow, and manage money.</div>
+  </div>
+  <div class="content">
+    <div class="subsection no-break">
+      <h3>Types of Financial Institutions</h3>
+      <table class="ref-table">
+        <tr><th>Institution</th><th>Key Features</th></tr>
+        <tr><td><strong>Commercial Banks</strong> (AIB, BOI, PTSB)</td><td>Current accounts, savings, loans, mortgages, credit cards, online banking</td></tr>
+        <tr><td><strong>Credit Unions</strong></td><td>Community-based, member-owned, savings and loans, usually lower interest rates on loans</td></tr>
+        <tr><td><strong>An Post (Post Office)</strong></td><td>Savings accounts, government savings bonds (Prize Bonds), bill payments</td></tr>
+        <tr><td><strong>Building Societies</strong></td><td>Traditionally focused on mortgages and savings</td></tr>
+        <tr><td><strong>Insurance Companies</strong></td><td>Provide insurance policies (life, health, motor, home)</td></tr>
+        <tr><td><strong>Digital / Online Banks</strong> (Revolut, N26)</td><td>App-based, instant payments, budgeting tools, often no fees, international transfers</td></tr>
+      </table>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Current Account vs Savings Account</h3>
+      <table class="ref-table">
+        <tr><th>Current Account</th><th>Savings Account</th></tr>
+        <tr><td>For everyday spending</td><td>For putting money aside</td></tr>
+        <tr><td>Comes with debit card, online banking</td><td>Limited access (may need notice to withdraw)</td></tr>
+        <tr><td>Little or no interest</td><td>Earns interest on your balance</td></tr>
+        <tr><td>Overdraft facility (borrow up to a limit)</td><td>No overdraft</td></tr>
+        <tr><td>Standing orders and direct debits</td><td>Usually cannot set up direct debits</td></tr>
+      </table>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Services Provided by Banks</h3>
+      <ul>
+        <li><strong>Loans</strong> &mdash; personal loans, car loans, mortgages</li>
+        <li><strong>Online and mobile banking</strong> &mdash; manage money from your phone</li>
+        <li><strong>Standing orders</strong> &mdash; fixed regular payments (e.g., rent)</li>
+        <li><strong>Direct debits</strong> &mdash; variable payments (e.g., electricity bill)</li>
+        <li><strong>Foreign exchange</strong> &mdash; convert currencies</li>
+        <li><strong>Credit cards</strong> &mdash; buy now, pay later (with interest if not paid in full)</li>
+        <li><strong>Overdraft</strong> &mdash; spend more than is in your account (up to a limit, with fees)</li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Simple Interest</h3>
+      <div class="callout callout-indigo">
+        <strong>Interest = Principal &times; Rate &times; Time &divide; 100</strong><br>
+        Example: &euro;1,000 saved at 3% for 2 years = 1000 &times; 3 &times; 2 &divide; 100 = <strong>&euro;60 interest</strong>.
+      </div>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Reasons to Save</h3>
+      <ul>
+        <li>Emergency fund (unexpected expenses)</li>
+        <li>Future purchases (car, holiday, college)</li>
+        <li>Earn interest on your money</li>
+        <li>Retirement</li>
+        <li>Avoid getting into debt</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================== -->
+<!-- 13. SUSTAINABILITY & ETHICS                                   -->
+<!-- =========================================================== -->
+<div class="page-break"></div>
+<div class="indigo-section">
+  <div class="section-header">
+    <h2>13. Sustainability &amp; Ethics</h2>
+    <div class="section-dates">Junior Cycle Business Studies</div>
+    <div class="section-summary">How businesses and consumers can act responsibly towards the environment and society.</div>
+  </div>
+  <div class="content">
+    <div class="subsection no-break">
+      <h3>Corporate Social Responsibility (CSR)</h3>
+      <p><span class="key-term">CSR</span> means a business goes beyond just making profit and considers its impact on employees, the community, and the environment.</p>
+      <h4>Examples of CSR:</h4>
+      <ul>
+        <li>Reducing carbon emissions and waste</li>
+        <li>Using recyclable or biodegradable packaging</li>
+        <li>Paying fair wages and treating workers well</li>
+        <li>Supporting local charities and community projects</li>
+        <li>Sourcing materials ethically (e.g., Fairtrade)</li>
+        <li>Offering flexible working arrangements</li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Environmental Costs of Business</h3>
+      <ul>
+        <li><strong>Pollution</strong> &mdash; air, water, and noise pollution from factories and transport</li>
+        <li><strong>Waste</strong> &mdash; packaging, electronic waste, food waste</li>
+        <li><strong>Resource depletion</strong> &mdash; using up raw materials (forests, minerals, fossil fuels)</li>
+        <li><strong>Carbon footprint</strong> &mdash; the total greenhouse gases produced by a business</li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Sustainable Practices</h3>
+      <h4>For Businesses:</h4>
+      <ul>
+        <li>Switch to renewable energy (solar, wind)</li>
+        <li>Reduce, reuse, recycle in operations</li>
+        <li>Use sustainable raw materials</li>
+        <li>Minimise packaging</li>
+        <li>Encourage remote working (less commuting)</li>
+        <li>Set carbon reduction targets</li>
+      </ul>
+      <h4>For Consumers:</h4>
+      <ul>
+        <li>Buy local and seasonal products</li>
+        <li>Use the deposit return scheme for cans and bottles</li>
+        <li>Bring reusable bags, bottles, cups</li>
+        <li>Choose Fairtrade and ethically sourced products</li>
+        <li>Reduce food waste</li>
+        <li>Buy second-hand where possible</li>
+      </ul>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Key Sustainability Terms</h3>
+      <table class="ref-table">
+        <tr><th>Term</th><th>Meaning</th></tr>
+        <tr><td><strong>Fairtrade</strong></td><td>Ensures farmers/producers in developing countries get a fair price for their goods</td></tr>
+        <tr><td><strong>Ethical consumerism</strong></td><td>Buying products based on their social/environmental impact, not just price</td></tr>
+        <tr><td><strong>Carbon footprint</strong></td><td>Total amount of greenhouse gases produced directly or indirectly by a person/business</td></tr>
+        <tr><td><strong>Deposit Return Scheme</strong></td><td>Pay a small deposit on cans/bottles, get it back when you return them for recycling</td></tr>
+        <tr><td><strong>Circular economy</strong></td><td>Products are designed to be reused, repaired, or recycled rather than thrown away</td></tr>
+        <tr><td><strong>Greenwashing</strong></td><td>When a company pretends to be environmentally friendly without actually making real changes</td></tr>
+      </table>
+    </div>
+
+    <div class="subsection no-break">
+      <h3>Benefits of Recycling</h3>
+      <ul>
+        <li>Reduces waste going to landfill</li>
+        <li>Conserves natural resources</li>
+        <li>Uses less energy than making products from scratch</li>
+        <li>Reduces pollution and greenhouse gas emissions</li>
+        <li>Creates jobs in recycling industries</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================== -->
+<!-- KEY TERMS REFERENCE SHEET                                     -->
+<!-- =========================================================== -->
+<div class="page-break"></div>
+<div class="exam-section">
+  <h2 style="color: var(--indigo);">Key Terms Reference Sheet</h2>
+  <p style="text-align:center; color: var(--gray-600); font-size: 10pt; margin-bottom: 16px;">Essential formulas and definitions for the exam.</p>
+
+  <div class="formula-grid">
+    <div class="formula-box no-break">
+      <h4>Household Budget</h4>
+      <span class="formula">Net Cash = Income &minus; Expenditure</span><br>
+      <span class="formula">Closing = Opening + Net Cash</span>
+    </div>
+    <div class="formula-box no-break">
+      <h4>Income Statement</h4>
+      <span class="formula">CoS = Open Stock + Purch &minus; Close Stock</span><br>
+      <span class="formula">Gross Profit = Sales &minus; CoS</span><br>
+      <span class="formula">Net Profit = Gross Profit &minus; Expenses</span>
+    </div>
+    <div class="formula-box no-break">
+      <h4>Invoice Calculation</h4>
+      <span class="formula">Subtotal &minus; Trade Disc = Net</span><br>
+      <span class="formula">Net + VAT (23%) = Total Due</span><br>
+      <span style="font-size:9pt; color: var(--gray-600);">Trade discount FIRST, then VAT</span>
+    </div>
+    <div class="formula-box no-break">
+      <h4>Gross Pay</h4>
+      <span class="formula">Basic + Overtime + Bonus = Gross</span><br>
+      <span class="formula">Net Pay = Gross &minus; Deductions</span><br>
+      <span class="formula">T&frac12; = rate &times; 1.5 | DT = rate &times; 2</span>
+    </div>
+    <div class="formula-box no-break">
+      <h4>Tax</h4>
+      <span class="formula">PAYE = Gross Tax &minus; Tax Credits</span><br>
+      <span class="formula">Net = Gross &minus; PAYE &minus; USC &minus; PRSI</span>
+    </div>
+    <div class="formula-box no-break">
+      <h4>VAT</h4>
+      <span class="formula">With VAT = Price &times; 1.23</span><br>
+      <span class="formula">Before VAT = Total &divide; 1.23</span><br>
+      <span class="formula">VAT amount = Total &minus; Excl. VAT</span>
+    </div>
+    <div class="formula-box no-break">
+      <h4>Trade</h4>
+      <span class="formula">BoT = Vis Exports &minus; Vis Imports</span><br>
+      <span style="font-size:9pt; color: var(--gray-600);">Surplus = exports &gt; imports (good)</span><br>
+      <span style="font-size:9pt; color: var(--gray-600);">Deficit = imports &gt; exports (bad)</span>
+    </div>
+    <div class="formula-box no-break">
+      <h4>Simple Interest</h4>
+      <span class="formula">I = P &times; R &times; T &divide; 100</span><br>
+      <span style="font-size:9pt; color: var(--gray-600);">P = principal, R = rate %, T = years</span>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================== -->
+<!-- FLASHCARDS                                                    -->
+<!-- =========================================================== -->
+<div class="page-break"></div>
+<div class="flashcard-section-title" style="color: var(--indigo);">Business Studies Flashcards</div>
+<div class="flashcard-instructions">Cover the answer and test yourself.</div>
+<div class="flashcard-grid">
+  <div class="flashcard fc-business no-break">
+    <div class="fc-topic">Household Finance</div>
+    <div class="fc-q">What is Net Cash in a budget?</div>
+    <div class="fc-a">Net Cash = Total Income &minus; Total Expenditure. Positive = surplus, negative = deficit.</div>
+  </div>
+  <div class="flashcard fc-business no-break">
+    <div class="fc-topic">Household Finance</div>
+    <div class="fc-q">Give two examples of fixed expenditure.</div>
+    <div class="fc-a">Mortgage/rent, insurance, loan repayments, broadband. These stay the same every month and must be paid.</div>
+  </div>
+  <div class="flashcard fc-business no-break">
+    <div class="fc-topic">Taxation</div>
+    <div class="fc-q">What is the difference between direct and indirect tax?</div>
+    <div class="fc-a">Direct tax is paid straight to the government (PAYE, USC). Indirect tax is added to the price of goods (VAT, excise duty).</div>
+  </div>
+  <div class="flashcard fc-business no-break">
+    <div class="fc-topic">Taxation</div>
+    <div class="fc-q">What are tax credits?</div>
+    <div class="fc-a">Amounts that reduce your total tax bill. E.g., Single Person's Tax Credit, Employee Tax Credit. They are subtracted from your gross tax.</div>
+  </div>
+  <div class="flashcard fc-business no-break">
+    <div class="fc-topic">Bookkeeping</div>
+    <div class="fc-q">Formula for Cost of Sales?</div>
+    <div class="fc-a">Cost of Sales = Opening Stock + Purchases &minus; Closing Stock.</div>
+  </div>
+  <div class="flashcard fc-business no-break">
+    <div class="fc-topic">Bookkeeping</div>
+    <div class="fc-q">What is Gross Profit?</div>
+    <div class="fc-a">Gross Profit = Sales &minus; Cost of Sales. It's profit before expenses are deducted.</div>
+  </div>
+  <div class="flashcard fc-business no-break">
+    <div class="fc-topic">Documents</div>
+    <div class="fc-q">What is a credit note used for?</div>
+    <div class="fc-a">Sent by the seller to reduce the amount owed, usually because goods were returned or damaged.</div>
+  </div>
+  <div class="flashcard fc-business no-break">
+    <div class="fc-topic">Documents</div>
+    <div class="fc-q">What is the difference between trade discount and cash discount?</div>
+    <div class="fc-a">Trade discount = given to business buyers who buy in bulk (deducted before VAT). Cash discount = given for paying early.</div>
+  </div>
+  <div class="flashcard fc-business no-break">
+    <div class="fc-topic">Employment</div>
+    <div class="fc-q">What is the difference between gross pay and net pay?</div>
+    <div class="fc-a">Gross = total pay before deductions. Net = take-home pay after PAYE, USC, PRSI, and pension are deducted.</div>
+  </div>
+  <div class="flashcard fc-business no-break">
+    <div class="fc-topic">Employment</div>
+    <div class="fc-q">What is time-and-a-half?</div>
+    <div class="fc-a">Overtime rate = normal hourly rate &times; 1.5. E.g., if normal rate is &euro;14, time-and-a-half = &euro;21.</div>
+  </div>
+  <div class="flashcard fc-business no-break">
+    <div class="fc-topic">Insurance</div>
+    <div class="fc-q">What does "indemnity" mean in insurance?</div>
+    <div class="fc-a">The insurance company puts you back in the same financial position as before the loss. You can't profit from a claim.</div>
+  </div>
+  <div class="flashcard fc-business no-break">
+    <div class="fc-topic">Insurance</div>
+    <div class="fc-q">What is "utmost good faith"?</div>
+    <div class="fc-a">Both the insurer and the insured must be completely honest. Lying on your application can void the policy.</div>
+  </div>
+  <div class="flashcard fc-business no-break">
+    <div class="fc-topic">Enterprise</div>
+    <div class="fc-q">What is limited liability?</div>
+    <div class="fc-a">Shareholders can only lose the money they invested. Their personal assets (house, car) are protected if the business fails.</div>
+  </div>
+  <div class="flashcard fc-business no-break">
+    <div class="fc-topic">Enterprise</div>
+    <div class="fc-q">Name the four factors of production.</div>
+    <div class="fc-a">Land (natural resources), Labour (workers), Capital (money/equipment), Enterprise (the entrepreneur).</div>
+  </div>
+  <div class="flashcard fc-business no-break">
+    <div class="fc-topic">Marketing</div>
+    <div class="fc-q">What are the 4 Ps of Marketing?</div>
+    <div class="fc-a">Product, Price, Place, Promotion. All four must work together for marketing to succeed.</div>
+  </div>
+  <div class="flashcard fc-business no-break">
+    <div class="fc-topic">Marketing</div>
+    <div class="fc-q">Name the four stages of the product life cycle.</div>
+    <div class="fc-a">Introduction, Growth, Maturity, Decline. Extension strategies can delay decline.</div>
+  </div>
+  <div class="flashcard fc-business no-break">
+    <div class="fc-topic">Consumer</div>
+    <div class="fc-q">When are you NOT entitled to a refund?</div>
+    <div class="fc-a">If you changed your mind, were told about the fault before buying, or caused the damage yourself.</div>
+  </div>
+  <div class="flashcard fc-business no-break">
+    <div class="fc-topic">Trade</div>
+    <div class="fc-q">What is a visible export?</div>
+    <div class="fc-a">A physical good sold to another country (e.g., Irish beef sold to France). "Visible" because you can see and touch it.</div>
+  </div>
+  <div class="flashcard fc-business no-break">
+    <div class="fc-topic">Economics</div>
+    <div class="fc-q">What is opportunity cost?</div>
+    <div class="fc-a">The next best alternative you give up when you make a choice. E.g., if you buy a game instead of clothes, the clothes are the opportunity cost.</div>
+  </div>
+  <div class="flashcard fc-business no-break">
+    <div class="fc-topic">Economics</div>
+    <div class="fc-q">Name two causes of inflation.</div>
+    <div class="fc-a">Demand-pull (too much demand, not enough supply) and cost-push (higher production costs passed on as higher prices).</div>
+  </div>
+  <div class="flashcard fc-business no-break">
+    <div class="fc-topic">Financial Institutions</div>
+    <div class="fc-q">Difference between a current account and a savings account?</div>
+    <div class="fc-a">Current = everyday spending, debit card, little interest. Savings = putting money aside, earns interest, limited access.</div>
+  </div>
+  <div class="flashcard fc-business no-break">
+    <div class="fc-topic">Sustainability</div>
+    <div class="fc-q">What is greenwashing?</div>
+    <div class="fc-a">When a company pretends to be environmentally friendly without actually making real changes. Misleading marketing about environmental practices.</div>
+  </div>
+  <div class="flashcard fc-business no-break">
+    <div class="fc-topic">Sustainability</div>
+    <div class="fc-q">What is CSR?</div>
+    <div class="fc-a">Corporate Social Responsibility &mdash; a business goes beyond profit and considers its impact on employees, community, and environment.</div>
+  </div>
+  <div class="flashcard fc-business no-break">
+    <div class="fc-topic">Trade</div>
+    <div class="fc-q">Why do MNCs come to Ireland?</div>
+    <div class="fc-a">Low corporation tax (12.5%), EU single market access, English-speaking educated workforce, IDA grants, good infrastructure.</div>
+  </div>
+</div>
+
+<!-- =========================================================== -->
+<!-- EXAM-STYLE QUESTIONS                                          -->
+<!-- =========================================================== -->
+<div class="page-break"></div>
+<div class="exam-section">
+  <h2 style="color: var(--indigo);">Exam-Style Questions with Worked Answers</h2>
+
+  <div class="exam-q no-break">
+    <div class="eq-topic" style="color: var(--indigo);">HOUSEHOLD FINANCE &mdash; BUDGET</div>
+    <div class="eq-question">The Evans family has the following monthly figures. Complete their budget: Mother's salary &euro;2,600, Father's wages &euro;1,900, Child Benefit &euro;280. Expenditure: Mortgage &euro;1,200, Groceries &euro;700, Car insurance &euro;180, Electricity &euro;150, Entertainment &euro;250, Clothing &euro;100, Broadband &euro;60. Opening cash: &euro;350. Find the net cash and closing cash.</div>
+    <div class="eq-hints"><strong>Solution:</strong>
+      <ul>
+        <li>Total Income = 2,600 + 1,900 + 280 = <strong>&euro;4,780</strong></li>
+        <li>Total Expenditure = 1,200 + 700 + 180 + 150 + 250 + 100 + 60 = <strong>&euro;2,640</strong></li>
+        <li>Net Cash = 4,780 &minus; 2,640 = <strong>&euro;2,140 (surplus)</strong></li>
+        <li>Closing Cash = 350 + 2,140 = <strong>&euro;2,490</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="exam-q no-break">
+    <div class="eq-topic" style="color: var(--indigo);">BOOKKEEPING &mdash; INCOME STATEMENT</div>
+    <div class="eq-question">Prepare an Income Statement from the following: Sales &euro;95,000. Opening Stock &euro;6,000. Purchases &euro;48,000. Closing Stock &euro;7,000. Expenses: Wages &euro;15,000, Rent &euro;8,000, Insurance &euro;2,000, Advertising &euro;1,200. Find Cost of Sales, Gross Profit, and Net Profit.</div>
+    <div class="eq-hints"><strong>Solution:</strong>
+      <ul>
+        <li>Cost of Sales = 6,000 + 48,000 &minus; 7,000 = <strong>&euro;47,000</strong></li>
+        <li>Gross Profit = 95,000 &minus; 47,000 = <strong>&euro;48,000</strong></li>
+        <li>Total Expenses = 15,000 + 8,000 + 2,000 + 1,200 = <strong>&euro;26,200</strong></li>
+        <li>Net Profit = 48,000 &minus; 26,200 = <strong>&euro;21,800</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="exam-q no-break">
+    <div class="eq-topic" style="color: var(--indigo);">EMPLOYMENT &mdash; GROSS PAY</div>
+    <div class="eq-question">Lisa works 38 hours at &euro;15/hour. She does 5 hours overtime at time-and-a-half and 3 hours at double time. She also earns commission of 2% on &euro;4,000 of sales. Calculate her gross pay.</div>
+    <div class="eq-hints"><strong>Solution:</strong>
+      <ul>
+        <li>Basic pay: 38 &times; &euro;15 = &euro;570</li>
+        <li>Time-and-a-half: 5 &times; (&euro;15 &times; 1.5) = 5 &times; &euro;22.50 = &euro;112.50</li>
+        <li>Double time: 3 &times; (&euro;15 &times; 2) = 3 &times; &euro;30 = &euro;90</li>
+        <li>Commission: 2% of &euro;4,000 = &euro;80</li>
+        <li>Gross Pay = 570 + 112.50 + 90 + 80 = <strong>&euro;852.50</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="exam-q no-break">
+    <div class="eq-topic" style="color: var(--indigo);">BUSINESS DOCUMENTS &mdash; INVOICE</div>
+    <div class="eq-question">Murphy's Supplies sends an invoice for: 30 desks at &euro;80 each and 60 chairs at &euro;35 each. Trade discount 15%. VAT 23%. Calculate the total amount due.</div>
+    <div class="eq-hints"><strong>Solution:</strong>
+      <ul>
+        <li>Desks: 30 &times; &euro;80 = &euro;2,400</li>
+        <li>Chairs: 60 &times; &euro;35 = &euro;2,100</li>
+        <li>Subtotal = &euro;4,500</li>
+        <li>Trade discount: 15% of &euro;4,500 = &euro;675</li>
+        <li>Net total = &euro;4,500 &minus; &euro;675 = &euro;3,825</li>
+        <li>VAT: 23% of &euro;3,825 = &euro;879.75</li>
+        <li>Total due = &euro;3,825 + &euro;879.75 = <strong>&euro;4,704.75</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="exam-q no-break">
+    <div class="eq-topic" style="color: var(--indigo);">TAXATION</div>
+    <div class="eq-question">(a) Explain the difference between direct and indirect tax. Give two examples of each. (b) Tom earns &euro;30,000. Tax rate: 20%. Annual tax credits: &euro;3,300. Calculate his annual income tax and his monthly take-home pay (ignore USC/PRSI for this question).</div>
+    <div class="eq-hints"><strong>Solution:</strong>
+      <ul>
+        <li>(a) Direct tax: paid directly to the government based on income (e.g., PAYE, PRSI). Indirect tax: added to prices, paid when you buy goods (e.g., VAT, excise duty).</li>
+        <li>(b) Gross tax: &euro;30,000 &times; 20% = &euro;6,000</li>
+        <li>Tax payable: &euro;6,000 &minus; &euro;3,300 = &euro;2,700 per year</li>
+        <li>Monthly tax: &euro;2,700 &divide; 12 = &euro;225</li>
+        <li>Monthly gross: &euro;30,000 &divide; 12 = &euro;2,500</li>
+        <li>Monthly take-home: &euro;2,500 &minus; &euro;225 = <strong>&euro;2,275</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="exam-q no-break">
+    <div class="eq-topic" style="color: var(--indigo);">MARKETING</div>
+    <div class="eq-question">A new caf&eacute; is opening in your town. Using the marketing mix (4 Ps), outline a marketing strategy for the first month.</div>
+    <div class="eq-hints"><strong>Sample answer:</strong>
+      <ul>
+        <li><strong>Product:</strong> High-quality coffee, fresh pastries, sandwiches. Offer a unique selling point (e.g., locally roasted coffee, student meal deal).</li>
+        <li><strong>Price:</strong> Competitive with nearby caf&eacute;s. Introductory offer &mdash; 20% off in the first week. Loyalty card &mdash; every 10th coffee free.</li>
+        <li><strong>Place:</strong> Located on a busy street near schools/offices. Available on Deliveroo/Just Eat for takeaway orders.</li>
+        <li><strong>Promotion:</strong> Instagram and TikTok page. Flyers distributed locally. Grand opening event with free samples. Local newspaper ad.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="exam-q no-break">
+    <div class="eq-topic" style="color: var(--indigo);">INTERNATIONAL TRADE</div>
+    <div class="eq-question">(a) Explain the difference between visible and invisible imports and exports. Give one example of each. (b) Ireland exported &euro;85 billion of goods and imported &euro;62 billion of goods last year. Calculate the Balance of Trade and state whether this is a surplus or deficit.</div>
+    <div class="eq-hints"><strong>Solution:</strong>
+      <ul>
+        <li>(a) Visible = physical goods (exports: Irish beef sold abroad; imports: oil bought from Saudi Arabia). Invisible = services (exports: Irish software services sold abroad; imports: Irish tourists spending money in Spain).</li>
+        <li>(b) Balance of Trade = &euro;85bn &minus; &euro;62bn = <strong>&euro;23 billion surplus</strong>.</li>
+        <li>It is a surplus because exports are greater than imports.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="exam-q no-break">
+    <div class="eq-topic" style="color: var(--indigo);">CONSUMER RIGHTS</div>
+    <div class="eq-question">Mary bought a pair of shoes online. They arrived and the sole came off after two days. (a) What are Mary's rights? (b) What should she do? (c) If she bought the shoes in a shop and changed her mind the next day (nothing wrong with them), is she entitled to a refund?</div>
+    <div class="eq-hints"><strong>Solution:</strong>
+      <ul>
+        <li>(a) The shoes are not of satisfactory quality and not fit for purpose. Mary is entitled to a repair, replacement, or refund under the Consumer Rights Act.</li>
+        <li>(b) Contact the seller (not the manufacturer), explain the problem, provide proof of purchase (email receipt/order confirmation), request a remedy.</li>
+        <li>(c) No. If there is nothing wrong with the goods and she simply changed her mind, the shop does not have to give a refund. Some shops may offer an exchange or credit note as goodwill.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================== -->
+<!-- INTERACTIVE QUIZZES                                           -->
+<!-- =========================================================== -->
+<div class="page-break"></div>
+<div class="quiz-wrapper print-hide">
+  <div class="quiz-header">
+    <h2 class="flashcard-section-title" style="margin-top:0;">Interactive Quizzes</h2>
+    <p class="flashcard-instructions">Pick a topic and test yourself. 10 random questions per round.</p>
+    <div class="quiz-topic-selector">
+      <button class="quiz-topic-btn active" data-topic="all" style="border-color: var(--gray-600); color: var(--gray-600);">All Topics</button>
+      <button class="quiz-topic-btn" data-topic="household-finance" style="border-color: var(--indigo); color: var(--indigo);">Household Finance</button>
+      <button class="quiz-topic-btn" data-topic="taxation" style="border-color: var(--indigo); color: var(--indigo);">Taxation</button>
+      <button class="quiz-topic-btn" data-topic="bookkeeping" style="border-color: var(--indigo); color: var(--indigo);">Bookkeeping</button>
+      <button class="quiz-topic-btn" data-topic="documents" style="border-color: var(--indigo); color: var(--indigo);">Documents</button>
+      <button class="quiz-topic-btn" data-topic="employment" style="border-color: var(--indigo); color: var(--indigo);">Employment</button>
+      <button class="quiz-topic-btn" data-topic="insurance" style="border-color: var(--indigo); color: var(--indigo);">Insurance</button>
+      <button class="quiz-topic-btn" data-topic="enterprise" style="border-color: var(--indigo); color: var(--indigo);">Enterprise</button>
+      <button class="quiz-topic-btn" data-topic="marketing" style="border-color: var(--indigo); color: var(--indigo);">Marketing</button>
+      <button class="quiz-topic-btn" data-topic="consumer" style="border-color: var(--indigo); color: var(--indigo);">Consumer</button>
+      <button class="quiz-topic-btn" data-topic="trade" style="border-color: var(--indigo); color: var(--indigo);">Trade</button>
+      <button class="quiz-topic-btn" data-topic="economics" style="border-color: var(--indigo); color: var(--indigo);">Economics</button>
+      <button class="quiz-topic-btn" data-topic="financial-institutions" style="border-color: var(--indigo); color: var(--indigo);">Financial Inst.</button>
+      <button class="quiz-topic-btn" data-topic="sustainability" style="border-color: var(--indigo); color: var(--indigo);">Sustainability</button>
+    </div>
+  </div>
+  <div class="quiz-progress">
+    <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="progressFill"></div></div>
+    <div class="quiz-score" id="quizScore">Question 1 of 10</div>
+  </div>
+  <div id="quizContainer" class="quiz-container"></div>
+  <div id="quizResults" class="quiz-results" style="display:none;">
+    <div class="results-icon" id="resultsIcon"></div>
+    <div class="results-score" id="resultsScore"></div>
+    <div class="results-message" id="resultsMessage"></div>
+    <div class="results-breakdown" id="resultsBreakdown"></div>
+    <button class="quiz-btn quiz-btn-primary" onclick="startQuiz()">Try Again</button>
+    <button class="quiz-btn quiz-btn-secondary" onclick="startQuiz('all')">All Topics Mix</button>
+  </div>
+</div>
+
+<script>
+const QUESTIONS = [
+  // HOUSEHOLD FINANCE
+  { topic: "household-finance", topicLabel: "Household Finance", color: "#4f46e5",
+    q: "How do you calculate Net Cash in a household budget?",
+    options: ["Opening Cash + Income", "Total Income − Total Expenditure", "Closing Cash − Opening Cash", "Income + Expenditure"],
+    correct: 1,
+    explanation: "Net Cash = Total Income − Total Expenditure. A positive figure means surplus; negative means deficit."
+  },
+  { topic: "household-finance", topicLabel: "Household Finance", color: "#4f46e5",
+    q: "Which of these is a fixed expenditure?",
+    options: ["Holiday", "Mortgage payment", "Birthday present", "Car repairs"],
+    correct: 1,
+    explanation: "A mortgage payment is the same amount every month and must be paid — that makes it fixed expenditure."
+  },
+  { topic: "household-finance", topicLabel: "Household Finance", color: "#4f46e5",
+    q: "A family has income of €4,200 and expenditure of €3,800. Opening cash is €600. What is the closing cash?",
+    options: ["€400", "€1,000", "€4,800", "€600"],
+    correct: 1,
+    explanation: "Net Cash = 4,200 − 3,800 = €400. Closing Cash = 600 + 400 = €1,000."
+  },
+  // TAXATION
+  { topic: "taxation", topicLabel: "Taxation", color: "#4f46e5",
+    q: "Which of these is an indirect tax?",
+    options: ["PAYE", "PRSI", "VAT", "USC"],
+    correct: 2,
+    explanation: "VAT (Value Added Tax) is added to the price of goods and services. It's indirect because it's collected by the seller, not paid directly by the consumer to Revenue."
+  },
+  { topic: "taxation", topicLabel: "Taxation", color: "#4f46e5",
+    q: "What do tax credits do?",
+    options: ["Increase your gross pay", "Reduce the amount of tax you owe", "Add extra income to your salary", "Replace your PRSI contributions"],
+    correct: 1,
+    explanation: "Tax credits are subtracted from your gross tax to reduce the amount of tax you actually have to pay."
+  },
+  { topic: "taxation", topicLabel: "Taxation", color: "#4f46e5",
+    q: "John earns €40,000 at 20% tax with €3,550 in tax credits. What is his annual tax?",
+    options: ["€4,450", "€8,000", "€3,550", "€6,450"],
+    correct: 0,
+    explanation: "Gross tax = 40,000 × 20% = €8,000. Tax payable = 8,000 − 3,550 = €4,450."
+  },
+  // BOOKKEEPING
+  { topic: "bookkeeping", topicLabel: "Bookkeeping", color: "#4f46e5",
+    q: "Opening Stock = €5,000, Purchases = €30,000, Closing Stock = €6,000. What is Cost of Sales?",
+    options: ["€29,000", "€31,000", "€41,000", "€35,000"],
+    correct: 0,
+    explanation: "Cost of Sales = Opening Stock + Purchases − Closing Stock = 5,000 + 30,000 − 6,000 = €29,000."
+  },
+  { topic: "bookkeeping", topicLabel: "Bookkeeping", color: "#4f46e5",
+    q: "Sales = €80,000 and Cost of Sales = €50,000. What is Gross Profit?",
+    options: ["€130,000", "€50,000", "€30,000", "€80,000"],
+    correct: 2,
+    explanation: "Gross Profit = Sales − Cost of Sales = 80,000 − 50,000 = €30,000."
+  },
+  { topic: "bookkeeping", topicLabel: "Bookkeeping", color: "#4f46e5",
+    q: "In an Analysed Cash Book, the debit side records:",
+    options: ["Payments out", "Receipts in", "Expenses only", "VAT only"],
+    correct: 1,
+    explanation: "Debit (left) = money IN (receipts). Credit (right) = money OUT (payments)."
+  },
+  // DOCUMENTS
+  { topic: "documents", topicLabel: "Business Documents", color: "#4f46e5",
+    q: "What is the correct order? (1) Invoice (2) Purchase Order (3) Quotation (4) Delivery Docket",
+    options: ["3, 2, 4, 1", "2, 3, 1, 4", "3, 4, 2, 1", "1, 2, 3, 4"],
+    correct: 0,
+    explanation: "Quotation → Purchase Order → Delivery Docket → Invoice. The seller quotes, buyer orders, goods are delivered, then the bill (invoice) is sent."
+  },
+  { topic: "documents", topicLabel: "Business Documents", color: "#4f46e5",
+    q: "Items total €500. Trade discount is 10%. VAT is 23%. What is the total due?",
+    options: ["€565.00", "€553.50", "€615.00", "€526.50"],
+    correct: 1,
+    explanation: "After trade discount: 500 − 50 = €450. VAT: 450 × 1.23 = €553.50. Trade discount FIRST, then VAT."
+  },
+  // EMPLOYMENT
+  { topic: "employment", topicLabel: "Employment", color: "#4f46e5",
+    q: "A worker earns €16/hour. What is their time-and-a-half rate?",
+    options: ["€20", "€24", "€32", "€22"],
+    correct: 1,
+    explanation: "Time-and-a-half = €16 × 1.5 = €24 per hour."
+  },
+  { topic: "employment", topicLabel: "Employment", color: "#4f46e5",
+    q: "Which of these is a benefit in kind (non-monetary reward)?",
+    options: ["Bonus", "Overtime pay", "Company car", "Commission"],
+    correct: 2,
+    explanation: "A company car is a non-monetary benefit — it has value but isn't cash in your pay packet. Bonus, overtime, and commission are all monetary."
+  },
+  { topic: "employment", topicLabel: "Employment", color: "#4f46e5",
+    q: "Which is an employee RIGHT, not a responsibility?",
+    options: ["Be punctual", "Follow H&S rules", "Join a trade union", "Be loyal to employer"],
+    correct: 2,
+    explanation: "Joining a trade union is a right. Punctuality, following H&S rules, and loyalty are responsibilities."
+  },
+  // INSURANCE
+  { topic: "insurance", topicLabel: "Insurance", color: "#4f46e5",
+    q: "What type of insurance would a shop need if a customer slips and falls on their floor?",
+    options: ["Motor insurance", "Employer's liability", "Public liability", "Health insurance"],
+    correct: 2,
+    explanation: "Public liability insurance covers a business if a member of the public is injured on their premises."
+  },
+  { topic: "insurance", topicLabel: "Insurance", color: "#4f46e5",
+    q: "What does 'insurable interest' mean?",
+    options: ["The interest rate on your premium", "You can only insure something you'd suffer a financial loss from", "The insurance company must be interested in your case", "You earn interest on your policy"],
+    correct: 1,
+    explanation: "Insurable interest means you must have a financial stake — you can insure your own car but not your neighbour's."
+  },
+  { topic: "insurance", topicLabel: "Insurance", color: "#4f46e5",
+    q: "What is a 'no claims bonus'?",
+    options: ["A bonus you get when you make a claim", "A discount on your premium for not making claims", "Extra cover added for free", "A refund when your policy ends"],
+    correct: 1,
+    explanation: "A no claims bonus is a discount on your insurance premium because you haven't made any claims — it rewards safe behaviour."
+  },
+  // ENTERPRISE
+  { topic: "enterprise", topicLabel: "Enterprise", color: "#4f46e5",
+    q: "A sole trader has unlimited liability. This means:",
+    options: ["They can borrow unlimited money", "Their personal assets can be taken to pay business debts", "They have unlimited profits", "They can hire unlimited staff"],
+    correct: 1,
+    explanation: "Unlimited liability means the owner's personal assets (house, car, savings) can be seized to pay business debts."
+  },
+  { topic: "enterprise", topicLabel: "Enterprise", color: "#4f46e5",
+    q: "Which is NOT a factor of production?",
+    options: ["Land", "Marketing", "Capital", "Enterprise"],
+    correct: 1,
+    explanation: "The four factors of production are Land, Labour, Capital, and Enterprise. Marketing is not a factor of production."
+  },
+  // MARKETING
+  { topic: "marketing", topicLabel: "Marketing", color: "#4f46e5",
+    q: "Which P of the marketing mix does 'advertising on Instagram' fall under?",
+    options: ["Product", "Price", "Place", "Promotion"],
+    correct: 3,
+    explanation: "Advertising is a form of Promotion — how you tell people about your product."
+  },
+  { topic: "marketing", topicLabel: "Marketing", color: "#4f46e5",
+    q: "What type of market research involves conducting surveys and interviews?",
+    options: ["Secondary (desk) research", "Primary (field) research", "Tertiary research", "Product research"],
+    correct: 1,
+    explanation: "Primary (field) research is collected first-hand by the business through surveys, interviews, focus groups, or observation."
+  },
+  { topic: "marketing", topicLabel: "Marketing", color: "#4f46e5",
+    q: "In the product life cycle, which stage has the highest sales?",
+    options: ["Introduction", "Growth", "Maturity", "Decline"],
+    correct: 2,
+    explanation: "Sales peak during the Maturity stage. After this, they begin to decline."
+  },
+  // CONSUMER
+  { topic: "consumer", topicLabel: "Consumer Rights", color: "#4f46e5",
+    q: "You buy a toaster and it stops working after 3 days. You are entitled to:",
+    options: ["Nothing — it's your problem now", "Repair, replacement, or refund", "Only a credit note", "Only an exchange"],
+    correct: 1,
+    explanation: "Under the Consumer Rights Act, goods must be of satisfactory quality. A toaster breaking after 3 days is faulty, so you're entitled to repair, replacement, or refund."
+  },
+  { topic: "consumer", topicLabel: "Consumer Rights", color: "#4f46e5",
+    q: "How long is the cooling-off period for online purchases?",
+    options: ["7 days", "14 days", "30 days", "28 days"],
+    correct: 1,
+    explanation: "You have 14 days from receiving the item to return an online purchase for any reason."
+  },
+  { topic: "consumer", topicLabel: "Consumer Rights", color: "#4f46e5",
+    q: "What is the maximum claim amount in the Small Claims Court?",
+    options: ["€500", "€1,000", "€2,000", "€5,000"],
+    correct: 2,
+    explanation: "The Small Claims Court handles claims up to €2,000. It costs €25 to lodge a claim."
+  },
+  // TRADE
+  { topic: "trade", topicLabel: "International Trade", color: "#4f46e5",
+    q: "Irish beef sold to France is an example of a:",
+    options: ["Visible import", "Visible export", "Invisible import", "Invisible export"],
+    correct: 1,
+    explanation: "It's visible (a physical good you can see and touch) and an export (sold FROM Ireland TO another country)."
+  },
+  { topic: "trade", topicLabel: "International Trade", color: "#4f46e5",
+    q: "Ireland's corporation tax rate is one of the lowest in Europe. What is it?",
+    options: ["20%", "15%", "12.5%", "10%"],
+    correct: 2,
+    explanation: "Ireland's corporation tax rate is 12.5%, which is a major reason MNCs set up operations here."
+  },
+  { topic: "trade", topicLabel: "International Trade", color: "#4f46e5",
+    q: "If visible exports = €50bn and visible imports = €40bn, the Balance of Trade is:",
+    options: ["€90bn surplus", "€10bn surplus", "€10bn deficit", "€40bn surplus"],
+    correct: 1,
+    explanation: "Balance of Trade = Exports − Imports = 50 − 40 = €10bn surplus. Surplus because exports exceed imports."
+  },
+  // ECONOMICS
+  { topic: "economics", topicLabel: "Economics", color: "#4f46e5",
+    q: "What happens to demand when the price of a good increases?",
+    options: ["Demand increases", "Demand decreases", "Demand stays the same", "Supply decreases"],
+    correct: 1,
+    explanation: "Law of Demand: as price goes up, demand goes down. People buy less when things are expensive."
+  },
+  { topic: "economics", topicLabel: "Economics", color: "#4f46e5",
+    q: "Which type of inflation is caused by rising production costs?",
+    options: ["Demand-pull", "Cost-push", "Interest-rate inflation", "Wage inflation"],
+    correct: 1,
+    explanation: "Cost-push inflation occurs when higher costs of production (raw materials, wages, energy) are passed on as higher prices to consumers."
+  },
+  { topic: "economics", topicLabel: "Economics", color: "#4f46e5",
+    q: "You have €20. You buy a book for €20 instead of a t-shirt. The opportunity cost is:",
+    options: ["The book", "The €20", "The t-shirt", "Nothing"],
+    correct: 2,
+    explanation: "Opportunity cost = the next best alternative you gave up. You chose the book, so the t-shirt is the opportunity cost."
+  },
+  // FINANCIAL INSTITUTIONS
+  { topic: "financial-institutions", topicLabel: "Financial Institutions", color: "#4f46e5",
+    q: "Which type of account is designed for everyday spending with a debit card?",
+    options: ["Savings account", "Current account", "Fixed deposit account", "Investment account"],
+    correct: 1,
+    explanation: "A current account is for everyday transactions — it comes with a debit card, online banking, and facilities like standing orders."
+  },
+  { topic: "financial-institutions", topicLabel: "Financial Institutions", color: "#4f46e5",
+    q: "€2,000 is saved at 4% simple interest for 3 years. How much interest is earned?",
+    options: ["€200", "€240", "€80", "€600"],
+    correct: 1,
+    explanation: "I = P × R × T ÷ 100 = 2,000 × 4 × 3 ÷ 100 = €240."
+  },
+  { topic: "financial-institutions", topicLabel: "Financial Institutions", color: "#4f46e5",
+    q: "Credit unions are different from commercial banks because they are:",
+    options: ["Government-owned", "Community-based and member-owned", "Only available online", "Run by insurance companies"],
+    correct: 1,
+    explanation: "Credit unions are community-based, owned by their members, and typically offer lower interest rates on loans."
+  },
+  // SUSTAINABILITY
+  { topic: "sustainability", topicLabel: "Sustainability", color: "#4f46e5",
+    q: "What does CSR stand for?",
+    options: ["Customer Service Rating", "Corporate Social Responsibility", "Consumer Spending Report", "Company Sustainability Review"],
+    correct: 1,
+    explanation: "Corporate Social Responsibility — a business considers its impact on employees, community, and environment beyond just making profit."
+  },
+  { topic: "sustainability", topicLabel: "Sustainability", color: "#4f46e5",
+    q: "A company claims to be 'green' but makes no real environmental changes. This is called:",
+    options: ["Ethical consumerism", "Fairtrade", "Greenwashing", "CSR"],
+    correct: 2,
+    explanation: "Greenwashing is when a company pretends to be environmentally friendly without actually making meaningful changes."
+  },
+  { topic: "sustainability", topicLabel: "Sustainability", color: "#4f46e5",
+    q: "What does the Deposit Return Scheme involve?",
+    options: ["Paying extra tax on plastic bags", "Paying a small deposit on cans/bottles and getting it back when you return them", "Depositing money in a savings account", "Returning unused products for a refund"],
+    correct: 1,
+    explanation: "The Deposit Return Scheme charges a small deposit on cans and bottles, refunded when you return them for recycling."
+  }
+];
+
+let currentTopic = 'all';
+let currentQuestions = [];
+let currentIndex = 0;
+let score = 0;
+let answers = [];
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function startQuiz(topic) {
+  if (topic) {
+    currentTopic = topic;
+    document.querySelectorAll('.quiz-topic-btn').forEach(b => {
+      b.classList.toggle('active', b.dataset.topic === topic);
+    });
+  }
+
+  const pool = currentTopic === 'all' ? QUESTIONS : QUESTIONS.filter(q => q.topic === currentTopic);
+  currentQuestions = shuffle(pool).slice(0, Math.min(10, pool.length));
+  currentIndex = 0;
+  score = 0;
+  answers = [];
+
+  document.getElementById('quizResults').style.display = 'none';
+  document.getElementById('quizContainer').style.display = 'block';
+  showQuestion();
+}
+
+function showQuestion() {
+  const q = currentQuestions[currentIndex];
+  const total = currentQuestions.length;
+  const pct = ((currentIndex) / total) * 100;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('quizScore').textContent = `Question ${currentIndex + 1} of ${total} • Score: ${score}/${currentIndex}`;
+
+  const letters = ['A', 'B', 'C', 'D'];
+  const container = document.getElementById('quizContainer');
+  container.innerHTML = `
+    <div class="quiz-card">
+      <div class="qc-topic" style="color:${q.color};">${q.topicLabel}</div>
+      <div class="qc-question">${q.q}</div>
+      <div class="quiz-options">
+        ${q.options.map((opt, i) => `
+          <button class="quiz-option" onclick="selectAnswer(${i})" data-idx="${i}">
+            <span class="opt-letter">${letters[i]}</span>
+            <span>${opt}</span>
+          </button>
+        `).join('')}
+      </div>
+      <div id="feedback"></div>
+    </div>
+  `;
+}
+
+function selectAnswer(idx) {
+  const q = currentQuestions[currentIndex];
+  const isCorrect = idx === q.correct;
+  if (isCorrect) score++;
+  answers.push({ q: q.q, topic: q.topicLabel, correct: isCorrect, selected: idx, answer: q.correct });
+
+  const options = document.querySelectorAll('.quiz-option');
+  options.forEach((opt, i) => {
+    opt.classList.add('disabled');
+    opt.onclick = null;
+    if (i === q.correct) opt.classList.add('correct');
+    if (i === idx && !isCorrect) opt.classList.add('wrong');
+  });
+
+  const fb = document.getElementById('feedback');
+  fb.innerHTML = `
+    <div class="quiz-feedback ${isCorrect ? 'correct-feedback' : 'wrong-feedback'}">
+      <strong>${isCorrect ? 'Correct!' : 'Not quite.'}</strong>
+      ${q.explanation}
+    </div>
+    <button class="quiz-next-btn" onclick="${currentIndex < currentQuestions.length - 1 ? 'nextQuestion()' : 'showResults()'}">
+      ${currentIndex < currentQuestions.length - 1 ? 'Next Question →' : 'See Results'}
+    </button>
+  `;
+}
+
+function nextQuestion() {
+  currentIndex++;
+  showQuestion();
+}
+
+function showResults() {
+  document.getElementById('quizContainer').style.display = 'none';
+  document.getElementById('progressFill').style.width = '100%';
+
+  const pct = Math.round((score / currentQuestions.length) * 100);
+  let icon, msg;
+  if (pct >= 90) { icon = '⭐'; msg = 'Outstanding! You really know your stuff.'; }
+  else if (pct >= 70) { icon = '💪'; msg = 'Strong work! Review the ones you missed and go again.'; }
+  else if (pct >= 50) { icon = '📚'; msg = 'Getting there. Re-read the notes on your weak topics and try again.'; }
+  else { icon = '🔄'; msg = 'Time to hit the study notes. You\'ll get it — try again after reviewing.'; }
+
+  document.getElementById('resultsIcon').textContent = icon;
+  document.getElementById('resultsScore').textContent = `${score} / ${currentQuestions.length} (${pct}%)`;
+  document.getElementById('resultsMessage').textContent = msg;
+  document.getElementById('quizScore').textContent = `Finished • Score: ${score}/${currentQuestions.length}`;
+
+  const breakdown = document.getElementById('resultsBreakdown');
+  breakdown.innerHTML = answers.map((a, i) =>
+    `<span class="rb-item ${a.correct ? 'rb-correct' : 'rb-wrong'}">Q${i+1}: ${a.correct ? '✓' : '✗'} ${a.topic}</span>`
+  ).join('');
+
+  document.getElementById('quizResults').style.display = 'block';
+}
+
+document.querySelectorAll('.quiz-topic-btn').forEach(btn => {
+  btn.addEventListener('click', () => startQuiz(btn.dataset.topic));
+});
+
+startQuiz('all');
+</script>
+
+<div style="text-align: center; padding: 40px; color: var(--gray-600); font-size: 10pt;">
+  <p style="font-weight: 700; margin-bottom: 4px;">Good luck with the exam!</p>
+  <p>Study the notes, learn the key terms, and practise the calculations until they are automatic.</p>
+</div>
+
+</body>
+</html>
